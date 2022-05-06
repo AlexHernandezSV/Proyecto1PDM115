@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".MateriaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MateriaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MateriaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MateriaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MateriaActualizarActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
