@@ -26,3 +26,19 @@ BEGIN
  THEN RAISE(ABORT, 'No existe el local')
 END;
 END;
+
+
+-- =========================================================================
+-- Trigger que impide insertar en DETALLE_OFERTA si se excede la cantidad
+-- de inscritos en una actividad desarrollada en un local con cupo limitado
+-- dentro de la tabla LOCAL. 
+-- =========================================================================
+CREATE TRIGGER update_cupos
+BEFORE INSERT ON DETALLE_OFERTA
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN new.CANT_INSCRITOS > (SELECT CUPO FROM LOCAL WHERE ID_AULA = NEW.ID_AULA)
+ THEN RAISE(ABORT, 'Cupos insuficientes')
+END;
+END;
