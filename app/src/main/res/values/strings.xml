@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Proyecto1 PDM115</string>
+    <string name="id_carrera">ID carrera</string>
+    <string name="nombre_carrera">Nombre carrera</string>
+    <string name="opciones">Opciones:</string>
+    <string name="limpiar">Limpiar</string>
+    <string name="insertar">Insertar</string>
 </resources>
