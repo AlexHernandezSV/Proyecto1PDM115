@@ -147,7 +147,7 @@ create table LOCAL (
 ID_AULA              INTEGER              not null,
 ID_RESERVANTE        INTEGER,
 NOMBRE_AULA          VARCHAR2(50)         not null,
-CUPO                 CHAR(10)             not null,
+CUPO                 INTEGER             not null,
 primary key (ID_AULA),
 foreign key (ID_RESERVANTE)
       references ENCARGADO (ID_RESERVANTE)
