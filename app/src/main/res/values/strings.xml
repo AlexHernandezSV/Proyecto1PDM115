@@ -5,6 +5,9 @@
     <string name="nombre_carrera">Nombre carrera</string>
     <string name="nombre_coordinador">Nombre del coordinador</string>
     <string name="tipo_miembro">Tipo de miembro</string>
+    <string name="id_horario">ID del horario</string>
+    <string name="desde_horario">Fecha de inicio</string>
+    <string name="hasta_horario">Fecha de finalización</string>
     <string name="opciones">Opciones:</string>
     <string name="limpiar">Limpiar</string>
     <string name="insertar">Insertar</string>

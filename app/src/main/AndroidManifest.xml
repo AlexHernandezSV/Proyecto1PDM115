@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".HorarioInsertarActivity"
+            android:exported="false" />
+        <activity
             android:name=".MiembroUniversitarioMenuActivity"
             android:exported="false" />
         <activity
