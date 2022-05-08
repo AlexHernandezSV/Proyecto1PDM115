@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".HorarioMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HorarioEliminarActivity"
+            android:exported="false" />
+        <activity
             android:name=".HorarioConsultarActivity"
             android:exported="false" />
         <activity
