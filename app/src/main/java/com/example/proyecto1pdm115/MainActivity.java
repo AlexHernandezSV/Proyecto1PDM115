@@ -10,8 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
-    String[] menu={"Tabla Carrera","Tabla Miembro universitario","Tabla Horarios","LLenar Base de Datos"};
-    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity"};
+    String[] menu={"Tabla Carrera","Tabla Miembro universitario","Tabla Horarios","Tabla de Detalles de ofertas","LLenar Base de Datos"};
+    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity","DetalleOfertaMenuActivity"};
     //ControlBDMT17005 BDhelper;
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
-        if(position!=3){
+        if(position!=4){
             String nombreValue=activities[position];
             try{
                 Class<?>

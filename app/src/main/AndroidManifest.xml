@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".DetalleOfertaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleOfertaEliminarActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalleOfertaConsultarActivity"
             android:exported="false" />
         <activity
