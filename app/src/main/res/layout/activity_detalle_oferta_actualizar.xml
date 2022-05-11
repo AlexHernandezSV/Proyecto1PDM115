@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="@string/grupo" />
+        <EditText
+            android:id="@+id/editGrupo"
+            android:inputType="text"
+            android:maxLength="3" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/id_materias_activas" />
+        <EditText
+            android:id="@+id/editId_materias_activas"
+            android:inputType="text"
+            android:maxLength="6" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/id_aula" />
+        <EditText
+            android:id="@+id/editId_aula"
+            android:inputType="number"
+            android:maxLength="3" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/cant_inscritos" />
+        <EditText
+            android:id="@+id/editCant_inscritos"
+            android:inputType="number"
+            android:maxLength="3"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="actualizarDetalleOferta"
+            android:text="@string/actualizar" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>
