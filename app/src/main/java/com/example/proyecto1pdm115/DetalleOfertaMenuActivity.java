@@ -13,7 +13,7 @@ public class DetalleOfertaMenuActivity extends ListActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};
     String[]
-            activities={"DetalleOfertaInsertarActivity","DetalleOfertaNotaEliminarActivity","DetalleOfertaConsultarActivity",
+            activities={"DetalleOfertaInsertarActivity","DetalleOfertaEliminarActivity","DetalleOfertaConsultarActivity",
             "DetalleOfertaActualizarActivity"};
 
     @Override
