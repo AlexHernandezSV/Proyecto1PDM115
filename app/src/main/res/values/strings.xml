@@ -5,6 +5,10 @@
     <string name="nombre_carrera">Nombre carrera</string>
     <string name="nombre_coordinador">Nombre del coordinador</string>
     <string name="tipo_miembro">Tipo de miembro</string>
+    <string name="grupo">Grupo</string>
+    <string name="id_materias_activas">ID de materia activa</string>
+    <string name="id_aula">ID del aula</string>
+    <string name="cant_inscritos">Cantidad de inscritos</string>
     <string name="id_horario">ID del horario</string>
     <string name="desde_horario">Fecha de inicio</string>
     <string name="hasta_horario">Fecha de finalización</string>
