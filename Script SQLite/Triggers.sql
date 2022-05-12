@@ -26,3 +26,49 @@ BEGIN
  THEN RAISE(ABORT, 'No existe el local')
 END;
 END;
+
+-- =========================================================================
+-- Trigger que impide insertar en MATERIA sin que existan
+-- registros en la tabla ESCUELA a la ue pertenece.
+-- =========================================================================
+CREATE TRIGGER fk_escuela_materia
+BEFORE INSERT ON MATERIA
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN ((SELECT ID_ESCUELA FROM ESCUELA WHERE ID_ESCUELA = NEW.ID_ESCUELA) IS NULL)
+ THEN RAISE(ABORT, 'No existe la escuela')
+END;
+END;
+
+
+-- =========================================================================
+-- Trigger que impide insertar en DETALLE_ACTIVIDAD sin que existan
+-- registros en la tabla LOCAL a la Que pertenece.
+-- =========================================================================
+CREATE TRIGGER fk_local_detalleactividad
+BEFORE INSERT ON DETALLE_ACTIVIDAD
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN ((SELECT ID_AULA FROM LOCAL WHERE ID_AULA = NEW.ID_AULA) IS NULL)
+ THEN RAISE(ABORT, 'No existe el local')
+END;
+END;
+
+-- =========================================================================
+-- Trigger que impide insertar en DETALLE_ACTIVIDAD sin que existan
+-- registros en la tabla ACTIVIDAD a la Que pertenece.
+-- =========================================================================
+CREATE TRIGGER fk_actividad_detalleactividad
+BEFORE INSERT ON DETALLE_ACTIVIDAD
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN ((SELECT ID_ACTIVIDAD FROM ACTIVIDAD WHERE ID_ACTIVIDAD = NEW.ID_ACTIVIDAD) IS NULL)
+ THEN RAISE(ABORT, 'No existe el local')
+END;
+END;
+
+
+INSERT INTO MATERIA VALUES ('03','01','PYE115',2);
