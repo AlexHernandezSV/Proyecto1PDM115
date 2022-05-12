@@ -10,6 +10,66 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".DetalleOfertaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleOfertaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleOfertaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleOfertaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleOfertaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HorarioMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HorarioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HorarioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HorarioActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HorarioInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MiembroUniversitarioMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MiembroUniversitarioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MiembroUniversitarioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MiembroUniversitarioActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MiembroUniversitarioInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarreraMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarreraEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarreraConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarreraActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CarreraInsertarActivity"
+            android:exported="false" />
+        <activity
             android:name=".MateriaConsultarActivity"
             android:exported="false" />
         <activity

@@ -9,32 +9,30 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MateriaMenuActivity extends ListActivity {
-
+public class DetalleOfertaMenuActivity extends ListActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};
     String[]
-            activities={"MateriaInsertarActivity","MateriaEliminarActivity","MateriaConsultarActivity",
-            "MateriaActualizarActivity"};
-
+            activities={"DetalleOfertaInsertarActivity","DetalleOfertaEliminarActivity","DetalleOfertaConsultarActivity",
+            "DetalleOfertaActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                menu));
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(246, 166, 149));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
+        listView.setBackgroundColor(Color.rgb(64, 0, 128));
+        ArrayAdapter<String> adapter = new
+                ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
-
     }
 
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
         String nombreValue=activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(128, 128, 255));
-
+        l.getChildAt(position).setBackgroundColor(Color.rgb(255, 128, 0));
         try{
             Class<?> clase=Class.forName("com.example.proyecto1pdm115."+nombreValue);
             Intent inte = new Intent(this,clase);

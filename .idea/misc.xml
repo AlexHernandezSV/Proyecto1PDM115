@@ -3,8 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="..\:/Users/USUARIO/AndroidStudioProjects/Proyecto1PDM115/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/USUARIO/AndroidStudioProjects/Proyecto1PDM115/app/src/main/res/layout/activity_main.xml" value="0.1" />
+=======
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_carrera_actualizar.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_carrera_consultar.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_carrera_eliminar.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_carrera_insertar.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_carrera_menu.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_detalle_oferta_actualizar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_detalle_oferta_consultar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_detalle_oferta_eliminar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_detalle_oferta_insertar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_horario_actualizar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_horario_consultar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_horario_eliminar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_horario_insertar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_horario_menu.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_miembro_universitario_actualizar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_miembro_universitario_consultar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_miembro_universitario_eliminar.xml" value="0.18659420289855072" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_miembro_universitario_insertar.xml" value="0.16485507246376813" />
+        <entry key="..\:/Users/Pofi/Documents/GitHub/Proyecto1PDM115/app/src/main/res/layout/activity_miembro_universitario_menu.xml" value="0.18659420289855072" />
+>>>>>>> e3bd3cbe6549f62c22b88e8f5dacb40234c1dce5
         <entry key="..\:/Users/USUARIO/AndroidStudioProjects/Proyecto1PDM115/app/src/main/res/layout/activity_materia.xml" value="0.1956521739130435" />
       </map>
     </option>

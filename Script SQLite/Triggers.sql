@@ -27,6 +27,7 @@ BEGIN
 END;
 END;
 
+<<<<<<< HEAD
 -- =========================================================================
 -- Trigger que impide insertar en MATERIA sin que existan
 -- registros en la tabla ESCUELA a la ue pertenece.
@@ -72,3 +73,20 @@ END;
 
 
 INSERT INTO MATERIA VALUES ('03','01','PYE115',2);
+=======
+
+-- =========================================================================
+-- Trigger que impide insertar en DETALLE_OFERTA si se excede la cantidad
+-- de inscritos en una actividad desarrollada en un local con cupo limitado
+-- dentro de la tabla LOCAL. 
+-- =========================================================================
+CREATE TRIGGER update_cupos
+BEFORE INSERT ON DETALLE_OFERTA
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN new.CANT_INSCRITOS > (SELECT CUPO FROM LOCAL WHERE ID_AULA = NEW.ID_AULA)
+ THEN RAISE(ABORT, 'Cupos insuficientes')
+END;
+END;
+>>>>>>> e3bd3cbe6549f62c22b88e8f5dacb40234c1dce5

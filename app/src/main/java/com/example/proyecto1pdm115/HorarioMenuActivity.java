@@ -9,24 +9,21 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MateriaMenuActivity extends ListActivity {
-
+public class HorarioMenuActivity extends ListActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};
     String[]
-            activities={"MateriaInsertarActivity","MateriaEliminarActivity","MateriaConsultarActivity",
-            "MateriaActualizarActivity"};
-
+            activities={"HorarioInsertarActivity","HorarioEliminarActivity","HorarioConsultarActivity",
+            "HorarioActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(246, 166, 149));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
+        listView.setBackgroundColor(Color.rgb(0, 0, 255));
+        ArrayAdapter<String> adapter = new
+                ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
-
     }
 
     @Override
@@ -34,7 +31,6 @@ public class MateriaMenuActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
         String nombreValue=activities[position];
         l.getChildAt(position).setBackgroundColor(Color.rgb(128, 128, 255));
-
         try{
             Class<?> clase=Class.forName("com.example.proyecto1pdm115."+nombreValue);
             Intent inte = new Intent(this,clase);
