@@ -9,6 +9,6 @@ public class MateriaActualizarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_materia);
+        setContentView(R.layout.activity_materia_actualizar);
     }
 }
