@@ -30,10 +30,11 @@
     <string name="id_usuario">ID Usuario</string>
     <string name="nombre_reservante">Nombre del reservante</string>
     <string name="tipo_reservante">Tipo de reservante</string>
-
-
-
-
-
-
+    <string name="id_ciclo">ID del Ciclo</string>
+    <string name="ciclo">Ciclo</string>
+    <string name="fecha_inicio">Fecha de inicio del ciclo</string>
+    <string name="fecha_fin">Fecha final del ciclo</string>
+    <string name="id_horario_nuevo">ID Horario nuevo</string>
+    <string name="id_hactividad_nueva">ID actividad nueva</string>
+    <string name="id_coordinador_nuevo">ID coordinador nuevo</string>
 </resources>

@@ -10,6 +10,51 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".DetalleActividadHorarioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleActividadHorarioActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleActividadHorarioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleActividadHorarioInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CicloConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CicloActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CicloEliminarActiviy"
+            android:exported="false" />
+        <activity
+            android:name=".CicloInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleActividadHorarioMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CoordinaMenuActiviy"
+            android:exported="false" />
+        <activity
+            android:name=".CicloMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".EncargadoEliminarActivity"
             android:exported="false" />
         <activity
