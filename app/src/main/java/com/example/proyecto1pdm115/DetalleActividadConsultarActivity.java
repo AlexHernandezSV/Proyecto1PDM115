@@ -1,0 +1,48 @@
+package com.example.proyecto1pdm115;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class DetalleActividadConsultarActivity extends AppCompatActivity {
+
+    //ControlBDMT17005 helper;
+    EditText editDetActividad;
+    EditText editId_aula;
+    EditText editId_actividad;
+    EditText editParticipantes;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detalle_actividad_consultar);
+        //helper = new ControlBDMT17005(this);
+        editDetActividad = (EditText) findViewById(R.id.editDetActividad);
+        editId_aula = (EditText) findViewById(R.id.editId_aula);
+        editId_actividad = (EditText) findViewById(R.id.editId_actividad);
+        editParticipantes = (EditText) findViewById(R.id.editParticipantes);
+    }
+
+    public void consultarDetalleActividad(View v) {
+        /*helper.abrir();
+        DetalleActividad detalleActividad = helper.consultarDetalleActividad(editDetActividad.getText().toString(), editId_aula.getText().toString(), editId_actividad.getText().toString(), editParticipantes.getText().toString());
+        helper.cerrar();
+        if(detalleActividad == null)
+            Toast.makeText(this, "Detalle de actividad no registrada",
+                    Toast.LENGTH_LONG).show();
+        else{
+            edit.setText(String.valueOf(detalleActividad.getId_actividad()));
+        }*/
+    }
+
+    public void limpiarTexto(View v) {
+        editDetActividad.setText("");
+        editId_aula.setText("");
+        editId_actividad.setText("");
+        editParticipantes.setText("");
+    }
+}

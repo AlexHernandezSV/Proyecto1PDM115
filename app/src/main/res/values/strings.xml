@@ -23,5 +23,9 @@
     <string name="nombre_materia">Nombre Materia</string>
     <string name="ciclo_materia">Ciclo Materia</string>
     <string name="layout_ingresar">Ingrese un registro</string>
+    <string name="participantes">Cant. participantes</string>
+    <string name="id_actividad">ID Actividad</string>
+    <string name="id_detalle_actividad">ID Detalle Actividad</string>
+
 
 </resources>
