@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".EncargadoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EncargadoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EncargadoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EncargadoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EncargadoMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalleActividadConsultarActivity"
             android:exported="false" />
         <activity

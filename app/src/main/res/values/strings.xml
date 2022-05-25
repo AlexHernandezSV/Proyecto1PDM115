@@ -26,6 +26,14 @@
     <string name="participantes">Cant. participantes</string>
     <string name="id_actividad">ID Actividad</string>
     <string name="id_detalle_actividad">ID Detalle Actividad</string>
+    <string name="id_reservante">ID Encargado</string>
+    <string name="id_usuario">ID Usuario</string>
+    <string name="nombre_reservante">Nombre del reservante</string>
+    <string name="tipo_reservante">Tipo de reservante</string>
+
+
+
+
 
 
 </resources>
