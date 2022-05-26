@@ -27,7 +27,7 @@
     </TableRow>
     <TableRow>
         <Button
-            android:onClick="actualizarAlumno"
+            android:onClick="actualizarMiembroUniversitario"
             android:text="@string/actualizar" />
     </TableRow>
     <TableRow>

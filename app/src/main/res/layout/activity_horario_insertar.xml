@@ -16,7 +16,7 @@
         <EditText
             android:id="@+id/editDesde_horario"
             android:inputType="text"
-            android:maxLength="3"
+            android:maxLength="10"
              />
     </TableRow>
     <TableRow>
@@ -24,7 +24,7 @@
         <EditText
             android:id="@+id/editHasta_horario"
             android:inputType="text"
-            android:maxLength="3"
+            android:maxLength="10"
              />
     </TableRow>
     <TableRow>

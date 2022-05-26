@@ -174,7 +174,7 @@ public class ControlBD {
         ContentValues hor = new ContentValues();
         hor.put("id_horario", horario.getId_horario());
         hor.put("desde_horario", horario.getDesde_horario());
-        //hor.put("hasta_horario", horario.getHasta_horario());
+        hor.put("hasta_horario", horario.getHasta_horario());
         contador=db.insert("HORARIO", null, hor);
         if(contador==-1 || contador==0)
         {
@@ -457,12 +457,12 @@ public class ControlBD {
         //Tabla Detalle_Oferta
 
         //Tabla Miembro_Universitario
-        final String[] Miembroid_coordinador = {"001", "002", "003"};
+        final String[] Miembroid_coordinador = {"M01", "M02", "M03"};
         final String[] Miembronombre_coordinador = {"Juan","Raquel","Pablo"};
         final String[] Miembrotipo_miembro = {"Docente","Administrativo","Estudiante"};
 
         //Tabla Horario
-        final String[] Horarioid_horario = {"001","002","003"};
+        final String[] Horarioid_horario = {"H01","H02","H03"};
         final String[] Horariodesde_horario = {"8:00","9:50","13:20"};
         final String[] Horariohasta_horario = {"9:45","11:30","15:00"};
 
