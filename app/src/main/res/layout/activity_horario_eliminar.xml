@@ -11,7 +11,7 @@
         android:id="@+id/editId_horario"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="text"
         android:maxLength="3"/>
     <Button
         android:layout_width="wrap_content"

@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class CarreraInsertarActivity extends AppCompatActivity {
-    //ControlBDMT17005 helper;
+    ControlBD helper;
     EditText editId_carrera;
     EditText editNombre_carrera;
 
@@ -16,7 +16,7 @@ public class CarreraInsertarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrera_insertar);
-        //helper = new ControlBDMT17005(this);
+        helper = new ControlBD(this);
         editId_carrera = (EditText) findViewById(R.id.editId_carrera);
         editNombre_carrera = (EditText) findViewById(R.id.editNombre_carrera);
     }
@@ -27,10 +27,10 @@ public class CarreraInsertarActivity extends AppCompatActivity {
         Carrera carrera=new Carrera();
         carrera.setId_carrera(id_carrera);
         carrera.setNombre_carrera(nombre_carrera);
-        //helper.abrir();
-        //regInsertados=helper.insertar(alumno);
-        //helper.cerrar();
-        //Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        regInsertados=helper.insertar(carrera);
+        helper.cerrar();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
     public void limpiarTexto(View v) {
         editId_carrera.setText("");

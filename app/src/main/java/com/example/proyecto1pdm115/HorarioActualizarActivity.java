@@ -10,7 +10,7 @@ import android.widget.Toast;
 import java.util.Date;
 
 public class HorarioActualizarActivity extends AppCompatActivity {
-    //ControlBDMT17005 helper;
+    ControlBD helper;
     EditText editId_horario;
     EditText editDesde_horario;
     EditText editHasta_horario;
@@ -19,7 +19,7 @@ public class HorarioActualizarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horario_actualizar);
-        //helper = new ControlBDMT17005(this);
+        helper = new ControlBD(this);
         editId_horario = (EditText) findViewById(R.id.editId_horario);
         editDesde_horario = (EditText) findViewById(R.id.editDesde_horario);
         editHasta_horario = (EditText) findViewById(R.id.editHasta_horario);
@@ -30,10 +30,10 @@ public class HorarioActualizarActivity extends AppCompatActivity {
         horario.setId_horario(editId_horario.getText().toString());
         horario.setDesde_horario(editDesde_horario.getText().toString());
         horario.setHasta_horario(editHasta_horario.getText().toString());
-        //helper.abrir();
-        //String estado = helper.actualizar(horario);
-        //helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        String estado = helper.actualizar(horario);
+        helper.cerrar();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {

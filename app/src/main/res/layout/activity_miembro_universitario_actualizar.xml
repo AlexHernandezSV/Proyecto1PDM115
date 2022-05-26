@@ -8,8 +8,8 @@
         <TextView android:text="@string/id_coordinador" />
         <EditText
             android:id="@+id/editId_coordinador"
-            android:inputType="number"
-            android:maxLength="5" />
+            android:inputType="text"
+            android:maxLength="3" />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/nombre_coordinador" />
@@ -27,7 +27,7 @@
     </TableRow>
     <TableRow>
         <Button
-            android:onClick="actualizarAlumno"
+            android:onClick="actualizarMiembroUniversitario"
             android:text="@string/actualizar" />
     </TableRow>
     <TableRow>

@@ -23,6 +23,16 @@ public class ControlBD {
     //Campos de Horario
     private static final String[] camposHorario = new String[]
             {"id_horario", "desde_horario", "hasta_horario"};
+
+    //Campos de ciclo
+    private static final String[] camposCiclo = new String[]
+            {"id_ciclo", "ciclo","fecha_inicio", "fecha_fin"};
+    //Campos de Coordina
+    private static final String[] camposCoordina = new String[]
+            {"id_actividad", "id_coordinador"};
+    //Campos Detalle Actividad Horario
+    private static final String[] camposDetalleActividadHorario = new String[]
+            {"id_horario", "nombre_actividad"};
     //Campos de Materia
     private static final String[] camposMateria = new String[]
             {"id_materia", "id_escuela", "nombre_materia", "ciclo_materia"};
@@ -51,7 +61,7 @@ public class ControlBD {
 //================================ INICIO - Bloque de scripts =============================================
 
         @Override
-        //Este método va llevar todo el script de la bd, un desverge
+        //Este método va llevar todo el script de la bd, un desverge xd
         public void onCreate(SQLiteDatabase db) {
             try {
 
@@ -177,7 +187,7 @@ public class ControlBD {
         ContentValues hor = new ContentValues();
         hor.put("id_horario", horario.getId_horario());
         hor.put("desde_horario", horario.getDesde_horario());
-        //hor.put("hasta_horario", horario.getHasta_horario());
+        hor.put("hasta_horario", horario.getHasta_horario());
         contador=db.insert("HORARIO", null, hor);
         if(contador==-1 || contador==0)
         {
@@ -512,7 +522,7 @@ public class ControlBD {
                 Cursor c2 = db.query("MATERIA", null, "id_materia = ?", id, null, null,
                         null);
                 if (c2.moveToFirst()) {
-//Se encontro Carrera
+//Se encontro Materia
                     return true;
                 }
                 return false;
@@ -529,21 +539,21 @@ public class ControlBD {
 
 //================================ INICIO - Bloque de llenado de datos =============================================
 
-    public String llenarBDCarnet() {
+    public String llenarBD() {
 
         //Tabla Carrera
         final String[] Carreraid_carrera = {"I10515", "I10501", "I10502"};
-        final String[] Carreranombre_carrera = {"Ingeniería de Sistemas Informáticos", "Ingeniería Civil", "Ingeniería Industrial"};
+        final String[] Carreranombre_carrera = {"Ingenieria de Sistemas Informaticos", "Ingenieria Civil", "Ingenieria Industrial"};
 
         //Tabla Detalle_Oferta
 
         //Tabla Miembro_Universitario
-        final String[] Miembroid_coordinador = {"001", "002", "003"};
+        final String[] Miembroid_coordinador = {"M01", "M02", "M03"};
         final String[] Miembronombre_coordinador = {"Juan","Raquel","Pablo"};
         final String[] Miembrotipo_miembro = {"Docente","Administrativo","Estudiante"};
 
         //Tabla Horario
-        final String[] Horarioid_horario = {"001","002","003"};
+        final String[] Horarioid_horario = {"H01","H02","H03"};
         final String[] Horariodesde_horario = {"8:00","9:50","13:20"};
         final String[] Horariohasta_horario = {"9:45","11:30","15:00"};
 
@@ -554,15 +564,14 @@ public class ControlBD {
         final  int[] Materiaciclo_materia = {1,2,1,1};
 
         abrir();
-        db.execSQL("DELETE FROM carrera");
+        db.execSQL("DELETE FROM CARRERA");
         //Falta Detalle_Oferta
-        db.execSQL("DELETE FROM miembroUniversitario");
-        db.execSQL("DELETE FROM Horario");
-        db.execSQL("DELETE FROM Materia");
-
+        db.execSQL("DELETE FROM MIEMBRO_UNIVERSITARIO");
+        db.execSQL("DELETE FROM HORARIO");
+        db.execSQL("DELETE FROM MATERIA");
 
         Carrera carrera = new Carrera();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             carrera.setId_carrera(Carreraid_carrera[i]);
             carrera.setNombre_carrera(Carreranombre_carrera[i]);
             insertar(carrera);
