@@ -113,6 +113,36 @@ public class ControlBD {
                         "foreign key (ID_ESCUELA)\n" +
                         "      references ESCUELA (ID_ESCUELA));");
 
+                //Tabla Ciclo
+                db.execSQL("create table CICLO (\n" +
+                        "ID_CICLO           VARCHAR2(6)          not null, \n" +
+                        "CICLO              VARCHAR2(6)         not null,\n" +
+                        "FECHA_INICIO       VARCHAR2(20)         not null,\n" +
+                        "FECHA_FIN          VARCHAR2(20)              not null,\n" +
+                        "primary key (ID_CICLO)\n" +
+                        ");");
+
+                //Tabla Coordina
+                db.execSQL("create table COORDINA (\n" +
+                        "ID_ACTIVIDAD          VARCHAR2(6)          not null, \n" +
+                        "ID_COORDINADOR          VARCHAR2(6)          not null, \n" +
+                        "primary key (ID_ACTIVIDAD,ID_COORDINADOR),\n" +
+                        "foreign key (ID_ACTIVIDAD)\n" +
+                        "      references ACTIVIDAD (ID_ACTIVIDAD),\n" +
+                        "foreign key (ID_COORDINADOR)\n" +
+                        "      references MIEMBRO_UNIVERSITARIO (ID_COORDINADOR)\n" +
+                        ");");
+
+                //Tabla DETALLE_ACTIVIDAD_HORARIO
+                db.execSQL("create table DETALLE_ACTIVIDAD_HORARIO (\n" +
+                        "ID_HORARIO          VARCHAR2(6)          not null, \n" +
+                        "ID_ACTIVIDAD          VARCHAR2(6)          not null, \n" +
+                        "foreign key (ID_HORARIO)\n" +
+                        "      references HORARIO (ID_HORARIO),\n" +
+                        "foreign key (ID_ACTIVIDAD)\n" +
+                        "      references ACTIVIDAD (ID_ACTIVIDAD)\n" +
+                        ");");
+
                 //Continuar tablas
 
 
@@ -218,6 +248,8 @@ public class ControlBD {
         }
         return regInsertados;
     }
+
+
 
 
 //================================ FINAL - Bloque de todos los INSERT =============================================
