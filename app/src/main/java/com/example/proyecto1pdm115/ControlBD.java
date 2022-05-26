@@ -23,6 +23,16 @@ public class ControlBD {
     //Campos de Horario
     private static final String[] camposHorario = new String[]
             {"id_horario", "desde_horario", "hasta_horario"};
+
+    //Campos de ciclo
+    private static final String[] camposCiclo = new String[]
+            {"id_ciclo", "ciclo","fecha_inicio", "fecha_fin"};
+    //Campos de Coordina
+    private static final String[] camposCoordina = new String[]
+            {"id_actividad", "id_coordinador"};
+    //Campos Detalle Actividad Horario
+    private static final String[] camposDetalleActividadHorario = new String[]
+            {"id_horario", "nombre_actividad"};
     //Agregar los demás campos
 
 
@@ -48,7 +58,7 @@ public class ControlBD {
 //================================ INICIO - Bloque de scripts =============================================
 
         @Override
-        //Este método va llevar todo el script de la bd, un desverge
+        //Este método va llevar todo el script de la bd, un desverge xd
         public void onCreate(SQLiteDatabase db) {
             try {
 
