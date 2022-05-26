@@ -228,6 +228,110 @@ public class ControlBD {
 //================================ FINAL - Bloque de todos los UPDATE =============================================
 
 
+//================================ INICIO - Bloque de todos los DELETE =============================================
+
+    //Eliminar carrera
+    public String eliminar(Carrera carrera) {
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(carrera,4)) {
+            contador+=db.delete("ESCUELA", "id_carrera='"+carrera.getId_carrera()+"'", null);
+        }
+        contador+=db.delete("CARRERA", "id_carrera='"+carrera.getId_carrera()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    //Eliminar DetalleOferta
+
+
+    //Eliminar Miembro_Universitario
+    public String eliminar(MiembroUniversitario miembroUniversitario) {
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(miembroUniversitario,5)) {
+            contador+=db.delete("COORDINA", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
+        }
+        if (verificarIntegridad(miembroUniversitario,6)) {
+                contador+=db.delete("DETALLE_RESPONSABLE", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
+        }
+        contador+=db.delete("MIEMBRO_UNIVERSITARIO", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    //Eliminar Horario
+    public String eliminar(Horario horario) {
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(horario,7)) {
+            contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
+        }
+        contador+=db.delete("HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+//================================ FINAL - Bloque de todos los DELETE =============================================
+
+
+//================================ INICIO - Bloque de todos los READ =============================================
+
+    //Consultar Carrera
+    public Carrera consultarCarrera(String id_carrera) {
+        String[] id = {id_carrera};
+        Cursor cursor = db.query("CARRERA", camposCarrera, "id_carrera = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            Carrera carrera = new Carrera();
+            carrera.setId_carrera(cursor.getString(0));
+            carrera.setNombre_carrera(cursor.getString(1));
+            return carrera;
+        }else{
+            return null;
+        }
+    }
+
+    //Consultar Detalle_Oferta
+
+
+    //Consultar Miembro_Universitario
+    public MiembroUniversitario consultarMiembroUniversitario(String id_coordinador) {
+        String[] id = {id_coordinador};
+        Cursor cursor = db.query("MIEMBRO_UNIVERSITARIO", camposMiembroUniversitario, "id_coordinador = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            MiembroUniversitario miembroUniversitario = new MiembroUniversitario();
+            miembroUniversitario.setId_coordinador(cursor.getString(0));
+            miembroUniversitario.setNombre_coordinador(cursor.getString(1));
+            miembroUniversitario.setTipo_miembro(cursor.getString(2));
+            return miembroUniversitario;
+        }else{
+            return null;
+        }
+    }
+
+    //Consultar Horario
+    public Horario consultarHorario(String id_horario) {
+        String[] id = {id_horario};
+        Cursor cursor = db.query("HORARIO", camposHorario, "id_horario = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            Horario horario = new Horario();
+            horario.setId_horario(cursor.getString(0));
+            horario.setDesde_horario(cursor.getString(1));
+            horario.setHasta_horario(cursor.getString(2));
+            return horario;
+        }else{
+            return null;
+        }
+    }
+
+
+//================================ FINAL - Bloque de todos los READ =============================================
+
+
+
 //================================ INICIO - Bloque de verificar integridad =============================================
 
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
@@ -275,6 +379,54 @@ public class ControlBD {
                 return false;
             }
 
+            case 4: {
+                //Verificaciòn de que si existe Carrera dentro de Escuela al eliminar una carrera
+                Carrera carrera = (Carrera) dato;
+                Cursor c = db.query(true, "ESCUELA", new String[]{
+                                "id_carrera"}, "id_carrera='" + carrera.getId_carrera() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
+            case 5: {
+                //Verificaciòn de que si existe MiembroUniversitario dentro de Coordina al eliminar un miembro
+                MiembroUniversitario miembroUniversitario = (MiembroUniversitario) dato;
+                Cursor c = db.query(true, "COORDINA", new String[]{
+                                "id_coordinador"}, "id_coordinador='" + miembroUniversitario.getId_coordinador() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
+            case 6: {
+                //Verificaciòn de que si existe MiembroUniversitario dentro de Detalle_Responsable al eliminar un miembro
+                MiembroUniversitario miembroUniversitario = (MiembroUniversitario) dato;
+                Cursor c = db.query(true, "DETALLE_RESPONSABLE", new String[]{
+                                "id_coordinador"}, "id_coordinador='" + miembroUniversitario.getId_coordinador() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
+            case 7: {
+                //Verificaciòn de que si existe Horario dentro de Detalle_Actividad_Horario al eliminar un horario
+                Horario horario = (Horario) dato;
+                Cursor c = db.query(true, "DETALLE_ACTIVIDAD_HORARIO", new String[]{
+                                "id_horario"}, "id_horario='" + horario.getId_horario() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
             default:
                 return false;
         }
@@ -282,5 +434,12 @@ public class ControlBD {
 
 
 //================================ FINAL - Bloque de verificar integridad =============================================
+
+
+//================================ INICIO - Bloque de llenado de datos =============================================
+
+
+
+//================================ FINAL - Bloque de llenado de datos =============================================
 
 }
