@@ -438,7 +438,57 @@ public class ControlBD {
 
 //================================ INICIO - Bloque de llenado de datos =============================================
 
+    public String llenarBDCarnet() {
 
+        //Tabla Carrera
+        final String[] Carreraid_carrera = {"I10515", "I10501", "I10502"};
+        final String[] Carreranombre_carrera = {"Ingeniería de Sistemas Informáticos", "Ingeniería Civil", "Ingeniería Industrial"};
+
+        //Tabla Detalle_Oferta
+
+        //Tabla Miembro_Universitario
+        final String[] Miembroid_coordinador = {"001", "002", "003"};
+        final String[] Miembronombre_coordinador = {"Juan","Raquel","Pablo"};
+        final String[] Miembrotipo_miembro = {"Docente","Administrativo","Estudiante"};
+
+        //Tabla Horario
+        final String[] Horarioid_horario = {"001","002","003"};
+        final String[] Horariodesde_horario = {"8:00","9:50","13:20"};
+        final String[] Horariohasta_horario = {"9:45","11:30","15:00"};
+
+        abrir();
+        db.execSQL("DELETE FROM carrera");
+        //Falta Detalle_Oferta
+        db.execSQL("DELETE FROM miembroUniversitario");
+        db.execSQL("DELETE FROM Horario");
+
+        Carrera carrera = new Carrera();
+        for (int i = 0; i < 2; i++) {
+            carrera.setId_carrera(Carreraid_carrera[i]);
+            carrera.setNombre_carrera(Carreranombre_carrera[i]);
+            insertar(carrera);
+        }
+
+        //Falta Detalle_Oferta
+
+        MiembroUniversitario miembroUniversitario = new MiembroUniversitario();
+        for (int i = 0; i < 3; i++) {
+            miembroUniversitario.setId_coordinador(Miembroid_coordinador[i]);
+            miembroUniversitario.setNombre_coordinador(Miembronombre_coordinador[i]);
+            miembroUniversitario.setTipo_miembro(Miembrotipo_miembro[i]);
+            insertar(miembroUniversitario);
+        }
+
+        Horario horario = new Horario();
+        for (int i = 0; i < 3; i++) {
+            horario.setId_horario(Horarioid_horario[i]);
+            horario.setDesde_horario(Horariodesde_horario[i]);
+            horario.setHasta_horario(Horariohasta_horario[i]);
+            insertar(horario);
+        }
+        cerrar();
+        return "Guardo Correctamente";
+    }
 
 //================================ FINAL - Bloque de llenado de datos =============================================
 
