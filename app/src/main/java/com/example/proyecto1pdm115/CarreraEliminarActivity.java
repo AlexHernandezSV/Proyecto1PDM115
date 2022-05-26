@@ -8,23 +8,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class CarreraEliminarActivity extends AppCompatActivity {
-    //ControlBDMT17005 controlhelper;
+    ControlBD controlhelper;
     EditText editId_carrera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrera_eliminar);
-        //controlhelper=new ControlBDMT17005 (this);
+        controlhelper=new ControlBD (this);
         editId_carrera=(EditText)findViewById(R.id.editId_carrera);
     }
     public void eliminarCarrera(View v){
         String regEliminadas;
         Carrera carrera=new Carrera();
         carrera.setId_carrera(editId_carrera.getText().toString());
-        //controlhelper.abrir();
-        //regEliminadas=controlhelper.eliminar(carrera);
-        //controlhelper.cerrar();
-        //Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        controlhelper.abrir();
+        regEliminadas=controlhelper.eliminar(carrera);
+        controlhelper.cerrar();
+        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 }

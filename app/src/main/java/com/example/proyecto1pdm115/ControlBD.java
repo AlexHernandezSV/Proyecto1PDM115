@@ -467,10 +467,10 @@ public class ControlBD {
         final String[] Horariohasta_horario = {"9:45","11:30","15:00"};
 
         abrir();
-        db.execSQL("DELETE FROM carrera");
+        db.execSQL("DELETE FROM CARRERA");
         //Falta Detalle_Oferta
-        db.execSQL("DELETE FROM miembroUniversitario");
-        db.execSQL("DELETE FROM Horario");
+        db.execSQL("DELETE FROM MIEMBRO_UNIVERSITARIO");
+        db.execSQL("DELETE FROM HORARIO");
 
         Carrera carrera = new Carrera();
         for (int i = 0; i < 2; i++) {
