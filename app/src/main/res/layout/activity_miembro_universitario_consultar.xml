@@ -11,8 +11,8 @@
         android:id="@+id/editId_coordinador"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:maxLength="5"/>
+        android:inputType="text"
+        android:maxLength="3"/>
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"

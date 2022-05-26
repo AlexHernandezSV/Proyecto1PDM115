@@ -9,23 +9,23 @@ import android.widget.Toast;
 
 public class MiembroUniversitarioEliminarActivity extends AppCompatActivity {
     EditText editId_coordinador;
-    //ControlBDMT17005 controlhelper;
+    ControlBD controlhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miembro_universitario_eliminar);
-        //controlhelper=new ControlBDMT17005 (this);
+        controlhelper=new ControlBD (this);
         editId_coordinador=(EditText)findViewById(R.id.editId_coordinador);
     }
 
     public void eliminarMiembroUniversitario(View v){
-        //String regEliminadas;
+        String regEliminadas;
         MiembroUniversitario miembroUniversitario=new MiembroUniversitario();
         miembroUniversitario.setId_coordinador(editId_coordinador.getText().toString());
-        //controlhelper.abrir();
-        //regEliminadas=controlhelper.eliminar(miembroUniversitario);
-        //controlhelper.cerrar();
-        //Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        controlhelper.abrir();
+        regEliminadas=controlhelper.eliminar(miembroUniversitario);
+        controlhelper.cerrar();
+        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 }

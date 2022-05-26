@@ -8,21 +8,23 @@
         <TextView android:text="@string/id_horario"/>
         <EditText
             android:id="@+id/editId_horario"
-            android:inputType="number"
+            android:inputType="text"
             android:maxLength="3" />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/desde_horario" />
         <EditText
             android:id="@+id/editDesde_horario"
-            android:inputType="date"
+            android:inputType="text"
+            android:maxLength="3"
              />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/hasta_horario" />
         <EditText
             android:id="@+id/editHasta_horario"
-            android:inputType="date"
+            android:inputType="text"
+            android:maxLength="3"
              />
     </TableRow>
     <TableRow>

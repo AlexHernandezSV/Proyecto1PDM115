@@ -11,8 +11,8 @@
         android:id="@+id/editId_coordinador"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:maxLength="5"/>
+        android:inputType="text"
+        android:maxLength="3"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
