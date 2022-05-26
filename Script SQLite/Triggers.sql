@@ -90,3 +90,67 @@ BEGIN
 END;
 END;
 >>>>>>> e3bd3cbe6549f62c22b88e8f5dacb40234c1dce5
+
+
+
+
+-- Triggers de pedro
+
+-- =========================================================================
+-- Trigger que impide insertar en OFERTA_ACADEMICA sin que existan
+-- registros en la tabla MIEMBRO_UNIVRSITARIO.
+-- =========================================================================
+CREATE TRIGGER fk_ofertaAcademica_miembroUniversitario
+BEFORE INSERT ON OFERTA_ACADEMICA
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN ((SELECT ID_COORDINADOR FROM MIEMBRO_UNIVERSITARIO WHERE ID_COORDINADOR = NEW.ID_COORDINADOR) IS NULL)
+ THEN RAISE(ABORT, 'Error: No existe el miembro universitario')
+END;
+END;
+
+
+-- =========================================================================
+-- Trigger que impide insertar en OFERTA_ACADEMICA sin que existan
+-- registros en la tabla MATERIA.
+-- =========================================================================
+CREATE TRIGGER fk_ofertaAcademica_materia
+BEFORE INSERT ON OFERTA_ACADEMICA
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN ((SELECT ID_MATERIA FROM MATERIA WHERE ID_MATERIA = NEW.ID_MATERIA) IS NULL)
+ THEN RAISE(ABORT, 'Error: No existe la materia')
+END;
+END;
+
+-- =========================================================================
+-- Trigger que impide insertar en OFERTA_ACADEMICA sin que existan
+-- registros en la tabla CICLO.
+-- =========================================================================
+CREATE TRIGGER fk_ofertaAcademica_ciclo
+BEFORE INSERT ON OFERTA_ACADEMICA
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN ((SELECT ID_CICLO FROM CICLO WHERE ID_CICLO = NEW.ID_CICLO) IS NULL)
+ THEN RAISE(ABORT, 'Error: No existe el ciclo a ingresar')
+END;
+END;
+
+-- =========================================================================
+-- Trigger que impide insertar en LOCAL sin que existan
+-- registros en la tabla ENCARGADO.
+-- =========================================================================
+CREATE TRIGGER fk_local_encargado
+BEFORE INSERT ON LOCAL
+FOR EACH ROW
+BEGIN
+ SELECT CASE
+ WHEN ((SELECT ID_RESERVANTE FROM ENCARGADO WHERE ID_RESERVANTE = NEW.ID_RESERVANTE) IS NULL)
+ THEN RAISE(ABORT, 'Error: No existe el encargado del local')
+END;
+END;
+
+--fin de los triggers de pedro
