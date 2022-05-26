@@ -448,11 +448,11 @@ public class ControlBD {
 
 //================================ INICIO - Bloque de llenado de datos =============================================
 
-    public String llenarBDCarnet() {
+    public String llenarBD() {
 
         //Tabla Carrera
         final String[] Carreraid_carrera = {"I10515", "I10501", "I10502"};
-        final String[] Carreranombre_carrera = {"Ingeniería de Sistemas Informáticos", "Ingeniería Civil", "Ingeniería Industrial"};
+        final String[] Carreranombre_carrera = {"Ingenieria de Sistemas Informaticos", "Ingenieria Civil", "Ingenieria Industrial"};
 
         //Tabla Detalle_Oferta
 
@@ -473,7 +473,7 @@ public class ControlBD {
         db.execSQL("DELETE FROM HORARIO");
 
         Carrera carrera = new Carrera();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             carrera.setId_carrera(Carreraid_carrera[i]);
             carrera.setNombre_carrera(Carreranombre_carrera[i]);
             insertar(carrera);

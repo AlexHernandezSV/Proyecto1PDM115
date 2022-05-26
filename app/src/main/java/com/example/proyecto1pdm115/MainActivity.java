@@ -38,9 +38,9 @@ public class MainActivity extends ListActivity {
         }else{
 //CODIGO PARA LLENAR BASE DE DATOS
             BDhelper.abrir();
-            String tost=BDhelper.llenarBDCarnet();
-            //BDhelper.cerrar();
-            //Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
+            String tost=BDhelper.llenarBD();
+            BDhelper.cerrar();
+            Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
         }
     }
 }
