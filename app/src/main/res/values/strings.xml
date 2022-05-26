@@ -29,6 +29,7 @@
     <string name="id_reservante">ID Encargado</string>
     <string name="id_usuario">ID Usuario</string>
     <string name="nombre_reservante">Nombre del reservante</string>
+    <string name="nombre_escuela">Nombre de la escuela</string>
     <string name="tipo_reservante">Tipo de reservante</string>
     <string name="id_ciclo">ID del Ciclo</string>
     <string name="ciclo">Ciclo</string>
