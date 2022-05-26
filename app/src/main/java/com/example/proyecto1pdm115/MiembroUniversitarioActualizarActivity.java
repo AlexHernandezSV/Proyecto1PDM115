@@ -25,7 +25,7 @@ public class MiembroUniversitarioActualizarActivity extends AppCompatActivity {
 
     public void actualizarMiembroUniversitario(View v) {
         MiembroUniversitario miembroUniversitario=new MiembroUniversitario();
-        miembroUniversitario.setId_coordinador(Integer.valueOf(editId_coordinador.getText().toString()));
+        miembroUniversitario.setId_coordinador(editId_coordinador.getText().toString());
         miembroUniversitario.setNombre_coordinador(editNombre_coordinador.getText().toString());
         miembroUniversitario.setTipo_miembro(editTipo_miembro.getText().toString());
         //helper.abrir();

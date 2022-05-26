@@ -22,7 +22,7 @@ public class MiembroUniversitarioEliminarActivity extends AppCompatActivity {
     public void eliminarMiembroUniversitario(View v){
         //String regEliminadas;
         MiembroUniversitario miembroUniversitario=new MiembroUniversitario();
-        miembroUniversitario.setId_coordinador(Integer.valueOf(editId_coordinador.getText().toString()));
+        miembroUniversitario.setId_coordinador(editId_coordinador.getText().toString());
         //controlhelper.abrir();
         //regEliminadas=controlhelper.eliminar(miembroUniversitario);
         //controlhelper.cerrar();

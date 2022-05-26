@@ -27,9 +27,9 @@ public class HorarioActualizarActivity extends AppCompatActivity {
 
     public void actualizarHorario(View v) {
         Horario horario = new Horario();
-        horario.setId_horario(Integer.valueOf(editId_horario.getText().toString()));
-        horario.setDesde_horario((Date) editDesde_horario.getText());
-        horario.setHasta_horario((Date) editHasta_horario.getText());
+        horario.setId_horario(editId_horario.getText().toString());
+        horario.setDesde_horario(editDesde_horario.getText().toString());
+        horario.setHasta_horario(editHasta_horario.getText().toString());
         //helper.abrir();
         //String estado = helper.actualizar(horario);
         //helper.cerrar();

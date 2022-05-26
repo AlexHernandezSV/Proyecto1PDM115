@@ -76,7 +76,7 @@ public class ControlBD {
 
                 //Tabla Miembro_Universitario
                 db.execSQL("create table MIEMBRO_UNIVERSITARIO (\n" +
-                        "ID_COORDINADOR       INTEGER              not null,\n" +
+                        "ID_COORDINADOR       VARCHAR2(3)              not null,\n" +
                         "NOMBRE_COORDINADOR   VARCHAR2(50)         not null,\n" +
                         "TIPO_MIEMBRO         CHAR(10)             not null,\n" +
                         "primary key (ID_COORDINADOR)\n" +
@@ -84,9 +84,9 @@ public class ControlBD {
 
                 //Tabla Horario
                 db.execSQL("create table HORARIO (\n" +
-                        "ID_HORARIO           INTEGER              not null,\n" +
-                        "DESDE_HORARIO        DATE                 not null,\n" +
-                        "HASTA_HORARIO        DATE                 not null,\n" +
+                        "ID_HORARIO           VARCHAR2(3)              not null,\n" +
+                        "DESDE_HORARIO        VARCHAR2(20)                 not null,\n" +
+                        "HASTA_HORARIO        VARCHAR2(20)                 not null,\n" +
                         "primary key (ID_HORARIO)\n" +
                         ");");
 
@@ -163,7 +163,7 @@ public class ControlBD {
         long contador=0;
         ContentValues hor = new ContentValues();
         hor.put("id_horario", horario.getId_horario());
-        //hor.put("desde_horario", horario.getDesde_horario());
+        hor.put("desde_horario", horario.getDesde_horario());
         //hor.put("hasta_horario", horario.getHasta_horario());
         contador=db.insert("HORARIO", null, hor);
         if(contador==-1 || contador==0)
@@ -181,6 +181,106 @@ public class ControlBD {
 
 //================================ INICIO - Bloque de todos los UPDATE =============================================
 
+    //Actualizar carrera
+    public String actualizar(Carrera carrera) {
+        if(verificarIntegridad(carrera, 1)){
+            String[] id = {carrera.getId_carrera()};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_carrera", carrera.getNombre_carrera());
+            db.update("CARRERA", cv, "id_carrera = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro con ID " + carrera.getId_carrera() + " no existe";
+        }
+    }
 
-//================================ FINAL - Bloque de todos los INSERT =============================================
+    //Insertar Detalle_Oferta
+    //La debo porque tiene fks
+
+    //Actualizar Miembro_Universitario
+    public String actualizar(MiembroUniversitario miembroUniversitario) {
+        if(verificarIntegridad(miembroUniversitario, 2)){
+            String[] id = {miembroUniversitario.getId_coordinador()};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_coordinador", miembroUniversitario.getNombre_coordinador());
+            cv.put("tipo_miembro", miembroUniversitario.getTipo_miembro());
+            db.update("MIEMBRO_UNIVERSITARIO", cv, "id_coordinador = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro con ID " + miembroUniversitario.getId_coordinador() + " no existe";
+        }
+    }
+
+    //Actualizar Horario
+    public String actualizar(Horario horario) {
+        if(verificarIntegridad(horario, 3)){
+            String[] id = {horario.getId_horario()};
+            ContentValues cv = new ContentValues();
+            cv.put("desde_horario", horario.getDesde_horario());
+            cv.put("hasta_horario", horario.getHasta_horario());
+            db.update("HORARIO", cv, "id_horario = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro con ID " + horario.getId_horario() + " no existe";
+        }
+    }
+
+//================================ FINAL - Bloque de todos los UPDATE =============================================
+
+
+//================================ INICIO - Bloque de verificar integridad =============================================
+
+    private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
+        switch (relacion) {
+
+            case 1: {
+//verificar que exista carrera
+                Carrera carrera2 = (Carrera) dato;
+                String[] id = {carrera2.getId_carrera()};
+                abrir();
+                Cursor c2 = db.query("CARRERA", null, "id_carrera = ?", id, null, null,
+                        null);
+                if (c2.moveToFirst()) {
+//Se encontro Carrera
+                    return true;
+                }
+                return false;
+            }
+
+            case 2: {
+//verificar que exista miembroUniversitario
+                MiembroUniversitario miembroUniversitario2 = (MiembroUniversitario) dato;
+                String[] id = {miembroUniversitario2.getId_coordinador()};
+                abrir();
+                Cursor c2 = db.query("MIEMBRO_UNIVERSITARIO", null, "id_coordinador = ?", id, null, null,
+                        null);
+                if (c2.moveToFirst()) {
+//Se encontro miembro
+                    return true;
+                }
+                return false;
+            }
+
+            case 3: {
+//verificar que exista horario
+                Horario horario2 = (Horario) dato;
+                String[] id = {horario2.getId_horario()};
+                abrir();
+                Cursor c2 = db.query("HORARIO", null, "id_horario = ?", id, null, null,
+                        null);
+                if (c2.moveToFirst()) {
+//Se encontro horario
+                    return true;
+                }
+                return false;
+            }
+
+            default:
+                return false;
+        }
+    }
+
+
+//================================ FINAL - Bloque de verificar integridad =============================================
+
 }
