@@ -22,7 +22,7 @@ public class HorarioEliminarActivity extends AppCompatActivity {
     public void eliminarHorario(View v){
         //String regEliminadas;
         Horario horario=new Horario();
-        horario.setId_horario(Integer.valueOf(editId_horario.getText().toString()));
+        horario.setId_horario(editId_horario.getText().toString());
         //controlhelper.abrir();
         //regEliminadas=controlhelper.eliminar(horario);
         //controlhelper.cerrar();

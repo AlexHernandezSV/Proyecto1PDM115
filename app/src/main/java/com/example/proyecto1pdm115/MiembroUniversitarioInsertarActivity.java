@@ -24,7 +24,7 @@ public class MiembroUniversitarioInsertarActivity extends AppCompatActivity {
     }
 
     public void insertarMiembroUniversitario(View v) {
-        Integer id_coordinador=Integer.valueOf(editId_coordinador.getText().toString());
+        String id_coordinador=editId_coordinador.getText().toString();
         String nombre_coordinador=editNombre_coordinador.getText().toString();
         String tipo_miembro=editTipo_miembro.getText().toString();
         //String regInsertados;

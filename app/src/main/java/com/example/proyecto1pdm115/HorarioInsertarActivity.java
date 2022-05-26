@@ -26,9 +26,9 @@ public class HorarioInsertarActivity extends AppCompatActivity {
     }
 
     public void insertarHorario(View v) {
-        Integer id_horario=Integer.valueOf(editId_horario.getText().toString());
-        Date desde_horario= (Date) editDesde_horario.getText();
-        Date hasta_horario= (Date) editHasta_horario.getText();
+        String id_horario=editId_horario.getText().toString();
+        String desde_horario= editDesde_horario.getText().toString();
+        String hasta_horario= editHasta_horario.getText().toString();
         //String regInsertados;
         Horario horario=new Horario();
         horario.setId_horario(id_horario);
