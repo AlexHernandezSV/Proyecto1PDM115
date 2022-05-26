@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MateriaActualizarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlBD helper;
     EditText editId_materia;
     EditText editId_escuela;
     EditText editNom_materia;
@@ -20,7 +20,7 @@ public class MateriaActualizarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materia_actualizar);
-        //helper = new ControlBDProyecto1PDM115(this);
+        helper = new ControlBD(this);
         editId_materia = (EditText) findViewById(R.id.editId_materia);
         editId_escuela = (EditText) findViewById(R.id.editId_escuela);
         editNom_materia = (EditText) findViewById(R.id.editNom_materia);
@@ -30,14 +30,14 @@ public class MateriaActualizarActivity extends Activity {
 
     public void actualizarMateria(View v) {
         Materia materia = new Materia();
-        materia.setId_materia(editId_materia.getText().charAt(0));
+        materia.setId_materia(editId_materia.getText().toString());
         materia.setId_escuela(Integer.parseInt(editId_escuela.getText().toString()));
         materia.setNombre_materia(editNom_materia.getText().toString());
         materia.setCiclo_materia(Integer.parseInt(editCiclo_materia.getText().toString()));
-        //helper.abrir();
-        //String estado = helper.actualizar(materia);
-        //helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        String estado = helper.actualizar(materia);
+        helper.cerrar();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {

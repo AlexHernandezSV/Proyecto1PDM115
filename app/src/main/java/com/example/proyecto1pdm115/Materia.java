@@ -1,7 +1,7 @@
 package com.example.proyecto1pdm115;
 
 public class Materia {
-    private char id_materia;
+    private String id_materia;
     private int id_escuela;
     private String nombre_materia;
     private int ciclo_materia;
@@ -9,18 +9,18 @@ public class Materia {
     public Materia() {
     }
 
-    public Materia(char id_materia, int id_escuela, String nombre_materia, int ciclo_materia) {
+    public Materia(String id_materia, int id_escuela, String nombre_materia, int ciclo_materia) {
         this.id_materia = id_materia;
         this.id_escuela = id_escuela;
         this.nombre_materia = nombre_materia;
         this.ciclo_materia = ciclo_materia;
     }
 
-    public char getId_materia() {
+    public String getId_materia() {
         return id_materia;
     }
 
-    public void setId_materia(char id_materia) {
+    public void setId_materia(String id_materia) {
         this.id_materia = id_materia;
     }
 

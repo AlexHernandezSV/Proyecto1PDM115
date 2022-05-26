@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class DetalleActividadEliminarActivity extends AppCompatActivity {
 
-    //ControlBDMT17005 helper;
+    ControlBD helper;
     EditText editDetActividad;
     EditText editId_aula;
     EditText editId_actividad;
@@ -20,7 +20,7 @@ public class DetalleActividadEliminarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_actividad_eliminar);
-        //controlhelper=new ControlBDMT17005(this);
+       //controlhelper=new ControlBD(this);
         editDetActividad = (EditText) findViewById(R.id.editDetActividad);
         editId_aula = (EditText) findViewById(R.id.editId_aula);
         editId_actividad = (EditText) findViewById(R.id.editId_actividad);

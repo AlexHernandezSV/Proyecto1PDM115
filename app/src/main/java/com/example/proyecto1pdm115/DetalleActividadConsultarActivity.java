@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class DetalleActividadConsultarActivity extends AppCompatActivity {
 
-    //ControlBDMT17005 helper;
+    ControlBD helper;
     EditText editDetActividad;
     EditText editId_aula;
     EditText editId_actividad;
@@ -20,7 +20,7 @@ public class DetalleActividadConsultarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_actividad_consultar);
-        //helper = new ControlBDMT17005(this);
+        helper = new ControlBD(this);
         editDetActividad = (EditText) findViewById(R.id.editDetActividad);
         editId_aula = (EditText) findViewById(R.id.editId_aula);
         editId_actividad = (EditText) findViewById(R.id.editId_actividad);
@@ -28,7 +28,7 @@ public class DetalleActividadConsultarActivity extends AppCompatActivity {
     }
 
     public void consultarDetalleActividad(View v) {
-        /*helper.abrir();
+       /*helper.abrir();
         DetalleActividad detalleActividad = helper.consultarDetalleActividad(editDetActividad.getText().toString(), editId_aula.getText().toString(), editId_actividad.getText().toString(), editParticipantes.getText().toString());
         helper.cerrar();
         if(detalleActividad == null)

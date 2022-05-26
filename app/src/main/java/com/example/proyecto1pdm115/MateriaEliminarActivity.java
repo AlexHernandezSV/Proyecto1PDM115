@@ -11,25 +11,25 @@ import android.widget.Toast;
 
 public class MateriaEliminarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlBD controlhelper;
     EditText editId_materia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materia_eliminar);
-        //controlhelper=new ControlBDProyecto1PDM115(this);
+        controlhelper=new ControlBD(this);
         editId_materia=(EditText)findViewById(R.id.editId_materia);
     }
 
     public void eliminarMateria(View v){
         String regEliminadas;
         Materia materia=new Materia();
-        materia.setId_materia(editId_materia.getText().charAt(0));
-        //controlhelper.abrir();
-        //regEliminadas=controlhelper.eliminar(materia);
-        //controlhelper.cerrar();
-        //Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        materia.setId_materia(editId_materia.getText().toString());
+        controlhelper.abrir();
+        regEliminadas=controlhelper.eliminar(materia);
+        controlhelper.cerrar();
+        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 
 }

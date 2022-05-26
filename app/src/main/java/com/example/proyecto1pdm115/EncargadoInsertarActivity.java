@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class EncargadoInsertarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlBD helper;
     EditText editId_reservante;
     EditText editId_usuario;
     EditText editNom_reservante;
@@ -19,7 +19,7 @@ public class EncargadoInsertarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encargado_insertar);
-        //helper = new ControlBDCarnet(this);
+        helper = new ControlBD(this);
         editId_reservante = (EditText) findViewById(R.id.editId_reservante);
         editId_usuario = (EditText) findViewById(R.id.editId_usuario);
         editNom_reservante = (EditText) findViewById(R.id.editNom_reservante);
@@ -36,9 +36,9 @@ public class EncargadoInsertarActivity extends Activity {
         reservante.setId_usuario(id_usuario);
         reservante.setNombre_reservante(nombre_reservante);
         reservante.setTipo_reservante(tipo_reservante);
-        //helper.abrir();
+        helper.abrir();
         //regInsertados = helper.insertar(reservante);
-        //helper.cerrar();
+        helper.cerrar();
         //Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 

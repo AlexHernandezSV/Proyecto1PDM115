@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MateriaInsertarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlBD helper;
     EditText editId_materia;
     EditText editId_escuela;
     EditText editNom_materia;
@@ -20,7 +20,7 @@ public class MateriaInsertarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materia_insertar);
-        //helper = new ControlBDCarnet(this);
+        helper = new ControlBD(this);
         editId_materia = (EditText) findViewById(R.id.editId_materia);
         editId_escuela = (EditText) findViewById(R.id.editId_escuela);
         editNom_materia = (EditText) findViewById(R.id.editNom_materia);
@@ -29,7 +29,7 @@ public class MateriaInsertarActivity extends Activity {
     }
 
     public void insertarMateria(View v) {
-        char id_materia=editId_materia.getText().charAt(0);
+        String id_materia=editId_materia.getText().toString();
         int id_escuela= Integer.parseInt(editId_escuela.getText().toString());
         String nom_materia=editNom_materia.getText().toString();
         int ciclo_materia= Integer.parseInt(editCiclo_materia.getText().toString());
@@ -40,10 +40,10 @@ public class MateriaInsertarActivity extends Activity {
         materia.setId_escuela(id_escuela);
         materia.setNombre_materia(nom_materia);
         materia.setCiclo_materia(ciclo_materia);
-        //helper.abrir();
-        //regInsertados=helper.insertar(materia);
-        //helper.cerrar();
-        //Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        regInsertados=helper.insertar(materia);
+        helper.cerrar();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {

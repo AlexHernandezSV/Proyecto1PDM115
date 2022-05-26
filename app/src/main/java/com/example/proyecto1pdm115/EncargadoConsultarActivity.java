@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class EncargadoConsultarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlBD helper;
     EditText editId_reservante;
     EditText editId_usuario;
     EditText editNom_reservante;
@@ -21,7 +21,7 @@ public class EncargadoConsultarActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encargado_consultar);
-        //helper = new ControlBDCarnet(this);
+        helper = new ControlBD(this);
         editId_reservante = (EditText) findViewById(R.id.editId_reservante);
         editId_usuario = (EditText) findViewById(R.id.editId_usuario);
         editNom_reservante = (EditText) findViewById(R.id.editNom_reservante);
@@ -29,10 +29,10 @@ public class EncargadoConsultarActivity extends Activity {
     }
 
     public void consultarEncargado(View v) {
-        /*helper.abrir();
-        Encargado encargado = helper.consultarEncargado(editId_reservante.getText().toString());
+        helper.abrir();
+        //Encargado encargado = helper.consultarEncargado(editId_reservante.getText().toString());
         helper.cerrar();
-        if(encargado == null)
+        /*if(encargado == null)
             Toast.makeText(this, "Reservante con ID " +
                     editId_reservante.getText().toString() +
                     " no encontrado", Toast.LENGTH_LONG).show();

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MateriaConsultarActivity extends Activity {
 
-    //ControlBDCarnet helper;
+    ControlBD helper;
     EditText editId_materia;
     EditText editId_escuela;
     EditText editNom_materia;
@@ -21,7 +21,7 @@ public class MateriaConsultarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_materia_consultar);
-        //helper = new ControlBDProyecto1PDM115(this);
+        helper = new ControlBD(this);
 
         editId_materia = (EditText) findViewById(R.id.editId_materia);
         editId_escuela = (EditText) findViewById(R.id.editId_escuela);
@@ -29,7 +29,7 @@ public class MateriaConsultarActivity extends Activity {
         editCiclo_materia = (EditText) findViewById(R.id.editCiclo_materia);
     }
 
-    /*public void consultarMateria(View v) {
+    public void consultarMateria(View v) {
         helper.abrir();
         Materia materia = helper.consultarMateria(editId_materia.getText().toString());
         helper.cerrar();
@@ -43,7 +43,7 @@ public class MateriaConsultarActivity extends Activity {
             editNom_materia.setText(materia.getNombre_materia());
             editCiclo_materia.setText(String.valueOf(materia.getCiclo_materia()));
         }
-    }*/
+    }
 
     public void limpiarTexto(View v){
         editId_materia.setText("");
