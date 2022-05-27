@@ -507,17 +507,17 @@ public class ControlBD {
         return regAfectados;
     }
 
-
-
-
-
-
-
-
-
-
-
-
+//Eliminar Ciclo todavia no está terminado
+//    public String eliminar(Ciclo ciclo) {
+//        String regAfectados="filas afectadas= ";
+//        int contador=0;
+//        if (verificarIntegridad(ciclo,)) {
+//            contador+=db.delete("CICLO", "id_ciclo='"+ciclo.getId_ciclo()+"'", null);
+//        }
+//        contador+=db.delete("CICLO", "id_ciclo='"+ciclo.getId_ciclo()+"'", null);
+//        regAfectados+=contador;
+//        return regAfectados;
+//    }
 
 
 
