@@ -61,7 +61,6 @@ public class ControlBD {
 //================================ INICIO - Bloque de scripts =============================================
 
         @Override
-        //Este método va llevar todo el script de la bd, un desverge xd
         public void onCreate(SQLiteDatabase db) {
             try {
 
@@ -192,15 +191,15 @@ public class ControlBD {
     public String insertar(DetalleOferta detalleOferta) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        if(verificarIntegridad(detalleOferta,9))
-        {
+        //if(verificarIntegridad(detalleOferta,9))
+        //{
             ContentValues detalleOfertas = new ContentValues();
             detalleOfertas.put("grupo", detalleOferta.getGrupo());
             detalleOfertas.put("id_materias_activas", detalleOferta.getId_materias_activas());
             detalleOfertas.put("id_aula", detalleOferta.getId_aula());
             detalleOfertas.put("cant_inscritos", detalleOferta.getCant_inscritos());
             contador=db.insert("DETALLE_OFERTA", null, detalleOfertas);
-        }
+        //}
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -350,7 +349,8 @@ public class ControlBD {
             cv.put("nombre_carrera", carrera.getNombre_carrera());
             db.update("CARRERA", cv, "id_carrera = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        }
+        else{
             return "Registro con ID " + carrera.getId_carrera() + " no existe";
         }
     }
@@ -441,9 +441,9 @@ public class ControlBD {
     public String eliminar(Carrera carrera) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(carrera,4)) {
+        /*if (verificarIntegridad(carrera,4)) {
             contador+=db.delete("ESCUELA", "id_carrera='"+carrera.getId_carrera()+"'", null);
-        }
+        }*/
         contador+=db.delete("CARRERA", "id_carrera='"+carrera.getId_carrera()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -453,12 +453,12 @@ public class ControlBD {
     public String eliminar(DetalleOferta detalleOferta) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(detalleOferta,11)){
+        /*if (verificarIntegridad(detalleOferta,11)){
             contador+=db.delete("ACTIVIDAD", "grupo='"+detalleOferta.getGrupo()+"'", null);
         }
         if (verificarIntegridad(detalleOferta,12)){
             contador+=db.delete("TIPO_GRUPO", "grupo='"+detalleOferta.getGrupo()+"'", null);
-        }
+        }*/
         String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
         where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
         where=where+" AND grupo="+detalleOferta.getGrupo();
@@ -472,12 +472,12 @@ public class ControlBD {
     public String eliminar(MiembroUniversitario miembroUniversitario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(miembroUniversitario,5)) {
+        /*if (verificarIntegridad(miembroUniversitario,5)) {
             contador+=db.delete("COORDINA", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         }
         if (verificarIntegridad(miembroUniversitario,6)) {
                 contador+=db.delete("DETALLE_RESPONSABLE", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
-        }
+        }*/
         contador+=db.delete("MIEMBRO_UNIVERSITARIO", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -487,9 +487,9 @@ public class ControlBD {
     public String eliminar(Horario horario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(horario,7)) {
+        /*if (verificarIntegridad(horario,7)) {
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
-        }
+        }*/
         contador+=db.delete("HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -499,13 +499,33 @@ public class ControlBD {
     public String eliminar(Materia materia) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(materia,9)) {
-            contador+=db.delete("materia", "id_materia='"+materia.getId_materia()+"'", null);
-        }
-        contador+=db.delete("materia", "id_materia='"+materia.getId_materia()+"'", null);
+        //if (verificarIntegridad(materia,)) {
+         //   contador+=db.delete("materia", "id_materia='"+materia.getId_materia()+"'", null);
+        //}
+        contador+=db.delete("MATERIA", "id_materia='"+materia.getId_materia()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //================================ FINAL - Bloque de todos los DELETE =============================================
 
@@ -831,7 +851,7 @@ public class ControlBD {
         //Tabla Detalle_Oferta
         final String[] DetalleOfertagrupo = {"G01","G02","G03"};
         final String[] DetalleOfertaid_materias_activas = {"PRN115","FIR115","MEP115"}; //fk
-        final String[] DetalleOfertaid_aula = {"B-11","B-21","B-22"}; //fk
+        final String[] DetalleOfertaid_aula = {"B11","B21","B22"}; //fk
         final int[] DetalleOfertacant_inscritos = {100,80,70};
 
 

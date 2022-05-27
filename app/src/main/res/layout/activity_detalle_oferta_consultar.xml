@@ -6,19 +6,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/grupo"/>
-    <EditText
-        android:id="@+id/editGrupo"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="3"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/id_materias_activas"/>
     <EditText
         android:id="@+id/editId_materias_activas"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="6"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/id_aula"/>
+    <EditText
+        android:id="@+id/editId_aula"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -26,22 +26,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/id_aula" />
+        android:text="@string/grupo" />
     <EditText
-        android:id="@+id/editId_aula"
+        android:id="@+id/editGrupo"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:maxLength="3"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cant_inscritos" />
-    <EditText
-        android:id="@+id/editCant_inscritos"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="text"
         android:maxLength="3"/>
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -60,4 +50,18 @@
             android:text="@string/limpiar"
             android:onClick="limpiarTexto"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cant_inscritos" />
+    <EditText
+        android:id="@+id/editCant_inscritos"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:enabled ="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false" />
 </LinearLayout>

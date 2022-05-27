@@ -9,30 +9,30 @@ import android.widget.Toast;
 
 public class DetalleOfertaEliminarActivity extends AppCompatActivity {
     EditText editGrupo,editId_materias_activas,editId_aula, editCant_inscritos;
-    //ControlBDMT17005 controlhelper;
+    ControlBD controlhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_oferta_eliminar);
-        //controlhelper=new ControlBDMT17005(this);
+        controlhelper=new ControlBD(this);
         editGrupo = (EditText) findViewById(R.id.editGrupo);
-        /*editId_materias_activas = (EditText) findViewById(R.id.editId_materias_activas);
+        editId_materias_activas = (EditText) findViewById(R.id.editId_materias_activas);
         editId_aula = (EditText) findViewById(R.id.editId_aula);
-        editCant_inscritos = (EditText) findViewById(R.id.editCant_inscritos);*/
+        editCant_inscritos = (EditText) findViewById(R.id.editCant_inscritos);
     }
 
     public void eliminarDetalleOferta(View v){
-        //String regEliminadas;
+        String regEliminadas;
         DetalleOferta detalleOferta=new DetalleOferta();
         detalleOferta.setGrupo(editGrupo.getText().toString());
-        /*detalleOferta.setId_materias_activas(editId_materias_activas.getText().toString());
-        detalleOferta.setId_aula(Integer.valueOf(editId_aula.getText().toString()));
-        detalleOferta.setCant_inscritos(Integer.valueOf(editCant_inscritos.getText().toString()));*/
-        //controlhelper.abrir();
-        //regEliminadas=controlhelper.eliminar(nota);
-        //controlhelper.cerrar();
-        //Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        detalleOferta.setId_materias_activas(editId_materias_activas.getText().toString());
+        detalleOferta.setId_aula(editId_aula.getText().toString());
+        detalleOferta.setCant_inscritos(Integer.valueOf(editCant_inscritos.getText().toString()));
+        controlhelper.abrir();
+        regEliminadas=controlhelper.eliminar(detalleOferta);
+        controlhelper.cerrar();
+        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {
