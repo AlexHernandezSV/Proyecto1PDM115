@@ -507,7 +507,11 @@ public class ControlBD {
         return regAfectados;
     }
 
-//Eliminar Ciclo todavia no está terminado
+
+
+
+//    //Eliminar Ciclo todavia no está terminado
+
 //    public String eliminar(Ciclo ciclo) {
 //        String regAfectados="filas afectadas= ";
 //        int contador=0;
@@ -518,7 +522,6 @@ public class ControlBD {
 //        regAfectados+=contador;
 //        return regAfectados;
 //    }
-
 
 
 
@@ -834,6 +837,7 @@ public class ControlBD {
             default:
                 return false;
         }
+        
     }
 
 
