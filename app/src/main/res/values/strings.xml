@@ -43,6 +43,8 @@
     <string name="estado">Estado</string>
     <string name="fecha_actividad">Fecha</string>
     <string name="descripcion">Descripcion</string>
+    <string name="id_detalle_responsable">ID del detalle del Responsable</string>
+    <string name="Nombre_tipo_responsable">Tipo de responsable</string>
 
 
 </resources>

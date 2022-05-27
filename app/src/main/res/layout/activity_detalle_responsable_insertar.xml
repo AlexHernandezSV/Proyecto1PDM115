@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1" >
+    <TableRow>
+        <TextView android:text="@string/id_detalle_responsable"/>
+        <EditText
+            android:id="@+id/editId_detalle_responsable"
+            android:inputType="text"
+            android:maxLength="6" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView android:text="@string/id_coordinador"/>
+        <EditText
+            android:id="@+id/editId_coordinador"
+            android:inputType="text"
+            android:maxLength="6" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView android:text="@string/Nombre_tipo_responsable" />
+
+        <EditText
+            android:id="@+id/editNomb_tipo_responsable"
+            android:inputType="text"
+            android:maxLength="50" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/opciones" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="insertarDetalleResponsable"
+            android:text="@string/insertar" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+</TableLayout>

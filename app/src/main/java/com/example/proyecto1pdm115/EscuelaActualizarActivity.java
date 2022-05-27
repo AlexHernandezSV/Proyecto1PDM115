@@ -16,7 +16,7 @@ public class EscuelaActualizarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_escuela_insertar);
+        setContentView(R.layout.activity_escuela_actualizar);
         //helper = new ControlBDMT17005(this);
         editId_escuela = (EditText) findViewById(R.id.editId_escuela);
         editId_carrera = (EditText) findViewById(R.id.editId_carrera);

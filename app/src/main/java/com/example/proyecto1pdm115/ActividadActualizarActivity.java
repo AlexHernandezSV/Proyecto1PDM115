@@ -26,7 +26,7 @@ public class ActividadActualizarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_actividad_insertar);
+        setContentView(R.layout.activity_actividad_actualizar);
         helper = new ControlBD(this);
         editId_actividad = (EditText) findViewById(R.id.editId_actividad);
         editId_tipo_actividad = (EditText) findViewById(R.id.editId_tipo_actividad);
