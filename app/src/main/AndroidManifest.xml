@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".TipoActividadInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TipoActividadEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TipoActividadConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TipoActividadActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TipoActividadMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalleResponsableInsertarActivity"
             android:exported="false" />
         <activity
