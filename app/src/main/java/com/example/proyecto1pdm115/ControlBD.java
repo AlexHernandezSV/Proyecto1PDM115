@@ -249,6 +249,71 @@ public class ControlBD {
         return regInsertados;
     }
 
+    //Insertar Ciclo
+    public String insertar(Ciclo ciclo) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues cic = new ContentValues();
+        cic.put("id_ciclo", ciclo.getId_ciclo());
+        cic.put("ciclo", ciclo.getCiclo());
+        cic.put("fecha_inicio", ciclo.getFecha_inicio());
+        cic.put("fecha_fin", ciclo.getFecha_fin());
+        contador=db.insert("CICLO", null, cic);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    //Insertar Coordina
+    public String insertar(Coordina coordina) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues coor = new ContentValues();
+        coor.put("id_actividad", coordina.getId_actividad());
+        coor.put("id_coordinador", coordina.getId_coordinador());
+        contador=db.insert("COORDINA", null, coor);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+
+    //Insertar Detalle Actividad Horario
+    public String insertar(DetalleActividadHorario detalleActividadHorario) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues det = new ContentValues();
+        det.put("id_horario", detalleActividadHorario.getId_horario());
+        det.put("id_actividad", detalleActividadHorario.getId_actividad());
+        contador=db.insert("DETALLE_ACTIVIDAD_HORARIO", null, det);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+
+
+
+
+
+
+
+
 
 
 

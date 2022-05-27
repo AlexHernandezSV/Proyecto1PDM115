@@ -3,7 +3,7 @@ package com.example.proyecto1pdm115;
 import java.util.Date;
 
 public class Ciclo {
-    public int getId_ciclo() {
+    public String getId_ciclo() {
         return id_ciclo;
     }
 
@@ -11,11 +11,11 @@ public class Ciclo {
         return ciclo;
     }
 
-    public Date getFecha_inicio() {
+    public String getFecha_inicio() {
         return fecha_inicio;
     }
 
-    public void setId_ciclo(int id_ciclo) {
+    public void setId_ciclo(String id_ciclo) {
         this.id_ciclo = id_ciclo;
     }
 
@@ -23,27 +23,27 @@ public class Ciclo {
         this.ciclo = ciclo;
     }
 
-    public void setFecha_inicio(Date fecha_inicio) {
+    public void setFecha_inicio(String fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
     }
 
-    public void setFecha_fin(Date fecha_fin) {
+    public void setFecha_fin(String fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
 
-    public Date getFecha_fin() {
+    public String getFecha_fin() {
         return fecha_fin;
     }
 
-    private int id_ciclo;
+    private String id_ciclo;
     private String ciclo;
-    private Date fecha_inicio;
-    private Date fecha_fin;
+    private String fecha_inicio;
+    private String fecha_fin;
 
     public Ciclo() {
     }
 
-    public Ciclo(int id_ciclo, String ciclo, Date fecha_inicio, Date fecha_fin) {
+    public Ciclo(String id_ciclo, String ciclo, String fecha_inicio, String fecha_fin) {
         this.id_ciclo = id_ciclo;
         this.ciclo = ciclo;
         this.fecha_inicio = fecha_inicio;
