@@ -382,6 +382,25 @@ public class ControlBD {
         }
     }
 
+
+//    //Actualizar Ciclo
+//    public String actualizar(Ciclo ciclo){
+//        if(verificarIntegridad(ciclo, 4)){
+//            String[] id = {ciclo.getId_materia()};
+//            ContentValues cv = new ContentValues();
+//            cv.put("id_materia", materia.getId_materia());
+//            cv.put("id_escuela", materia.getId_escuela());
+//            cv.put("nombre_materia", materia.getNombre_materia());
+//            cv.put("ciclo_materia", materia.getCiclo_materia());
+//            db.update("MATERIA", cv, "id_materia = ?", id);
+//            return "Registro Actualizado Correctamente";
+//        }else{
+//            return "Registro con ID de materia " + materia.getId_materia() + " no existe";
+//        }
+//    }
+
+
+
 //================================ FINAL - Bloque de todos los UPDATE =============================================
 
 
@@ -444,7 +463,7 @@ public class ControlBD {
 //================================ FINAL - Bloque de todos los DELETE =============================================
 
 
-//================================ INICIO - Bloque de todos los READ =============================================
+//================================ INICIO - Bloque de todos los Consultar =============================================
 
     //Consultar Carrera
     public Carrera consultarCarrera(String id_carrera) {
@@ -511,6 +530,61 @@ public class ControlBD {
             return null;
         }
     }
+
+    //Consultar Ciclo
+    public Ciclo consultarCiclo(String id_ciclo){
+        String[] id = {id_ciclo};
+        Cursor cursor = db.query("CICLO", camposCiclo, "id_ciclo = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            Ciclo ciclo= new Ciclo();
+            ciclo.setId_ciclo(cursor.getString(0));
+            ciclo.setCiclo(cursor.getString(1));
+            ciclo.setFecha_inicio(cursor.getString(2));
+            ciclo.setFecha_fin(cursor.getString(3));
+            return ciclo;
+        }else{
+            return null;
+        }
+    }
+
+    //Consultar Coordina
+    public Coordina consultarCoordina(String id_actividad){
+        String[] id = {id_actividad};
+        Cursor cursor = db.query("COORDINA", camposCoordina, "id_actividad = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            Coordina coordina= new Coordina();
+            coordina.setId_actividad(cursor.getString(0));
+            coordina.setId_coordinador(cursor.getString(1));
+            return coordina;
+        }else{
+            return null;
+        }
+    }
+
+
+    //Consultar Detalle_Actividad_Horario
+    public DetalleActividadHorario consultarDetalleActividadHorario(String id_horario){
+        String[] id = {id_horario};
+        Cursor cursor = db.query("DETALLE_ACTIVIDAD_HORARIO", camposDetalleActividadHorario, "id_horario = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            DetalleActividadHorario detalleActividadHorario= new DetalleActividadHorario();
+            detalleActividadHorario.setId_horario(cursor.getString(0));
+            detalleActividadHorario.setId_actividad(cursor.getString(1));
+            return detalleActividadHorario;
+        }else{
+            return null;
+        }
+    }
+
+
+
+
+
+
+
 
 
 //================================ FINAL - Bloque de todos los READ =============================================
