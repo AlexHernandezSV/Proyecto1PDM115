@@ -38,4 +38,11 @@
     <string name="id_horario_nuevo">ID Horario nuevo</string>
     <string name="id_hactividad_nueva">ID actividad nueva</string>
     <string name="id_coordinador_nuevo">ID coordinador nuevo</string>
+    <string name="id_tipo_actividad">Tipo de actividad</string>
+    <string name="id_valoracion">Valoracion</string>
+    <string name="estado">Estado</string>
+    <string name="fecha_actividad">Fecha</string>
+    <string name="descripcion">Descripcion</string>
+
+
 </resources>

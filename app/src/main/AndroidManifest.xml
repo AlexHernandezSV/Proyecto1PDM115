@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".ActividadInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActividadEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActividadConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActividadActualizarActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalleActividadHorarioConsultarActivity"
             android:exported="false" />
         <activity
@@ -79,7 +91,22 @@
             android:name=".DetalleActividadInsertarActivity"
             android:exported="false" />
         <activity
-            android:name=".DetalleActividadMenuActivity"
+            android:name=".ActividadMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EscuelaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EscuelaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EscuelaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EscuelaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EscuelaMenuActivity"
             android:exported="false" />
         <activity
             android:name=".MateriaActualizarActivity"

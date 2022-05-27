@@ -10,8 +10,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
-    String[] menu={"Tabla Carrera","Tabla Miembro universitario","Tabla Horarios","Tabla de Detalles de ofertas", "Tabla Materia","Tabla Detalle Actividad","Tabla Encargado","Tabla Ciclo","Tabla Coordina","Tabla Detalle Actividad Horario","LLenar Base de Datos"};
-    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity", "DetalleOfertaMenuActivity","MateriaMenuActivity","DetalleActividadMenuActivity","EncargadoMenuActivity","CicloMenuActivity", "CoordinaMenuActiviy","DetalleActividadHorarioMenuActivity"};
+
+
+    String[] menu={"Tabla Carrera","Tabla Miembro universitario","Tabla Horarios","Tabla de Detalles de ofertas", "Tabla Materia","Tabla Detalle Actividad","Tabla Encargado","Tabla Ciclo","Tabla Coordina","Tabla Detalle Actividad Horario","Tabla Escuela","Tabla Actividad","LLenar Base de Datos"};
+    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity", "DetalleOfertaMenuActivity","MateriaMenuActivity","DetalleActividadMenuActivity","EncargadoMenuActivity","CicloMenuActivity", "CoordinaMenuActiviy","DetalleActividadHorarioMenuActivity","EscuelaMenuActivity","ActividadMenuActivity"};
     ControlBD BDhelper;
 
     @Override
@@ -25,7 +27,7 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
-        if(position!=10){
+        if(position!=12){
             String nombreValue=activities[position];
             try{
                 Class<?>
