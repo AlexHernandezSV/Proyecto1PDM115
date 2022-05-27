@@ -450,6 +450,22 @@ public class ControlBD {
     }
 
     //Eliminar DetalleOferta
+    public String eliminar(DetalleOferta detalleOferta) {
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        if (verificarIntegridad(detalleOferta,11)){
+            contador+=db.delete("ACTIVIDAD", "grupo='"+detalleOferta.getGrupo()+"'", null);
+        }
+        if (verificarIntegridad(detalleOferta,12)){
+            contador+=db.delete("TIPO_GRUPO", "grupo='"+detalleOferta.getGrupo()+"'", null);
+        }
+        String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
+        where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
+        where=where+" AND grupo="+detalleOferta.getGrupo();
+        contador+=db.delete("DETALLE_OFERTA", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
 
 
     //Eliminar Miembro_Universitario
@@ -512,7 +528,20 @@ public class ControlBD {
     }
 
     //Consultar Detalle_Oferta
-
+    public DetalleOferta consultarDetalleOferta(String id_materias_activas, String id_aula, String grupo) {
+        String[] id = {id_materias_activas, id_aula, grupo};
+        Cursor cursor = db.query("DETALLE_OFERTA", camposDetalleOferta, "id_materias_activas = ? AND id_aula = ? AND grupo = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            DetalleOferta detalleOferta = new DetalleOferta();
+            detalleOferta.setGrupo(cursor.getString(0));
+            detalleOferta.setId_materias_activas(cursor.getString(1));
+            detalleOferta.setId_aula(cursor.getString(2));
+            detalleOferta.setCant_inscritos(cursor.getInt(3));
+            return detalleOferta;
+        }else{
+            return null;
+        }
+    }
 
     //Consultar Miembro_Universitario
     public MiembroUniversitario consultarMiembroUniversitario(String id_coordinador) {
@@ -746,6 +775,41 @@ public class ControlBD {
                 return false;
 
             }
+            case 10: {
+//verificar que al modificar Detalle_Oferta exista Actividad y Tipo_Grupo
+                DetalleOferta detalleOferta1 = (DetalleOferta) dato;
+                String[] ids = {detalleOferta1.getId_materias_activas(), detalleOferta1.getId_aula(),
+                        detalleOferta1.getGrupo()};
+                abrir();
+                Cursor c = db.query("DETALLE_OFERTA", null, "id_materias_activas = ? AND id_aula = ? AND grupo = ? ", ids, null, null, null);
+                if (c.moveToFirst()) {
+//Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 11: {
+                //Verificaciòn de que si existe Detalle_Oferta dentro de Actividad al eliminar un Detalle_Oferta
+                DetalleOferta detalleOferta = (DetalleOferta) dato;
+                Cursor c = db.query(true, "ACTIVIDAD", new String[]{
+                                "grupo"}, "grupo='" + detalleOferta.getGrupo() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 12: {
+                //Verificaciòn de que si existe Detalle_Oferta dentro de Tipo_Grupo al eliminar un Detalle_Oferta
+                DetalleOferta detalleOferta = (DetalleOferta) dato;
+                Cursor c = db.query(true, "TIPO_GRUPO", new String[]{
+                                "grupo"}, "grupo='" + detalleOferta.getGrupo() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
 
             default:
                 return false;
@@ -765,6 +829,11 @@ public class ControlBD {
         final String[] Carreranombre_carrera = {"Ingenieria de Sistemas Informaticos", "Ingenieria Civil", "Ingenieria Industrial"};
 
         //Tabla Detalle_Oferta
+        final String[] DetalleOfertagrupo = {"G01","G02","G03"};
+        final String[] DetalleOfertaid_materias_activas = {"PRN115","FIR115","MEP115"}; //fk
+        final String[] DetalleOfertaid_aula = {"B-11","B-21","B-22"}; //fk
+        final int[] DetalleOfertacant_inscritos = {100,80,70};
+
 
         //Tabla Miembro_Universitario
         final String[] Miembroid_coordinador = {"M01", "M02", "M03"};
@@ -784,7 +853,7 @@ public class ControlBD {
 
         abrir();
         db.execSQL("DELETE FROM CARRERA");
-        //Falta Detalle_Oferta
+        db.execSQL("DELETE FROM DETALLE_OFERTA");
         db.execSQL("DELETE FROM MIEMBRO_UNIVERSITARIO");
         db.execSQL("DELETE FROM HORARIO");
         db.execSQL("DELETE FROM MATERIA");
@@ -796,7 +865,14 @@ public class ControlBD {
             insertar(carrera);
         }
 
-        //Falta Detalle_Oferta
+        DetalleOferta detalleOferta = new DetalleOferta();
+        for (int i = 0; i < 3; i++) {
+            detalleOferta.setGrupo(DetalleOfertagrupo[i]);
+            detalleOferta.setId_materias_activas(DetalleOfertaid_materias_activas[i]);
+            detalleOferta.setId_aula(DetalleOfertaid_aula[i]);
+            detalleOferta.setCant_inscritos(DetalleOfertacant_inscritos[i]);
+            insertar(detalleOferta);
+        }
 
         MiembroUniversitario miembroUniversitario = new MiembroUniversitario();
         for (int i = 0; i < 3; i++) {
