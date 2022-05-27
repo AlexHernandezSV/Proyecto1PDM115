@@ -28,7 +28,7 @@ public class DetalleOfertaInsertarActivity extends AppCompatActivity {
         //String regInsertados;
         String grupo=editGrupo.getText().toString();
         String id_materias_activas=editId_materias_activas.getText().toString();
-        Integer id_aula=Integer.valueOf(editId_aula.getText().toString());
+        String id_aula=editId_aula.getText().toString();
         Integer cant_inscritos=Integer.valueOf(editCant_inscritos.getText().toString());
         DetalleOferta detalleOferta= new DetalleOferta();
         detalleOferta.setGrupo(grupo);

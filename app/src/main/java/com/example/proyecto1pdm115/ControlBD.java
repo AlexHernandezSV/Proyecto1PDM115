@@ -76,7 +76,7 @@ public class ControlBD {
                 db.execSQL("create table DETALLE_OFERTA (\n" +
                         "GRUPO                CHAR(3)              not null,\n" +
                         "ID_MATERIAS_ACTIVAS  CHAR(6),\n" +
-                        "ID_AULA              INTEGER,\n" +
+                        "ID_AULA              CHAR(7),\n" +
                         "CANT_INSCRITOS       INTEGER              not null,\n" +
                         "primary key (GRUPO),\n" +
                         "foreign key (ID_MATERIAS_ACTIVAS)\n" +
@@ -189,7 +189,27 @@ public class ControlBD {
     }
 
     //Insertar Detalle_Oferta
-    //La debo porque tiene fks
+    public String insertar(DetalleOferta detalleOferta) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        if(verificarIntegridad(detalleOferta,9))
+        {
+            ContentValues detalleOfertas = new ContentValues();
+            detalleOfertas.put("grupo", detalleOferta.getGrupo());
+            detalleOfertas.put("id_materias_activas", detalleOferta.getId_materias_activas());
+            detalleOfertas.put("id_aula", detalleOferta.getId_aula());
+            detalleOfertas.put("cant_inscritos", detalleOferta.getCant_inscritos());
+            contador=db.insert("DETALLE_OFERTA", null, detalleOfertas);
+        }
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
 
     //Insertar Miembro_Universitario
     public String insertar(MiembroUniversitario miembroUniversitario) {
@@ -335,8 +355,19 @@ public class ControlBD {
         }
     }
 
-    //Insertar Detalle_Oferta
-    //La debo porque tiene fks
+    //Actualizar Detalle_Oferta
+    public String actualizar(DetalleOferta detalleOferta) {
+        if(verificarIntegridad(detalleOferta, 10)){
+            String[] id = {detalleOferta.getId_aula(), detalleOferta.getId_materias_activas(),
+                    detalleOferta.getGrupo()};
+            ContentValues cv = new ContentValues();
+            cv.put("cant_inscritos", detalleOferta.getCant_inscritos());
+            db.update("DETALLE_OFERTA", cv, "id_aula = ? AND id_materias_activas = ? AND grupo = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
+        }
+    }
 
     //Actualizar Miembro_Universitario
     public String actualizar(MiembroUniversitario miembroUniversitario) {
@@ -368,7 +399,7 @@ public class ControlBD {
 
     //Actualizar Materia
     public String actualizar(Materia materia){
-        if(verificarIntegridad(materia, 4)){
+        if(verificarIntegridad(materia, 8)){
             String[] id = {materia.getId_materia()};
             ContentValues cv = new ContentValues();
             cv.put("id_materia", materia.getId_materia());
@@ -385,7 +416,7 @@ public class ControlBD {
 
 //    //Actualizar Ciclo
 //    public String actualizar(Ciclo ciclo){
-//        if(verificarIntegridad(ciclo, 4)){
+//        if(verificarIntegridad(ciclo, pone bien el case de acá)){
 //            String[] id = {ciclo.getId_materia()};
 //            ContentValues cv = new ContentValues();
 //            cv.put("id_materia", materia.getId_materia());
@@ -410,7 +441,7 @@ public class ControlBD {
     public String eliminar(Carrera carrera) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(carrera,5)) {
+        if (verificarIntegridad(carrera,4)) {
             contador+=db.delete("ESCUELA", "id_carrera='"+carrera.getId_carrera()+"'", null);
         }
         contador+=db.delete("CARRERA", "id_carrera='"+carrera.getId_carrera()+"'", null);
@@ -425,10 +456,10 @@ public class ControlBD {
     public String eliminar(MiembroUniversitario miembroUniversitario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(miembroUniversitario,6)) {
+        if (verificarIntegridad(miembroUniversitario,5)) {
             contador+=db.delete("COORDINA", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         }
-        if (verificarIntegridad(miembroUniversitario,7)) {
+        if (verificarIntegridad(miembroUniversitario,6)) {
                 contador+=db.delete("DETALLE_RESPONSABLE", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         }
         contador+=db.delete("MIEMBRO_UNIVERSITARIO", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
@@ -440,7 +471,7 @@ public class ControlBD {
     public String eliminar(Horario horario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(horario,8)) {
+        if (verificarIntegridad(horario,7)) {
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
         }
         contador+=db.delete("HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
@@ -697,6 +728,23 @@ public class ControlBD {
                     return true;
                 }
                 return false;
+            }
+            case 9: {
+//verificar que al insertar Detalle_Oferta exista Actividad y Tipo_Grupo
+                DetalleOferta detalleOferta = (DetalleOferta) dato;
+                String[] id1 = {detalleOferta.getId_materias_activas()};
+                String[] id2 = {detalleOferta.getId_aula()};
+//abrir();
+                Cursor cursor1 = db.query("OFERTA_ACADEMICA", null, "id_materias_activas = ?", id1, null,
+                        null, null);
+                Cursor cursor2 = db.query("LOCAL", null, "id_aula = ?", id2,
+                        null, null, null);
+                if (cursor1.moveToFirst() && cursor2.moveToFirst()) {
+//Se encontraron datos
+                    return true;
+                }
+                return false;
+
             }
 
             default:
