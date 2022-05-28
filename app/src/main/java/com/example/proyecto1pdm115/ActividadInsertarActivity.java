@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -43,21 +44,21 @@ public class ActividadInsertarActivity extends AppCompatActivity {
 
     public void insertarActividad(View v){
         Actividad actividad = new Actividad();
-        actividad.setId_actividad(Integer.parseInt(editId_actividad.getText().toString()));
-        actividad.setId_tipo_actividad(Integer.parseInt(editId_tipo_actividad.getText().toString()));
-        actividad.setId_valoracion(Integer.parseInt(editId_valoracion.getText().toString()));
-        actividad.setId_reservante(Integer.parseInt(editId_reservante.getText().toString()));
-        actividad.setGrupo(editGrupo.getText().charAt(0));
+        actividad.setId_actividad(editId_actividad.getText().toString());
+        actividad.setId_tipo_actividad(editId_tipo_actividad.getText().toString());
+        actividad.setId_valoracion(editId_valoracion.getText().toString());
+        actividad.setId_reservante(editId_reservante.getText().toString());
+        actividad.setGrupo(editGrupo.getText().toString());
         actividad.setDescripcion(editDescripcion.getText().toString());
         actividad.setEstado(editGrupo.getText().toString());
-        actividad.setFecha_actividad((Date) editFecha_actividad.getText());
-        actividad.setDesde_actividad((Date) editDesde_actividad.getText());
-        actividad.setHasta_actividad((Date) editHasta_actividad.getText());
-
+        actividad.setFecha_actividad(editFecha_actividad.getText().toString());
+        actividad.setDesde_actividad(editDesde_actividad.getText().toString());
+        actividad.setHasta_actividad(editHasta_actividad.getText().toString());
+        String regInsertados;
         helper.abrir();
-        //regInsertados=helper.insertar(actividad);
-        //helper.cerrar();
-        //Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        regInsertados=helper.insertar(actividad);
+        helper.cerrar();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
 
     }
 

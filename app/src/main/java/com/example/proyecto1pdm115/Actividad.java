@@ -3,61 +3,61 @@ package com.example.proyecto1pdm115;
 import java.util.Date;
 
 public class Actividad {
-    private Integer id_actividad;
-    private Integer id_tipo_actividad;
-    private Integer id_valoracion;
-    private Integer id_reservante;
-    private char grupo;
+    private String id_actividad;
+    private String id_tipo_actividad;
+    private String id_valoracion;
+    private String id_reservante;
+    private String grupo;
     private String descripcion;
     private String estado;
-    private Date fecha_actividad;
-    private Date desde_actividad;
-    private Date hasta_actividad;
+    private String fecha_actividad;
+    private String desde_actividad;
+    private String hasta_actividad;
 
     public Actividad(){
     }
 
-    public Actividad(char id_actividad, int id_tipo_actividad, int id_valoracion, int id_reservante, char grupo, char descripcion, char estado, int fecha_actividad, int desde_actividad, int hasta_actividad) {
+    public Actividad(String id_actividad, String id_tipo_actividad, String id_valoracion, String id_reservante, String grupo, String descripcion, String estado, String fecha_actividad, String desde_actividad, String hasta_actividad) {
 
     }
 
-    public Integer getId_actividad() {
+    public String getId_actividad() {
         return id_actividad;
     }
 
-    public void setId_actividad(Integer id_actividad) {
+    public void setId_actividad(String id_actividad) {
         this.id_actividad = id_actividad;
     }
 
-    public int getId_tipo_actividad() {
+    public String getId_tipo_actividad() {
         return id_tipo_actividad;
     }
 
-    public void setId_tipo_actividad(int id_tipo_actividad) {
+    public void setId_tipo_actividad(String id_tipo_actividad) {
         this.id_tipo_actividad = id_tipo_actividad;
     }
 
-    public int getId_valoracion() {
+    public String getId_valoracion() {
         return id_valoracion;
     }
 
-    public void setId_valoracion(int id_valoracion) {
+    public void setId_valoracion(String id_valoracion) {
         this.id_valoracion = id_valoracion;
     }
 
-    public int getId_reservante() {
+    public String getId_reservante() {
         return id_reservante;
     }
 
-    public void setId_reservante(int id_reservante) {
+    public void setId_reservante(String id_reservante) {
         this.id_reservante = id_reservante;
     }
 
-    public char getGrupo() {
+    public String getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(char grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 
@@ -77,27 +77,27 @@ public class Actividad {
         this.estado = estado;
     }
 
-    public Date getFecha_actividad() {
+    public String getFecha_actividad() {
         return fecha_actividad;
     }
 
-    public void setFecha_actividad(Date fecha_actividad) {
+    public void setFecha_actividad(String fecha_actividad) {
         this.fecha_actividad = fecha_actividad;
     }
 
-    public Date getDesde_actividad() {
+    public String getDesde_actividad() {
         return desde_actividad;
     }
 
-    public void setDesde_actividad(Date desde_actividad) {
+    public void setDesde_actividad(String desde_actividad) {
         this.desde_actividad = desde_actividad;
     }
 
-    public Date getHasta_actividad() {
+    public String getHasta_actividad() {
         return hasta_actividad;
     }
 
-    public void setHasta_actividad(Date hasta_actividad) {
+    public void setHasta_actividad(String hasta_actividad) {
         this.hasta_actividad = hasta_actividad;
     }
 }
