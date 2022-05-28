@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class DetalleOfertaConsultarActivity extends AppCompatActivity {
-    //ControlBDMT17005 helper;
+    ControlBD helper;
     EditText editGrupo;
     EditText editId_materias_activas;
     EditText editId_aula;
@@ -18,7 +18,7 @@ public class DetalleOfertaConsultarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_oferta_consultar);
-        //helper = new ControlBDMT17005(this);
+        helper = new ControlBD(this);
         editGrupo = (EditText) findViewById(R.id.editGrupo);
         editId_materias_activas = (EditText) findViewById(R.id.editId_materias_activas);
         editId_aula = (EditText) findViewById(R.id.editId_aula);
@@ -26,15 +26,15 @@ public class DetalleOfertaConsultarActivity extends AppCompatActivity {
     }
 
     public void consultarDetalleOferta(View v) {
-        //helper.abrir();
-        //DetalleOferta detalleOferta = helper.consultarDetalleOferta(editGrupo.getText().toString(), editId_materias_activas.getText().toString(), editId_aula.getText().toString(), editCant_inscritos.getText().toString());
-        //helper.cerrar();
-        /*if(detalleOferta == null)
-            Toast.makeText(this, "Nota no registrada",
+        helper.abrir();
+        DetalleOferta detalleOferta = helper.consultarDetalleOferta(editId_materias_activas.getText().toString(), editId_aula.getText().toString(), editGrupo.getText().toString());
+        helper.cerrar();
+        if(detalleOferta == null)
+            Toast.makeText(this, "Detalle de oferta no registrada",
                     Toast.LENGTH_LONG).show();
         else{
-            edit.setText(String.valueOf(nota.getNotafinal()));
-        }*/
+            editCant_inscritos.setText(String.valueOf(detalleOferta.getCant_inscritos()));
+        }
     }
 
     public void limpiarTexto(View v) {

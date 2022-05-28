@@ -32,9 +32,9 @@ public class DetalleOfertaActualizarActivity extends AppCompatActivity {
         detalleOferta.setId_aula(editId_aula.getText().toString());
         detalleOferta.setCant_inscritos(Integer.valueOf(editCant_inscritos.getText().toString()));
         helper.abrir();
-        //String estado = helper.actualizar(detalleOferta);
+        String estado = helper.actualizar(detalleOferta);
         helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {
