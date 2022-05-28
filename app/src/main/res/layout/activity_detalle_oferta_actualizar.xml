@@ -22,7 +22,7 @@
         <TextView android:text="@string/id_aula" />
         <EditText
             android:id="@+id/editId_aula"
-            android:inputType="number"
+            android:inputType="text"
             android:maxLength="3" />
     </TableRow>
     <TableRow>

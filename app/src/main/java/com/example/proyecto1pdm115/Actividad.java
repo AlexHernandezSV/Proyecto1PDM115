@@ -1,16 +1,18 @@
 package com.example.proyecto1pdm115;
 
+import java.util.Date;
+
 public class Actividad {
-    private char id_actividad;
-    private int id_tipo_actividad;
-    private int id_valoracion;
-    private int id_reservante;
+    private Integer id_actividad;
+    private Integer id_tipo_actividad;
+    private Integer id_valoracion;
+    private Integer id_reservante;
     private char grupo;
-    private char descripcion;
-    private char estado;
-    private int fecha_actividad;
-    private int desde_actividad;
-    private int hasta_actividad;
+    private String descripcion;
+    private String estado;
+    private Date fecha_actividad;
+    private Date desde_actividad;
+    private Date hasta_actividad;
 
     public Actividad(){
     }
@@ -19,11 +21,11 @@ public class Actividad {
 
     }
 
-    public char getId_actividad() {
+    public Integer getId_actividad() {
         return id_actividad;
     }
 
-    public void setId_actividad(char id_actividad) {
+    public void setId_actividad(Integer id_actividad) {
         this.id_actividad = id_actividad;
     }
 
@@ -59,43 +61,43 @@ public class Actividad {
         this.grupo = grupo;
     }
 
-    public char getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(char descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public char getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(char estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getFecha_actividad() {
+    public Date getFecha_actividad() {
         return fecha_actividad;
     }
 
-    public void setFecha_actividad(int fecha_actividad) {
+    public void setFecha_actividad(Date fecha_actividad) {
         this.fecha_actividad = fecha_actividad;
     }
 
-    public int getDesde_actividad() {
+    public Date getDesde_actividad() {
         return desde_actividad;
     }
 
-    public void setDesde_actividad(int desde_actividad) {
+    public void setDesde_actividad(Date desde_actividad) {
         this.desde_actividad = desde_actividad;
     }
 
-    public int getHasta_actividad() {
+    public Date getHasta_actividad() {
         return hasta_actividad;
     }
 
-    public void setHasta_actividad(int hasta_actividad) {
+    public void setHasta_actividad(Date hasta_actividad) {
         this.hasta_actividad = hasta_actividad;
     }
 }

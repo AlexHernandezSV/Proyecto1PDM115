@@ -7,13 +7,13 @@ import android.widget.EditText;
 
 public class EscuelaEliminarActivity extends AppCompatActivity {
 
-    //ControlBD controlhelper;
+    ControlBD controlhelper;
     EditText editId_escuela;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escuela_eliminar);
-        //controlhelper=new ControlBD (this);
+        controlhelper=new ControlBD (this);
         editId_escuela=(EditText)findViewById(R.id.editId_escuela);
     }
 

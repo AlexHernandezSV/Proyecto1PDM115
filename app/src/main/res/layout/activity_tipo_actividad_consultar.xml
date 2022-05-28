@@ -2,47 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/id_materias_activas"/>
+        android:text="@string/id_tipo_actividad"/>
     <EditText
-        android:id="@+id/editId_materias_activas"
+        android:id="@+id/editId_tipo_actividad"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:maxLength="6"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/id_aula"/>
-    <EditText
-        android:id="@+id/editId_aula"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="6"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/grupo" />
-    <EditText
-        android:id="@+id/editGrupo"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="3"/>
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
         <Button
             android:id="@+id/botonConsultar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/consultar"
-            android:onClick="consultarDetalleOferta"/>
+            android:onClick="consultarTipoActividad"/>
         <Button
             android:id="@+id/botonLimpiar"
             android:layout_width="wrap_content"
@@ -53,10 +33,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cant_inscritos" />
+        android:text="@string/nombre_tipo_actividad" />
     <EditText
-        android:id="@+id/editCant_inscritos"
-        android:layout_width="100dp"
+        android:id="@+id/editNombre_tipo_actividad"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled ="false"
@@ -64,4 +44,5 @@
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
         android:longClickable="false" />
+
 </LinearLayout>

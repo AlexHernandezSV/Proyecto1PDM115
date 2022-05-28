@@ -3,13 +3,13 @@ package com.example.proyecto1pdm115;
 public class DetalleOferta {
     private String grupo;
     private String id_materias_activas;
-    private Integer id_aula;
+    private String id_aula;
     private Integer cant_inscritos;
 
     public DetalleOferta(){
     }
 
-    public DetalleOferta(String grupo, String id_materias_activas, Integer id_aula, Integer cant_inscritos) {
+    public DetalleOferta(String grupo, String id_materias_activas, String id_aula, Integer cant_inscritos) {
         this.grupo = grupo;
         this.id_materias_activas = id_materias_activas;
         this.id_aula = id_aula;
@@ -32,11 +32,11 @@ public class DetalleOferta {
         this.id_materias_activas = id_materias_activas;
     }
 
-    public Integer getId_aula() {
+    public String getId_aula() {
         return id_aula;
     }
 
-    public void setId_aula(Integer id_aula) {
+    public void setId_aula(String id_aula) {
         this.id_aula = id_aula;
     }
 

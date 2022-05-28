@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 public class EscuelaInsertarActivity extends AppCompatActivity {
 
-    //ControlBDMT17005 helper;
+    ControlBD helper;
     EditText editId_escuela;
     EditText editId_carrera;
     EditText editNombre_escuela;
@@ -17,7 +17,7 @@ public class EscuelaInsertarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escuela_insertar);
-        //helper = new ControlBDMT17005(this);
+        helper = new ControlBD(this);
         editId_escuela = (EditText) findViewById(R.id.editId_escuela);
         editId_carrera = (EditText) findViewById(R.id.editId_carrera);
         editNombre_escuela = (EditText) findViewById(R.id.editNombre_escuela);

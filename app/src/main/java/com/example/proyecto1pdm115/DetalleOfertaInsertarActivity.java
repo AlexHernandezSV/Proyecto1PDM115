@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class DetalleOfertaInsertarActivity extends AppCompatActivity {
-    //ControlBDMT17005 helper;
+    ControlBD helper;
     EditText editGrupo;
     EditText editId_materias_activas;
     EditText editId_aula;
@@ -17,7 +17,7 @@ public class DetalleOfertaInsertarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_oferta_insertar);
-        //helper = new ControlBDMT17005(this);
+        helper = new ControlBD(this);
         editGrupo = (EditText) findViewById(R.id.editGrupo);
         editId_materias_activas = (EditText) findViewById(R.id.editId_materias_activas);
         editId_aula = (EditText) findViewById(R.id.editId_aula);
@@ -25,20 +25,20 @@ public class DetalleOfertaInsertarActivity extends AppCompatActivity {
     }
 
     public void insertarDetalleOferta(View v) {
-        //String regInsertados;
+        String regInsertados;
         String grupo=editGrupo.getText().toString();
         String id_materias_activas=editId_materias_activas.getText().toString();
-        Integer id_aula=Integer.valueOf(editId_aula.getText().toString());
+        String id_aula=editId_aula.getText().toString();
         Integer cant_inscritos=Integer.valueOf(editCant_inscritos.getText().toString());
         DetalleOferta detalleOferta= new DetalleOferta();
         detalleOferta.setGrupo(grupo);
         detalleOferta.setId_materias_activas(id_materias_activas);
         detalleOferta.setId_aula(id_aula);
         detalleOferta.setCant_inscritos(cant_inscritos);
-        //helper.abrir();
-        //regInsertados=helper.insertar(detalleOferta);
-        //helper.cerrar();
-        //Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        regInsertados=helper.insertar(detalleOferta);
+        helper.cerrar();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {
