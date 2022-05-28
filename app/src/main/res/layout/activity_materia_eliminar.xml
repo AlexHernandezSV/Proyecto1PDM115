@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:stretchColumns="1"
+    android:paddingTop="4dip"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/id_materia" />
-    <EditText
-        android:id="@+id/editId_materia"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="6"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/eliminar"
-        android:onClick="eliminarMateria"/>
-</LinearLayout>
+    <TableRow >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_materia"/>
+        <EditText
+            android:id="@+id/editId_materia"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/id_escuela"/>
+        <EditText
+            android:id="@+id/editId_escuela"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="6"/>
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="@string/eliminar"
+            android:onClick="eliminarNota"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="@string/limpiar"
+            android:onClick="limpiar"/>
+    </TableRow>
+
+</TableLayout>

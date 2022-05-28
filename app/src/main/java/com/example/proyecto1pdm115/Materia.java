@@ -2,14 +2,14 @@ package com.example.proyecto1pdm115;
 
 public class Materia {
     private String id_materia;
-    private int id_escuela;
+    private String id_escuela;
     private String nombre_materia;
     private int ciclo_materia;
 
     public Materia() {
     }
 
-    public Materia(String id_materia, int id_escuela, String nombre_materia, int ciclo_materia) {
+    public Materia(String id_materia, String id_escuela, String nombre_materia, int ciclo_materia) {
         this.id_materia = id_materia;
         this.id_escuela = id_escuela;
         this.nombre_materia = nombre_materia;
@@ -24,11 +24,11 @@ public class Materia {
         this.id_materia = id_materia;
     }
 
-    public int getId_escuela() {
+    public String getId_escuela() {
         return id_escuela;
     }
 
-    public void setId_escuela(int id_escuela) {
+    public void setId_escuela(String id_escuela) {
         this.id_escuela = id_escuela;
     }
 

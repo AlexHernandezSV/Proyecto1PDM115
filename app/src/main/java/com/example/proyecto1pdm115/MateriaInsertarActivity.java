@@ -30,7 +30,7 @@ public class MateriaInsertarActivity extends Activity {
 
     public void insertarMateria(View v) {
         String id_materia=editId_materia.getText().toString();
-        int id_escuela= Integer.parseInt(editId_escuela.getText().toString());
+        String id_escuela= editId_escuela.getText().toString();
         String nom_materia=editNom_materia.getText().toString();
         int ciclo_materia= Integer.parseInt(editCiclo_materia.getText().toString());
         String regInsertados;

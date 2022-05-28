@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MateriaActualizarActivity extends Activity {
+public class MateriaActualizarActivity extends AppCompatActivity {
 
     ControlBD helper;
     EditText editId_materia;
@@ -31,7 +31,7 @@ public class MateriaActualizarActivity extends Activity {
     public void actualizarMateria(View v) {
         Materia materia = new Materia();
         materia.setId_materia(editId_materia.getText().toString());
-        materia.setId_escuela(Integer.parseInt(editId_escuela.getText().toString()));
+        materia.setId_escuela(editId_escuela.getText().toString());
         materia.setNombre_materia(editNom_materia.getText().toString());
         materia.setCiclo_materia(Integer.parseInt(editCiclo_materia.getText().toString()));
         helper.abrir();

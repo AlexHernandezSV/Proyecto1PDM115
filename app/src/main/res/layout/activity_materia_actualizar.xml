@@ -15,8 +15,8 @@
         <TextView android:text="@string/id_escuela" />
         <EditText
             android:id="@+id/editId_escuela"
-            android:inputType="number"
-            android:maxLength="1" />
+            android:inputType="text"
+            android:maxLength="6" />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/nombre_materia" />

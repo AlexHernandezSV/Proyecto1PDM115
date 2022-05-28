@@ -27,7 +27,7 @@ public class CarreraConsultarActivity extends AppCompatActivity {
         if(carrera == null)
             Toast.makeText(this, "Carrera con ID " +
                     editId_carrera.getText().toString() +
-                    " no encontrado", Toast.LENGTH_LONG).show();
+                    " no encontrada", Toast.LENGTH_LONG).show();
         else{
             editNombre_carrera.setText(carrera.getNombre_carrera());
         }

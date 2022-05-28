@@ -106,7 +106,7 @@ public class ControlBD {
                 //Tabla Materia
                 db.execSQL("create table MATERIA (\n" +
                         "ID_MATERIA           CHAR(6)              not null, \n" +
-                        "ID_ESCUELA           INTEGER,\n" +
+                        "ID_ESCUELA           VARCHAR(6)           not null,\n" +
                         "NOMBRE_MATERIA       VARCHAR2(50)         not null,\n" +
                         "CICLO_MATERIA        INTEGER              not null,\n" +
                         "primary key (ID_MATERIA),\n" +
@@ -200,22 +200,25 @@ public class ControlBD {
     }
 
     //Insertar materia
-    public String insertar(Materia materia) {
+    public String insertar(Materia materia){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues mat = new ContentValues();
-        mat.put("id_materia", materia.getId_materia());
-        mat.put("id_escuela", materia.getId_escuela());
-        mat.put("nombre_materia", materia.getNombre_materia());
-        mat.put("ciclo_materia", materia.getCiclo_materia());
-        contador=db.insert("MATERIA", null, mat);
+        /*if(verificarIntegridad(materia,9))
+        {
+            ContentValues materias = new ContentValues();
+            materias.put("id_materia", materia.getId_materia());
+            materias.put("id_escuela", materia.getId_escuela());
+            materias.put("nombre_materia", materia.getNombre_materia());
+            materias.put("ciclo_materia", materia.getCiclo_materia());
+            contador=db.insert("MATERIA", null, materias);
+        }
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }
         else {
             regInsertados=regInsertados+contador;
-        }
+        }*/
         return regInsertados;
     }
 
@@ -227,15 +230,15 @@ public class ControlBD {
 
     //Actualizar carrera
     public String actualizar(Carrera carrera) {
-        if(verificarIntegridad(carrera, 1)){
+        /*if(verificarIntegridad(carrera, 1)){
             String[] id = {carrera.getId_carrera()};
             ContentValues cv = new ContentValues();
             cv.put("nombre_carrera", carrera.getNombre_carrera());
             db.update("CARRERA", cv, "id_carrera = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        }else{*/
             return "Registro con ID " + carrera.getId_carrera() + " no existe";
-        }
+        //}
     }
 
     //Insertar Detalle_Oferta
@@ -243,46 +246,45 @@ public class ControlBD {
 
     //Actualizar Miembro_Universitario
     public String actualizar(MiembroUniversitario miembroUniversitario) {
-        if(verificarIntegridad(miembroUniversitario, 2)){
+        /*if(verificarIntegridad(miembroUniversitario, 2)){
             String[] id = {miembroUniversitario.getId_coordinador()};
             ContentValues cv = new ContentValues();
             cv.put("nombre_coordinador", miembroUniversitario.getNombre_coordinador());
             cv.put("tipo_miembro", miembroUniversitario.getTipo_miembro());
             db.update("MIEMBRO_UNIVERSITARIO", cv, "id_coordinador = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        }else{*/
             return "Registro con ID " + miembroUniversitario.getId_coordinador() + " no existe";
-        }
+        //}
     }
 
     //Actualizar Horario
     public String actualizar(Horario horario) {
-        if(verificarIntegridad(horario, 3)){
+        /*if(verificarIntegridad(horario, 3)){
             String[] id = {horario.getId_horario()};
             ContentValues cv = new ContentValues();
             cv.put("desde_horario", horario.getDesde_horario());
             cv.put("hasta_horario", horario.getHasta_horario());
             db.update("HORARIO", cv, "id_horario = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        }else{*/
             return "Registro con ID " + horario.getId_horario() + " no existe";
-        }
+        //}
     }
 
     //Actualizar Materia
     public String actualizar(Materia materia){
-        if(verificarIntegridad(materia, 4)){
-            String[] id = {materia.getId_materia()};
+        /*if(verificarIntegridad(materia, 8)){
+            String[] id = {materia.getId_materia(), materia.getId_escuela()};
             ContentValues cv = new ContentValues();
-            cv.put("id_materia", materia.getId_materia());
-            cv.put("id_escuela", materia.getId_escuela());
             cv.put("nombre_materia", materia.getNombre_materia());
             cv.put("ciclo_materia", materia.getCiclo_materia());
-            db.update("MATERIA", cv, "id_materia = ?", id);
+            db.update("MATERIA", cv, "id_materia = ? AND id_escuela = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
-            return "Registro con ID de materia " + materia.getId_materia() + " no existe";
-        }
+        }else{*/
+            return "Registro no Existe";
+        //}
+
     }
 
 //================================ FINAL - Bloque de todos los UPDATE =============================================
@@ -294,9 +296,9 @@ public class ControlBD {
     public String eliminar(Carrera carrera) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(carrera,5)) {
+        /*if (verificarIntegridad(carrera,5)) {
             contador+=db.delete("ESCUELA", "id_carrera='"+carrera.getId_carrera()+"'", null);
-        }
+        }*/
         contador+=db.delete("CARRERA", "id_carrera='"+carrera.getId_carrera()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -309,12 +311,12 @@ public class ControlBD {
     public String eliminar(MiembroUniversitario miembroUniversitario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(miembroUniversitario,6)) {
+        /*if (verificarIntegridad(miembroUniversitario,6)) {
             contador+=db.delete("COORDINA", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         }
         if (verificarIntegridad(miembroUniversitario,7)) {
                 contador+=db.delete("DETALLE_RESPONSABLE", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
-        }
+        }*/
         contador+=db.delete("MIEMBRO_UNIVERSITARIO", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -324,25 +326,25 @@ public class ControlBD {
     public String eliminar(Horario horario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(horario,8)) {
+        /*if (verificarIntegridad(horario,8)) {
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
-        }
+        }*/
         contador+=db.delete("HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
 
     //Eliminar Materia
-    public String eliminar(Materia materia) {
+    public String eliminar(Materia materia){
         String regAfectados="filas afectadas= ";
         int contador=0;
-        if (verificarIntegridad(materia,9)) {
-            contador+=db.delete("materia", "id_materia='"+materia.getId_materia()+"'", null);
-        }
-        contador+=db.delete("materia", "id_materia='"+materia.getId_materia()+"'", null);
+        String where="id_materia='"+materia.getId_materia()+"'";
+        where=where+" AND id_escuela='"+materia.getId_escuela()+"'";
+        contador+=db.delete("MATERIA", where, null);
         regAfectados+=contador;
         return regAfectados;
     }
+
 
 //================================ FINAL - Bloque de todos los DELETE =============================================
 
@@ -400,20 +402,22 @@ public class ControlBD {
     }
 
     //Consultar Materia
-    public Materia consultarMateria(String id_materia){
-        String[] id = {id_materia};
-        Cursor cursor = db.query("MATERIA", camposMateria, "id_materia = ?",
-                id, null, null, null);
+    public Materia consultarMateria(String id_materia, String id_escuela){
+        String[] id = {id_materia, id_escuela};
+        Cursor cursor = db.query("MATERIA", camposMateria, "id_materia = ? AND id_escuela = ?", id, null, null, null);
         if(cursor.moveToFirst()){
             Materia materia = new Materia();
-            materia.setId_escuela(cursor.getInt(0));
-            materia.setNombre_materia(cursor.getString(1));
-            materia.setCiclo_materia(cursor.getInt(2));
+            materia.setId_materia(cursor.getString(0));
+            materia.setId_escuela(cursor.getString(1));
+            materia.setNombre_materia(cursor.getString(2));
+            materia.setCiclo_materia(cursor.getInt(3));
             return materia;
         }else{
             return null;
         }
+
     }
+
 
 
 //================================ FINAL - Bloque de todos los READ =============================================
@@ -514,15 +518,28 @@ public class ControlBD {
                 else
                     return false;
             }
-            case 8: {
-//verificar que exista Materia
-                Materia materia = (Materia) dato;
-                String[] id = {materia.getId_materia()};
+            case 8: { //para actualizar materia
+                //verificar que al modificar Materia exista id de la materia, y el id de escuela
+                Materia materia1 = (Materia) dato;
+                String[] ids = {materia1.getId_materia(), materia1.getId_escuela()};
                 abrir();
-                Cursor c2 = db.query("MATERIA", null, "id_materia = ?", id, null, null,
-                        null);
-                if (c2.moveToFirst()) {
-//Se encontro Materia
+                Cursor c = db.query("MATERIA", null, "id_materia = ? AND id_escuela = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 9:
+            {
+                //verificar que al insertar materia exista el ID de la escuela
+                Materia materia = (Materia) dato;
+                String[] id1 = {materia.getId_escuela()};
+                //abrir();
+                Cursor cursor1 = db.query("ESCUELA", null, "id_escuela = ?", id1, null,
+                        null, null);
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
                     return true;
                 }
                 return false;
@@ -559,7 +576,7 @@ public class ControlBD {
 
         //Tabla Materia
         final  String[] Materiaid_materia = {"MAT115","FIR315","TAD115","SYP115"};
-        final  int[] Materiaid_escuela = {1,1,5,5};
+        final  String[] Materiaid_escuela = {"I10501","I10501","I10515","I10515"};
         final  String[] Materianombre_materia = {"Matematicas 1","Fisica 3","Teoria Administrativa","Sistemas y Procedimientos"};
         final  int[] Materiaciclo_materia = {1,2,1,1};
 
