@@ -142,6 +142,56 @@ public class ControlBD {
                         "      references ACTIVIDAD (ID_ACTIVIDAD)\n" +
                         ");");
 
+                //Tabla ACTIVIDAD
+                db.execSQL("create table ACTIVIDAD (\n" +
+                                "ID_ACTIVIDAD          VARCHAR2(6)          not null, \n" +
+                                "ID_TIPO_ACTIVIDAD     VARCHAR2(6)          not null, \n" +
+                                "ID_VALORACION         VARCHAR2(6)          not null, \n" +
+                                "ID_RESERVANTE         VARCHAR2(6)          not null, \n" +
+                                "GRUPO                 CHAR(3)              not null, \n" +
+                                "DESCRIPCION           VARCHAR2(50)         not null, \n" +
+                                "ESTADO                VARCHAR2(10)         not null, \n" +
+                                "FECHA_ACTIVIDAD       DATE                 not null, \n" +
+                                "DESDE_ACTIVIDAD       DATE                 not null, \n" +
+                                "HASTA_ACTIVIDAD       DATE                 not null, \n" +
+                        "primary key (ID_ACTIVIDAD),\n" +
+                        "foreign key (ID_TIPO_ACTIVIDAD)\n" +
+                        "      references TIPO_ACTIVIDAD (ID_TIPO_ACTIVIDAD),\n" +
+                        "foreign key (ID_VALORACION)\n" +
+                        "      references VALORACION (ID_VALORACION),\n" +
+                        "foreign key (ID_RESERVANTE)\n" +
+                        "      references ENCARGADO (ID_RESERVANTE),\n" +
+                        "foreign key (GRUPO)\n" +
+                        "references DETALLE_OFERTA (GRUPO)\n" +
+                        ");");
+
+                //Tabla ESCUELA
+                db.execSQL("create table ESCUELA (\n" +
+                                "ID_ESCUELA           INTEGER              not null, \n" +
+                                "ID_CARRERA           VARCHAR2(6)          not null, \n" +
+                                "NOMBRE_ESCUELA       VARCHAR2(50)         not null, \n" +
+                                "primary key (ID_ESCUELA), \n" +
+                        "foreign key (ID_CARRERA)\n"+
+                        "references CARRERA (ID_CARRERA)\n"+
+                        ");");
+
+                //Tabla DETALLE RESPONSABLE
+                db.execSQL("create table DETALLE_RESPOSABLE(\n" +
+                        "ID_DETALLE_RESPONSABLE CHAR(10)           not null, \n" +
+                        "ID_COORDINADOR         INTEGER            not null, \n" +
+                        "NOMB_TIPO_RESPONSABLE CHAR(10)            not null, \n" +
+                        "primary key (ID_DETALLE_RESPONSABLE), \n" +
+                        "foreign key (ID_COORDINADOR)\n"+
+                        "references MIEMBRO_UNIVERSITARIO (ID_COORDINADOR)\n"+
+                        ");");
+
+                //Tabla TIPO ACTIVIDAD
+                db.execSQL("create table TIPO_ACTIVIDAD (\n" +
+                        "ID_TIPO_ACTIVIDAD    INTEGER              not null, \n" +
+                        "NOMBRE_TIPO_ACTIVIDAD VARCHAR2(50)         not null,\n" +
+                        "primary key (ID_TIPO_ACTIVIDAD)\n" +
+                        ");");
+
                 //Continuar tablas
 
 
