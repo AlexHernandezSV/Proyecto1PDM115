@@ -26,20 +26,20 @@ public class EncargadoInsertarActivity extends Activity {
         editTipo_reservante = (EditText) findViewById(R.id.editTipo_reservante);
     }
     public void insertarEncargado(View v) {
-        Integer id_reservante = Integer.valueOf(editId_reservante.getText().toString());
-        char id_usuario = editId_usuario.getText().toString().charAt(2);
+        String id_reservante = editId_reservante.getText().toString();
+        String id_usuario = editId_usuario.getText().toString();
         String nombre_reservante = editNom_reservante.getText().toString();
         String tipo_reservante = editTipo_reservante.getText().toString();
         String regInsertados;
-        Encargado reservante = new Encargado();
-        reservante.setId_reservante(id_reservante);
-        reservante.setId_usuario(id_usuario);
-        reservante.setNombre_reservante(nombre_reservante);
-        reservante.setTipo_reservante(tipo_reservante);
+        Encargado encargado = new Encargado();
+        encargado.setId_reservante(id_reservante);
+        encargado.setId_usuario(id_usuario);
+        encargado.setNombre_reservante(nombre_reservante);
+        encargado.setTipo_reservante(tipo_reservante);
         helper.abrir();
-        //regInsertados = helper.insertar(reservante);
+        regInsertados = helper.insertar(encargado);
         helper.cerrar();
-        //Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {

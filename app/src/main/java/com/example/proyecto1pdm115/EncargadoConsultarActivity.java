@@ -30,17 +30,17 @@ public class EncargadoConsultarActivity extends Activity {
 
     public void consultarEncargado(View v) {
         helper.abrir();
-        //Encargado encargado = helper.consultarEncargado(editId_reservante.getText().toString());
+        Encargado encargado = helper.consultarEncargado(editId_reservante.getText().toString(),editId_usuario.getText().toString());
         helper.cerrar();
-        /*if(encargado == null)
+        if(encargado == null)
             Toast.makeText(this, "Reservante con ID " +
                     editId_reservante.getText().toString() +
                     " no encontrado", Toast.LENGTH_LONG).show();
         else{
-            editId_usuario.setText(encargado.getId_usuario());
+            //editId_usuario.setText(encargado.getId_usuario());
             editNom_reservante.setText(encargado.getNombre_reservante());
             editTipo_reservante.setText(encargado.getTipo_reservante());
-        }*/
+        }
     }
 
     public void limpiarTexto(View v){

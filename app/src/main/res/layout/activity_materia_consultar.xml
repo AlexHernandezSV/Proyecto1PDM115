@@ -2,23 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/id_materia"/>
-
     <EditText
         android:id="@+id/editId_materia"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="6"
-        android:minHeight="48dp" />
+        android:maxLength="6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/id_escuela"/>
+
+    <EditText
+        android:id="@+id/editId_escuela"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="7" />
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
         <Button
             android:id="@+id/botonConsultar"
             android:layout_width="wrap_content"
@@ -31,35 +41,22 @@
             android:layout_height="wrap_content"
             android:text="@string/limpiar"
             android:onClick="limpiarTexto"/>
-    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/id_escuela" />
-    <EditText
-        android:id="@+id/editId_escuela"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"/>
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nombre_materia" />
+
     <EditText
         android:id="@+id/editNom_materia"
-        android:layout_width="100dp"
+        android:layout_width="272dp"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled ="false"
+        android:cursorVisible="false"
+        android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:cursorVisible="false"
+        android:inputType="text"
         android:longClickable="false" />
     <TextView
         android:layout_width="wrap_content"
@@ -68,13 +65,12 @@
 
     <EditText
         android:id="@+id/editCiclo_materia"
-        android:layout_width="100dp"
+        android:layout_width="271dp"
         android:layout_height="wrap_content"
         android:cursorVisible="false"
         android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:inputType="text"
-        android:longClickable="false"
-        android:minHeight="48dp" />
+        android:longClickable="false" />
 </LinearLayout>

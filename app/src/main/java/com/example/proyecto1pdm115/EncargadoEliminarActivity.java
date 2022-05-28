@@ -10,23 +10,30 @@ import android.widget.Toast;
 
 public class EncargadoEliminarActivity extends Activity {
 
-    EditText editId_reservante;
+    EditText editId_reservante,editId_usuario;
     ControlBD controlhelper;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encargado_eliminar);
-        controlhelper=new ControlBD (this);
+        controlhelper=new ControlBD(this);
         editId_reservante=(EditText)findViewById(R.id.editId_reservante);
+        editId_usuario=(EditText)findViewById(R.id.editId_usuario);
     }
 
     public void eliminarEncargado(View v){
         String regEliminadas;
-        Encargado reservante=new Encargado();
-        reservante.setId_reservante(Integer.valueOf(editId_reservante.getText().toString()));
+        Encargado encargado=new Encargado();
+        encargado.setId_reservante(editId_reservante.getText().toString());
+        encargado.setId_usuario(editId_usuario.getText().toString());
         controlhelper.abrir();
-        //regEliminadas=controlhelper.eliminar(reservante);
+        regEliminadas=controlhelper.eliminar(encargado);
         controlhelper.cerrar();
-        //Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
+    public void limpiarTexto(View v){
+        editId_reservante.setText("");
+        editId_usuario.setText("");
+    }
+
 }
