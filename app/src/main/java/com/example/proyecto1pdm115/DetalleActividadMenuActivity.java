@@ -12,12 +12,8 @@ import android.widget.ListView;
 
 public class DetalleActividadMenuActivity extends ListActivity {
 
-    String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
-            "Actualizar Registro"};
-    String[]
-            activities={"DetalleActividadInsertarActivity","DetalleActividadEliminarActivity",
-            "DetalleActividadConsultarActivity",
-            "DetalleActividadActualizarActivity"};
+    String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro", "Actualizar Registro"};
+    String[] activities={"DetalleActividadInsertarActivity","DetalleActividadEliminarActivity", "DetalleActividadConsultarActivity", "DetalleActividadActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +21,7 @@ public class DetalleActividadMenuActivity extends ListActivity {
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
         ListView listView = getListView();
         listView.setBackgroundColor(Color.rgb(120, 0, 25));
-        ArrayAdapter<String> adapter = new
-                ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
     }
 

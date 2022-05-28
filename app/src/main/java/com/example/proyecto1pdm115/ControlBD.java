@@ -44,6 +44,10 @@ public class ControlBD {
     private static final String[] camposEscuela = new String[]
             {"id_escuela", "id_carrera", "nombre_escuela"};
 
+    //Campos Detalle Actividad
+    private static final String[] camposDetalleActividad = new String[]
+            {"id_detalle", "id_aula", "id_actividad", "participantes"};
+
 
 //================================ FINAL - Bloque de definición de campos de tablas =============================================
 
@@ -208,6 +212,18 @@ public class ControlBD {
                         "primary key (ID_RESERVANTE),\n" +
                         "foreign key (ID_USUARIO)\n" +
                         "      references USUARIO (ID_USUARIO));");
+
+                //Tabla DETALLE ACTIVIDAD
+                db.execSQL("create table DETALLE_ACTIVIDAD (\n" +
+                        "ID_DETALLE           VARCHAR2(4)              not null, \n" +
+                        "ID_AULA           VARCHAR2(6)           not null,\n" +
+                        "ID_ACTIVIDAD       VARCHAR2(4)         not null,\n" +
+                        "PARTICIPANTES        INTEGER              not null,\n" +
+                        "primary key (ID_DETALLE),\n" +
+                        "foreign key (ID_AULA)\n" +
+                        "      references LOCAL (ID_AULA),\n" +
+                        "foreign key (ID_ACTIVIDAD)\n" +
+                        "      references ACTIVIDAD (ID_ACTIVIDAD));");
 
                 //Continuar tablas
 
@@ -463,6 +479,29 @@ public class ControlBD {
         return regInsertados;
     }
 
+    //Insertar Detalle Actividad
+    public String insertar(DetalleActividad detalleActividad){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        /*if(verificarIntegridad(detalleActividad,34))
+        {
+            ContentValues detactividades = new ContentValues();
+            detactividades.put("id_detalle", detalleActividad.getId_detalle_actividad());
+            detactividades.put("id_aula", detalleActividad.getId_aula());
+            detactividades.put("id_actividad", detalleActividad.getId_actividad());
+            detactividades.put("participantes", detalleActividad.getParticipantes());
+            contador=db.insert("DETALLE_ACTIVIDAD", null, detactividades);
+        }
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }*/
+        return regInsertados;
+    }
+
 
 
 
@@ -582,6 +621,21 @@ public class ControlBD {
 
     }
 
+    //Actualizar Detalle Actividad
+    public String actualizar(DetalleActividad detalleActividad){
+        /*if(verificarIntegridad(detalleActividad, 35)){
+            String[] id = {detalleActividad.getId_detalle_actividad(), detalleActividad.getId_aula(),
+                    detalleActividad.getId_actividad()};
+            ContentValues cv = new ContentValues();
+            cv.put("participantes", detalleActividad.getParticipantes());
+            db.update("DETALLE_ACTIVIDAD", cv, "id_detalle = ? AND id_aula = ? AND id_actividad = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{*/
+            return "Registro no Existe";
+        //}
+    }
+
+
 
 
 //================================ FINAL - Bloque de todos los UPDATE =============================================
@@ -681,6 +735,18 @@ public class ControlBD {
         String where="id_reservante='"+encargado.getId_reservante()+"'";
         where=where+" AND id_usuario='"+encargado.getId_usuario()+"'";
         contador+=db.delete("ENCARGADO", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    //Eliminar Detalle Actividad
+    public String eliminar(DetalleActividad detalleActividad){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_detalle='"+detalleActividad.getId_detalle_actividad()+"'";
+        where=where+" AND id_aula='"+detalleActividad.getId_aula()+"'";
+        where=where+" AND id_actividad="+detalleActividad.getId_actividad();
+        contador+=db.delete("DETALLE_ACTIVIDAD", where, null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -839,6 +905,23 @@ public class ControlBD {
         }
 
     }
+
+    //Consultar Detalle Actividad
+    public DetalleActividad consultarDetalleActividad(String id_detalle, String id_aula, String id_actividad){
+        String[] id = {id_detalle, id_aula, id_actividad};
+        Cursor cursor = db.query("DETALLE_ACTIVIDAD", camposDetalleActividad, "id_detalle = ? AND id_aula = ? AND id_actividad = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            DetalleActividad detalleActividad = new DetalleActividad();
+            detalleActividad.setId_detalle_actividad(cursor.getString(0));
+            detalleActividad.setId_aula(cursor.getString(1));
+            detalleActividad.setId_actividad(cursor.getString(2));
+            detalleActividad.setParticipantes(cursor.getInt(3));
+            return detalleActividad;
+        }else{
+            return null;
+        }
+    }
+
 
 
 
@@ -1087,6 +1170,38 @@ public class ControlBD {
                 }
                 return false;
             }
+            case 34:
+            {
+                //verificar que al insertar Detalle Actividad exista el ID del Usuario
+                DetalleActividad detalleActividad = (DetalleActividad) dato;
+                String[] id1 = {detalleActividad.getId_aula()};
+                String[] id2 = {detalleActividad.getId_actividad()};
+                //abrir();
+                Cursor cursor1 = db.query("LOCAL", null, "id_aula = ?", id1, null,
+                        null, null);
+                Cursor cursor2 = db.query("ACTIVIDAD", null, "id_actividad = ?", id2,
+                        null, null, null);
+                if(cursor1.moveToFirst() && cursor2.moveToFirst()){
+                //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 35:
+            {
+                //verificar que al modificar Detalle Actividad exista id_detalle, id_aula y el id_actividad
+                DetalleActividad detalleActividad1 = (DetalleActividad) dato;
+                String[] ids = {detalleActividad1.getId_detalle_actividad(), detalleActividad1.getId_aula(),
+                        detalleActividad1.getId_actividad()};
+                abrir();
+                Cursor c = db.query("DETALLE_ACTIVIDAD", null, "id_detalle = ? AND id_aula = ? AND id_actividad = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
 
 
             default:
