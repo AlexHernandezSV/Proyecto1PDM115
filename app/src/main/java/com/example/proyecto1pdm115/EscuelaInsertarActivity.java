@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EscuelaInsertarActivity extends AppCompatActivity {
 
@@ -31,10 +32,10 @@ public class EscuelaInsertarActivity extends AppCompatActivity {
         escuela.setId_escuela(id_escuela);
         escuela.setId_carrera(id_carrera);
         escuela.setNombre_escuela(nombre_carrera);
-        //helper.abrir();
-        //regInsertados=helper.insertar(alumno);
-        //helper.cerrar();
-        //Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        regInsertados=helper.insertar(escuela);
+        helper.cerrar();
+        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
     }
     public void limpiarTexto(View v) {
         editId_escuela.setText("");

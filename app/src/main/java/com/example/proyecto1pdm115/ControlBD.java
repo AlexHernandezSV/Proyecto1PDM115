@@ -40,6 +40,9 @@ public class ControlBD {
     private static final String[] camposEncargado = new String[]
             {"id_reservante", "id_usuario", "nombre_reservante", "tipo_reservante"};
     //Agregar los demás campos
+    //Campos de Escuela
+    private static final String[] camposEscuela = new String[]
+            {"id_escuela", "id_carrera", "nombre_escuela"};
 
 
 //================================ FINAL - Bloque de definición de campos de tablas =============================================
@@ -171,7 +174,7 @@ public class ControlBD {
 
                 //Tabla ESCUELA
                 db.execSQL("create table ESCUELA (\n" +
-                                "ID_ESCUELA           INTEGER              not null, \n" +
+                                "ID_ESCUELA           VARCHAR2(6)          not null, \n" +
                                 "ID_CARRERA           VARCHAR2(6)          not null, \n" +
                                 "NOMBRE_ESCUELA       VARCHAR2(50)         not null, \n" +
                                 "primary key (ID_ESCUELA), \n" +
@@ -241,6 +244,24 @@ public class ControlBD {
         carr.put("id_carrera", carrera.getId_carrera());
         carr.put("nombre_carrera", carrera.getNombre_carrera());
         contador=db.insert("CARRERA", null, carr);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    public String insertar(Escuela escuela) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues esc = new ContentValues();
+        esc.put("id_escuela", escuela.getId_escuela());
+        esc.put("id_carrera", escuela.getId_carrera());
+        esc.put("nombre_escuela", escuela.getNombre_escuela());
+        contador=db.insert("ESCUELA", null, esc);
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
