@@ -187,7 +187,7 @@ public class ControlBD {
                         ");");
 
                 //Tabla DETALLE RESPONSABLE
-                db.execSQL("create table DETALLE_RESPOSABLE(\n" +
+                db.execSQL("create table DETALLE_RESPONSABLE(\n" +
                         "ID_DETALLE_RESPONSABLE CHAR(10)           not null, \n" +
                         "ID_COORDINADOR         INTEGER            not null, \n" +
                         "NOMB_TIPO_RESPONSABLE CHAR(10)            not null, \n" +
@@ -502,14 +502,23 @@ public class ControlBD {
         return regInsertados;
     }
 
-
-
-
-
-
-
-
-
+    public String insertar(DetalleResponsable responsable) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues res = new ContentValues();
+        res.put("id_detalle_responsable", responsable.getId_detalle_responsable());
+        res.put("id_coordinador", responsable.getId_coordinador());
+        res.put("nomb_tipo_responsable", responsable.getNomb_tipo_responsable());
+        contador=db.insert("DETALLE_RESPONSABLE", null, res);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
 
 
 
