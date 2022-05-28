@@ -29,9 +29,9 @@ public class DetalleActividadActualizarActivity extends Activity {
 
     public void actualizarDetalleActividad(View v) {
         DetalleActividad detalleActividad = new DetalleActividad();
-        detalleActividad.setId_detalle_actividad(Integer.valueOf(editDetActividad.getText().toString()));
-        detalleActividad.setId_aula(Integer.valueOf(editId_aula.getText().toString()));
-        detalleActividad.setId_actividad(Integer.valueOf(editId_actividad.getText().toString()));
+        detalleActividad.setId_detalle_actividad(editDetActividad.getText().toString());
+        detalleActividad.setId_aula(editId_aula.getText().toString());
+        detalleActividad.setId_actividad(editId_actividad.getText().toString());
         detalleActividad.setParticipantes(Integer.valueOf(editParticipantes.getText().toString()));
         helper.abrir();
         //String estado = helper.actualizar(detalleActividad);

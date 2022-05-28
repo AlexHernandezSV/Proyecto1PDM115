@@ -16,8 +16,9 @@ public class DetalleActividadConsultarActivity extends AppCompatActivity {
     EditText editId_actividad;
     EditText editParticipantes;
 
+    /** Called when the activity is first created. */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_actividad_consultar);
         helper = new ControlBD(this);
@@ -26,18 +27,18 @@ public class DetalleActividadConsultarActivity extends AppCompatActivity {
         editId_actividad = (EditText) findViewById(R.id.editId_actividad);
         editParticipantes = (EditText) findViewById(R.id.editParticipantes);
     }
-
     public void consultarDetalleActividad(View v) {
-       /*helper.abrir();
-        DetalleActividad detalleActividad = helper.consultarDetalleActividad(editDetActividad.getText().toString(), editId_aula.getText().toString(), editId_actividad.getText().toString(), editParticipantes.getText().toString());
+        helper.abrir();
+        DetalleActividad detalleActividad = helper.consultarDetalleActividad(editDetActividad.getText().toString(),
+                editId_aula.getText().toString(), editId_actividad.getText().toString());
         helper.cerrar();
         if(detalleActividad == null)
-            Toast.makeText(this, "Detalle de actividad no registrada",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Detalle no registrado", Toast.LENGTH_LONG).show();
         else{
-            edit.setText(String.valueOf(detalleActividad.getId_actividad()));
-        }*/
+            editParticipantes.setText(String.valueOf(detalleActividad.getParticipantes()));
+        }
     }
+
 
     public void limpiarTexto(View v) {
         editDetActividad.setText("");
