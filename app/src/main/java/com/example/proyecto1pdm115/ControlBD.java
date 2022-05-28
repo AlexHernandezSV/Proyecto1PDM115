@@ -880,7 +880,7 @@ public class ControlBD {
         db.execSQL("DELETE FROM DETALLE_OFERTA");
         db.execSQL("DELETE FROM MIEMBRO_UNIVERSITARIO");
         db.execSQL("DELETE FROM HORARIO");
-        db.execSQL("DELETE FROM MATERIA");
+        //db.execSQL("DELETE FROM MATERIA");
 
         Carrera carrera = new Carrera();
         for (int i = 0; i < 3; i++) {
