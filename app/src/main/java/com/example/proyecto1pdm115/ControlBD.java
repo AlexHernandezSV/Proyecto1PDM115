@@ -930,6 +930,18 @@ public class ControlBD {
                 return false;
             }
 
+            case 15:{
+                DetalleActividadHorario detalleActividadHorario = (DetalleActividadHorario) dato;
+                Cursor c=db.query(true, "HORARIO", new String[] {
+                                "id_horario" }, "id_horario='"+detalleActividadHorario.getId_horario()+"'",null,
+                        null, null, null, null);
+                if(c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
+
             default:
                 return false;
         }
