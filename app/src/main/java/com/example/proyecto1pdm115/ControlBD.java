@@ -856,7 +856,7 @@ public class ControlBD {
                 Coordina coordina2= (Coordina) dato;
                 String[] ids = {coordina2.getId_actividad(), coordina2.getId_coordinador()};
                 abrir();
-                Cursor c = db.query("COORDINA", null, "id_actividad = ? AND cid_coordinador = ? ", ids, null, null, null);
+                Cursor c = db.query("COORDINA", null, "id_actividad = ? AND id_coordinador = ? ", ids, null, null, null);
                 if(c.moveToFirst()){
                 //Se encontraron datos
                     return true;
