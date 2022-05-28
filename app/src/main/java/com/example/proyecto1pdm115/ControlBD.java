@@ -36,6 +36,9 @@ public class ControlBD {
     //Campos de Materia
     private static final String[] camposMateria = new String[]
             {"id_materia", "id_escuela", "nombre_materia", "ciclo_materia"};
+    //Campos de Encargado
+    private static final String[] camposEncargado = new String[]
+            {"id_reservante", "id_usuario", "nombre_reservante", "tipo_reservante"};
     //Agregar los demás campos
 
 
@@ -192,6 +195,16 @@ public class ControlBD {
                         "NOMBRE_TIPO_ACTIVIDAD VARCHAR2(50)         not null,\n" +
                         "primary key (ID_TIPO_ACTIVIDAD)\n" +
                         ");");
+
+                //Tabla ENCARGADO
+                db.execSQL("create table ENCARGADO (\n" +
+                        "ID_RESERVANTE        VARCHAR2(7)              not null, \n" +
+                        "ID_USUARIO           VARCHAR2(7)           not null,\n" +
+                        "NOMBRE_RESERVANTE       VARCHAR2(50)         not null,\n" +
+                        "TIPO_RESERVANTE         VARCHAR2(10)              not null,\n" +
+                        "primary key (ID_RESERVANTE),\n" +
+                        "foreign key (ID_USUARIO)\n" +
+                        "      references USUARIO (ID_USUARIO));");
 
                 //Continuar tablas
 
