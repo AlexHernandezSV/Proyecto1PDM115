@@ -21,7 +21,7 @@ public class ActividadEliminarActivity extends AppCompatActivity {
     public void eliminarActividad(){
         String regInsertados;
         Actividad actividad = new Actividad();
-        actividad.setId_actividad(Integer.parseInt(editId_actividad.getText().toString()));
+        actividad.setId_actividad(editId_actividad.getText().toString());
         controlhelper.abrir();
         //regEliminadas=controlhelper.eliminar(actividad);
         //controlhelper.cerrar();

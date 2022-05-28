@@ -158,9 +158,9 @@ public class ControlBD {
                                 "GRUPO                 CHAR(3)              not null, \n" +
                                 "DESCRIPCION           VARCHAR2(50)         not null, \n" +
                                 "ESTADO                VARCHAR2(10)         not null, \n" +
-                                "FECHA_ACTIVIDAD       DATE                 not null, \n" +
-                                "DESDE_ACTIVIDAD       DATE                 not null, \n" +
-                                "HASTA_ACTIVIDAD       DATE                 not null, \n" +
+                                "FECHA_ACTIVIDAD       VARCHAR(20)          not null, \n" +
+                                "DESDE_ACTIVIDAD       VARCHAR(20)          not null, \n" +
+                                "HASTA_ACTIVIDAD       VARCHAR(20)          not null, \n" +
                         "primary key (ID_ACTIVIDAD),\n" +
                         "foreign key (ID_TIPO_ACTIVIDAD)\n" +
                         "      references TIPO_ACTIVIDAD (ID_TIPO_ACTIVIDAD),\n" +
@@ -433,6 +433,33 @@ public class ControlBD {
         else {
             regInsertados=regInsertados+contador;
         }*/
+        return regInsertados;
+    }
+
+    //Insertar Actividad
+
+    public String insertar(Actividad actividad) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues act = new ContentValues();
+        act.put("id_actividad", actividad.getId_actividad());
+        act.put("id_tipo_actividad", actividad.getId_tipo_actividad());
+        act.put("id_valoracion", actividad.getId_valoracion());
+        act.put("id_reservante", actividad.getId_reservante());
+        act.put("grupo", actividad.getGrupo());
+        act.put("descripcion", actividad.getDescripcion());
+        act.put("estado", actividad.getEstado());
+        act.put("fecha_actividad", actividad.getFecha_actividad());
+        act.put("desde_actividad", actividad.getDesde_actividad());
+        act.put("hasta_actividad", actividad.getHasta_actividad());
+        contador=db.insert("ACTIVIDAD", null, act);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
         return regInsertados;
     }
 
