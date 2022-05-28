@@ -828,10 +828,42 @@ public class ControlBD {
                     return false;
             }
 
+            case 13:{
+                //verificar que al insertar un dato en coordina id_actividad en actividad y id_coordinador en miembro universitrario
+                Coordina coordina = (Coordina) dato;
+                String[] id1 = {coordina.getId_actividad()};
+                String[] id2 = {coordina.getId_coordinador()};
+                //abrir();
+                Cursor cursor1 = db.query("ACTIVIDAD", null, "id_actividad = ?", id1, null,
+                        null, null);
+                Cursor cursor2 = db.query("MIEMBRO_UNIVERSITARIO", null, "id_coordinador = ?", id2,
+                        null, null, null);
+                if(cursor1.moveToFirst() && cursor2.moveToFirst()){
+                //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
+            case 14:{
+                //verificar que al modificar coordina exista id de actividad y id coordinador
+                Coordina coordina2= (Coordina) dato;
+                String[] ids = {coordina2.getId_actividad(), coordina2.getId_coordinador()};
+                abrir();
+                Cursor c = db.query("COORDINA", null, "id_actividad = ? AND cid_coordinador = ? ", ids, null, null, null);
+                if(c.moveToFirst()){
+                //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
             default:
                 return false;
         }
-        
+
+
+
     }
 
 
