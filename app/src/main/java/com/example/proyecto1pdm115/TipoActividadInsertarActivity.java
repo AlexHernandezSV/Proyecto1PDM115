@@ -3,7 +3,9 @@ package com.example.proyecto1pdm115;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class TipoActividadInsertarActivity extends AppCompatActivity {
 
@@ -20,17 +22,17 @@ public class TipoActividadInsertarActivity extends AppCompatActivity {
         editNombre_tipo_actividad=(EditText) findViewById(R.id.editNombre_tipo_actividad);
     }
 
-    public void insertarTipoActividad(){
+    public void insertarTipoActividad(View v){
         TipoActividad tipo = new TipoActividad();
         tipo.setId_tipo_actividad(editId_tipo_actividad.getText().toString());
         tipo.setNombre_tipo_actividad(editNombre_tipo_actividad.getText().toString());
         helper.abrir();
-        //String estado =helper.insertar(tipo);
+        String estado =helper.insertar(tipo);
         helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
 
-    public void limpiarTexto(){
+    public void limpiarTexto(View v){
         editId_tipo_actividad.setText("");
         editNombre_tipo_actividad.setText("");
     }

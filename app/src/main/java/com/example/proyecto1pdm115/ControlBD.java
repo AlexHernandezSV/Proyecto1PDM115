@@ -198,7 +198,7 @@ public class ControlBD {
 
                 //Tabla TIPO ACTIVIDAD
                 db.execSQL("create table TIPO_ACTIVIDAD (\n" +
-                        "ID_TIPO_ACTIVIDAD    INTEGER              not null, \n" +
+                        "ID_TIPO_ACTIVIDAD     VARCHAR2(6)              not null, \n" +
                         "NOMBRE_TIPO_ACTIVIDAD VARCHAR2(50)         not null,\n" +
                         "primary key (ID_TIPO_ACTIVIDAD)\n" +
                         ");");
@@ -502,6 +502,7 @@ public class ControlBD {
         return regInsertados;
     }
 
+    //Insertar Detalle Responsable
     public String insertar(DetalleResponsable responsable) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
@@ -510,6 +511,24 @@ public class ControlBD {
         res.put("id_coordinador", responsable.getId_coordinador());
         res.put("nomb_tipo_responsable", responsable.getNomb_tipo_responsable());
         contador=db.insert("DETALLE_RESPONSABLE", null, res);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    //Insertar Tipo Actividad
+    public String insertar(TipoActividad tipoActividad) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues tipo = new ContentValues();
+        tipo.put("id_tipo_actividad", tipoActividad.getId_tipo_actividad());
+        tipo.put("nombre_tipo_actividad", tipoActividad.getNombre_tipo_actividad());
+        contador=db.insert("TIPO_ACTIVIDAD", null, tipo);
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
