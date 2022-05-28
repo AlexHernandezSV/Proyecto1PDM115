@@ -29,14 +29,14 @@ public class EncargadoActualizarActivity extends Activity {
     }
     public void actualizarEncargado(View v) {
         Encargado encargado = new Encargado();
-        encargado.setId_reservante(Integer.valueOf(editId_reservante.getText().toString()));
-        encargado.setId_usuario(editId_usuario.getText().toString().charAt(2));
+        encargado.setId_reservante(editId_reservante.getText().toString());
+        encargado.setId_usuario(editId_usuario.getText().toString());
         encargado.setNombre_reservante(editNom_reservante.getText().toString());
         encargado.setTipo_reservante(editTipo_reservante.getText().toString());
         helper.abrir();
-        //String estado = helper.actualizar(encargado);
+        String estado = helper.actualizar(encargado);
         helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
     public void limpiarTexto(View v) {
         editId_reservante.setText("");

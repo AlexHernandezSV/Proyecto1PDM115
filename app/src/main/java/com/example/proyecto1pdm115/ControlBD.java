@@ -392,6 +392,29 @@ public class ControlBD {
         return regInsertados;
     }
 
+    //Insertar Encargado
+    public String insertar(Encargado encargado){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        if(verificarIntegridad(encargado,32))
+        {
+            ContentValues encargados = new ContentValues();
+            encargados.put("id_reservante", encargado.getId_reservante());
+            encargados.put("id_usuario", encargado.getId_usuario());
+            encargados.put("nombre_reservante", encargado.getNombre_reservante());
+            encargados.put("tipo_reservante", encargado.getTipo_reservante());
+            contador=db.insert("ENCARGADO", null, encargados);
+        }
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
 
 
 
@@ -495,6 +518,21 @@ public class ControlBD {
 //            return "Registro con ID de materia " + materia.getId_materia() + " no existe";
 //        }
 //    }
+
+    //Actualizar Encargado
+    public String actualizar(Encargado encargado){
+        if(verificarIntegridad(encargado, 33)){
+            String[] id = {encargado.getId_reservante(), encargado.getId_usuario()};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_reservante", encargado.getNombre_reservante());
+            cv.put("tipo_reservante", encargado.getTipo_reservante());
+            db.update("ENCARGADO", cv, "id_reservante = ? AND id_usuario = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+        return "Registro no Existe";
+        }
+
+    }
 
 
 
