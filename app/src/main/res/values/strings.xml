@@ -46,6 +46,11 @@
     <string name="id_detalle_responsable">ID del detalle del Responsable</string>
     <string name="Nombre_tipo_responsable">Tipo de responsable</string>
     <string name="nombre_tipo_actividad">Nombre del tipo de actividad</string>
+    <string name="id_tipo_grupo">ID Tipo grupo</string>
+    <string name="fk_grupo">Grupo</string>
+    <string name="nom_tipo_grupo">Nombre tipo de grupo</string>
+
+
 
 
 </resources>

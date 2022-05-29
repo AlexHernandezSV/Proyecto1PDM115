@@ -51,6 +51,9 @@ public class ControlBD {
     private static final String[] camposActividad = new String[]
             {"id_actividad","id_tipo_actividad","id_valoracion","id_reservante","grupo","descripcion","estado","fecha_actividad","desde_actividad","hasta_actividad"};
 
+    //Campos de Tipo Grupo
+    private static final String[] camposTipoGrupo = new String[]
+            {"id_tipo_grupo", "grupo", "nombre_tipo_grupo"};
 
 //================================ FINAL - Bloque de definición de campos de tablas =============================================
 
@@ -227,6 +230,15 @@ public class ControlBD {
                         "      references LOCAL (ID_AULA),\n" +
                         "foreign key (ID_ACTIVIDAD)\n" +
                         "      references ACTIVIDAD (ID_ACTIVIDAD));");
+
+                //Tabla Tipo Grupo
+                db.execSQL("create table TIPO_GRUPO (\n" +
+                        "ID_TIPO_GRUPO           CHAR(2)              not null, \n" +
+                        "GRUPO           VARCHAR(3),\n" +
+                        "NOMBRE_TIPO_GRUPO       VARCHAR2(50)         not null,\n" +
+                        "primary key (ID_TIPO_GRUPO),\n" +
+                        "foreign key (GRUPO)\n" +
+                        "      references DETALLE_OFERTA (GRUPO));");
 
                 //Continuar tablas
 
@@ -543,6 +555,28 @@ public class ControlBD {
         return regInsertados;
     }
 
+    //Insertar Tipo Grupo
+    public String insertar(TipoGrupo tipoGrupo){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        /*if(verificarIntegridad(tipoGrupo,36))
+        {
+            ContentValues tipogrupos = new ContentValues();
+            tipogrupos.put("id_tipo_grupo", tipoGrupo.getId_tipo_grupo());
+            tipogrupos.put("grupo", tipoGrupo.getGrupo());
+            tipogrupos.put("nombre_tipo_grupo", tipoGrupo.getNombre_tipo_grupo());
+            contador=db.insert("TIPO_GRUPO", null, tipogrupos);
+        }
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }*/
+        return regInsertados;
+    }
+
 
 
 //================================ FINAL - Bloque de todos los INSERT =============================================
@@ -667,6 +701,20 @@ public class ControlBD {
         //}
     }
 
+    //Actualizar Tipo Grupo
+    public String actualizar(TipoGrupo tipoGrupo){
+        /*if(verificarIntegridad(tipoGrupo, 37)){
+            String[] id = {tipoGrupo.getId_tipo_grupo(), tipoGrupo.getGrupo()};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_tipo_grupo", tipoGrupo.getNombre_tipo_grupo());
+            db.update("TIPO_GRUPO", cv, "id_tipo_grupo = ? AND grupo = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{*/
+        return "Registro no Existe";
+        //}
+
+    }
+
 
 
 
@@ -779,6 +827,17 @@ public class ControlBD {
         where=where+" AND id_aula='"+detalleActividad.getId_aula()+"'";
         where=where+" AND id_actividad="+detalleActividad.getId_actividad();
         contador+=db.delete("DETALLE_ACTIVIDAD", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+    //Eliminar Tipo Grupo
+    public String eliminar(TipoGrupo tipoGrupo){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_tipo_grupo='"+tipoGrupo.getId_tipo_grupo()+"'";
+        where=where+" AND grupo='"+tipoGrupo.getGrupo()+"'";
+        contador+=db.delete("TIPO_GRUPO", where, null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -992,6 +1051,21 @@ public class ControlBD {
         }
     }
 
+    //Consultar TipoGrupo
+    public TipoGrupo consultarTipoGrupo(String id_tipo_grupo, String grupo){
+        String[] id = {id_tipo_grupo, grupo};
+        Cursor cursor = db.query("TIPO_GRUPO", camposTipoGrupo, "id_tipo_grupo = ? AND grupo = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            TipoGrupo tipoGrupo = new TipoGrupo();
+            tipoGrupo.setId_tipo_grupo(cursor.getString(0));
+            tipoGrupo.setGrupo(cursor.getString(1));
+            tipoGrupo.setNombre_tipo_grupo(cursor.getString(2));
+            return tipoGrupo;
+        }else{
+            return null;
+        }
+
+    }
 
 
 
