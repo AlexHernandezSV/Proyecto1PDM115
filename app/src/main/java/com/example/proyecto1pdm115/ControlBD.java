@@ -1217,6 +1217,17 @@ public class ControlBD {
                 else
                     return false;
             }
+//            case 16:{
+//                Ciclo ciclo = (Ciclo)dato;
+//                Cursor cmat=db.query(true, "OFERTA_ACADEMICA", new String[] {
+//                                "codmateria" },
+//                        "codmateria='"+materia.getCodmateria()+"'",null, null, null, null, null);
+//                if(cmat.moveToFirst())
+//
+//                return true;
+//                else
+//                return false;
+//            }
             case 32:
             {
                 //verificar que al insertar Encargado exista el ID del Usuario
@@ -1309,6 +1320,22 @@ public class ControlBD {
         final String[] Miembronombre_coordinador = {"Juan","Raquel","Pablo"};
         final String[] Miembrotipo_miembro = {"Docente","Administrativo","Estudiante"};
 
+        //Tabla Ciclo
+        final String[] cicloId_ciclo = {"1235","8546","4563","7893"};
+        final String[] ciclo_ciclo = {"01","02","01","02"};
+        final String[] ciclo_fecha_inicio = {"12/02/2019","23/02/2020","04/02/2021","23/02/2022"};
+        final String[] ciclo_fecha_fin = {"12/12/2019","21/06/2018","25/12/2022","28/11/2019"};
+
+        //Tabla Coordina
+        final String[] coodrinaId_actividad = {"1235","8546","4563","7893"};
+        final String[] coordinaId_coordinador = {"M01", "M02", "M03"};
+
+        //Tabla DetalleActividadHorario
+        final String[] detalleActividadHorarioId_horario = {"H01","H02","H03"};
+        final String[] detalleActividadHorarioId_actividad = {"01","02","01","02"};
+
+
+
         //Tabla Horario
         final String[] Horarioid_horario = {"H01","H02","H03"};
         final String[] Horariodesde_horario = {"8:00","9:50","13:20"};
@@ -1333,6 +1360,9 @@ public class ControlBD {
         db.execSQL("DELETE FROM HORARIO");
         db.execSQL("DELETE FROM MATERIA");
         db.execSQL("DELETE FROM ENCARGADO");
+        db.execSQL("DELETE FROM CICLO");
+        db.execSQL("DELETE FROM COORDINA");
+        db.execSQL("DELETE FROM DETALLE_ACTIVIDAD_HORARIO");
 
 
         Carrera carrera = new Carrera();
@@ -1385,6 +1415,30 @@ public class ControlBD {
             encargado.setTipo_reservante(Encargadotipo_reservante[i]);
             insertar(encargado);
         }
+
+        Ciclo ciclo = new Ciclo();
+        for (int i = 0; i < 4; i++) {
+            ciclo.setId_ciclo(cicloId_ciclo[i]);
+            ciclo.setCiclo(ciclo_ciclo[i]);
+            ciclo.setFecha_inicio(ciclo_fecha_inicio[i]);
+            ciclo.setFecha_fin(ciclo_fecha_fin[i]);
+            insertar(ciclo);
+        }
+        Coordina coordina = new Coordina();
+        for (int i = 0; i < 2; i++) {
+            coordina.setId_actividad(coodrinaId_actividad[i]);
+            coordina.setId_coordinador(coordinaId_coordinador[i]);
+            insertar(coordina);
+        }
+
+        DetalleActividadHorario detalleActividadHorario = new DetalleActividadHorario();
+        for (int i = 0; i < 2; i++) {
+            detalleActividadHorario.setId_horario(detalleActividadHorarioId_horario[i]);
+            detalleActividadHorario.setId_actividad(detalleActividadHorarioId_actividad[i]);
+            insertar(detalleActividadHorario);
+        }
+
+
 
         cerrar();
         return "Guardo Correctamente";
