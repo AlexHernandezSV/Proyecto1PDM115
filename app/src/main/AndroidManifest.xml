@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".TipoActividadInsertarActivity"
             android:exported="false" />
         <activity
@@ -214,7 +220,7 @@
             android:name=".MateriaEliminarActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivitySeguridad"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

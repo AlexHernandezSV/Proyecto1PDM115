@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".MainActivitySeguridad">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center_horizontal"
+        android:text="Registro de usuario"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/edittextbackground"
+        android:hint="Nombre de usuario"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/edittextbackground"
+        android:hint="Contraseña"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/repassword"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/edittextbackground"
+        android:hint="Confirmar contraseña"
+        android:paddingLeft="20dp"
+        android:textColorHint="@color/black"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/black"
+        android:text="Registrar"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/signin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#FFEB3B"
+        android:text="Ya poseo una cuenta"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
