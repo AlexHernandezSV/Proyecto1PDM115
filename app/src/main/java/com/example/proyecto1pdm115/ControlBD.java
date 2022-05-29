@@ -1359,6 +1359,33 @@ public class ControlBD {
                 }
                 return false;
             }
+            case 36:
+            {
+                //verificar que al insertar TipoGRUPO exista el ID del grupo en tabla Det Oferta
+                TipoGrupo tipoGrupo = (TipoGrupo) dato;
+                String[] id1 = {tipoGrupo.getGrupo()};
+                //abrir();
+                Cursor cursor1 = db.query("DETALLE_OFERTA", null, "grupo = ?", id1, null,
+                        null, null);
+
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 37: { //para actualizar TipoGrupo
+                //verificar que al modificar TipoGrupo exista id del tipo grupo, y el grupo en Det Oferta
+                TipoGrupo tipoGrupo1 = (TipoGrupo) dato;
+                String[] ids = {tipoGrupo1.getId_tipo_grupo(), tipoGrupo1.getGrupo()};
+                abrir();
+                Cursor c = db.query("TIPO_GRUPO", null, "id_tipo_grupo = ? AND grupo = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
 
 
 
