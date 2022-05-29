@@ -111,7 +111,7 @@ public class ControlBD {
 
                 //Tabla Miembro_Universitario
                 db.execSQL("create table MIEMBRO_UNIVERSITARIO (\n" +
-                        "ID_COORDINADOR       VARCHAR2(3)              not null,\n" +
+                        "ID_COORDINADOR       VARCHAR2(3)          not null,\n" +
                         "NOMBRE_COORDINADOR   VARCHAR2(50)         not null,\n" +
                         "TIPO_MIEMBRO         CHAR(10)             not null,\n" +
                         "primary key (ID_COORDINADOR)\n" +
@@ -201,7 +201,7 @@ public class ControlBD {
                 //Tabla DETALLE RESPONSABLE
                 db.execSQL("create table DETALLE_RESPONSABLE(\n" +
                         "ID_DETALLE_RESPONSABLE CHAR(10)           not null, \n" +
-                        "ID_COORDINADOR         INTEGER            not null, \n" +
+                        "ID_COORDINADOR         VARCHAR2(3)         not null, \n" +
                         "NOMB_TIPO_RESPONSABLE CHAR(10)            not null, \n" +
                         "primary key (ID_DETALLE_RESPONSABLE), \n" +
                         "foreign key (ID_COORDINADOR)\n"+
@@ -750,8 +750,23 @@ public class ControlBD {
         }else{
             return "Registro no Existe";
         }
+    }
+
+    //Actualizar Detalle Responsable
+    public String actualizar(DetalleResponsable detalle){
+        if(verificarIntegridad(detalle, 60)){
+            String[] id = {detalle.getId_detalle_responsable(), detalle.getId_coordinador()};
+            ContentValues cv = new ContentValues();
+            cv.put("nomb_tipo_responsable", detalle.getNomb_tipo_responsable());
+            db.update("DETALLE_RESPONSABLE", cv, "id_detalle_responsable = ? AND id_coordinador = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
+        }
 
     }
+
+
 
 
 
@@ -1474,6 +1489,18 @@ public class ControlBD {
                 return false;
             }
 
+            case 60: { //para actualizar escuela
+                //verificar que al modificar Escuela exista id de la escuela, y el id de la carrera
+                DetalleResponsable detalle = (DetalleResponsable) dato;
+                String[] ids = {detalle.getId_detalle_responsable(), detalle.getId_coordinador()};
+                abrir();
+                Cursor c = db.query("DETALLE_RESPONSABLE", null, "id_detalle_responsable = ? AND id_coordinador = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
 
 
             default:
