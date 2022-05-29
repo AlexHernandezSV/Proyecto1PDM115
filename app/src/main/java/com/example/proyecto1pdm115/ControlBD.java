@@ -57,6 +57,9 @@ public class ControlBD {
     //Campos de Tipo Grupo
     private static final String[] camposTipoGrupo = new String[]
             {"id_tipo_grupo", "grupo", "nombre_tipo_grupo"};
+    //Campos de Tipo Actividad
+    private static final String[] camposTipoActividad = new String[]
+            {"id_tipo_actividad", "nombre_tipo_actividad"};
 
 //================================ FINAL - Bloque de definición de campos de tablas =============================================
 
@@ -1081,6 +1084,20 @@ public class ControlBD {
             detalle.setId_coordinador(cursor.getString(1));
             detalle.setNomb_tipo_responsable(cursor.getString(2));
             return detalle;
+        }else{
+            return null;
+        }
+    }
+
+    //Consultar Tipo Actividad
+    public TipoActividad consultarTipoActividad(String id_tipo_actividad) {
+        String[] id = {id_tipo_actividad};
+        Cursor cursor = db.query("TIPO_ACTIVIDAD", camposTipoActividad, "id_tipo_actividad = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            TipoActividad tipo = new TipoActividad();
+            tipo.setId_tipo_actividad(cursor.getString(0));
+            tipo.setNombre_tipo_actividad(cursor.getString(1));
+            return tipo;
         }else{
             return null;
         }
