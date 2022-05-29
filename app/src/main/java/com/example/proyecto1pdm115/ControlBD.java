@@ -735,6 +735,23 @@ public class ControlBD {
 
     }
 
+    //Actualizar Actividad
+    public String actualizar(Actividad actividad){
+        if(verificarIntegridad(actividad, 160)){
+            String[] id = {actividad.getId_actividad(), actividad.getId_tipo_actividad(), actividad.getId_valoracion(), actividad.getId_reservante(), actividad.getGrupo()};
+            ContentValues cv = new ContentValues();
+            cv.put("descripcion", actividad.getDescripcion());
+            cv.put("estado", actividad.getEstado());
+            cv.put("fecha_actividad", actividad.getFecha_actividad());
+            cv.put("desde_actividad", actividad.getDesde_actividad());
+            cv.put("hasta_actividad", actividad.getHasta_actividad());
+            db.update("ACTIVIDAD", cv, "id_actividad = ? AND id_tipo_actividad = ? AND id_valoracion = ? AND id_reservante = ? AND grupo = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
+        }
+
+    }
 
 
 
@@ -1438,6 +1455,18 @@ public class ControlBD {
                 String[] ids = {escuela1.getId_escuela(), escuela1.getId_carrera()};
                 abrir();
                 Cursor c = db.query("ESCUELA", null, "id_escuela = ? AND id_carrera = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
+            case 160: {//verificar que al modificar actividad exista id_actividad, tipo actividad, valoracion,
+                Actividad actividad1 = (Actividad) dato;
+                String[] ids = {actividad1.getId_actividad(), actividad1.getId_tipo_actividad(), actividad1.getId_valoracion(), actividad1.getId_reservante(), actividad1.getGrupo()};
+                abrir();
+                Cursor c = db.query("ACTIVIDAD", null, "id_actividad = ? AND id_tipo_actividad = ? AND id_valoracion = ? AND id_reservante = ? AND grupo = ?", ids, null, null, null);
                 if(c.moveToFirst()){
                     //Se encontraron datos
                     return true;

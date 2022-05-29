@@ -53,11 +53,10 @@ public class ActividadActualizarActivity extends AppCompatActivity {
         actividad.setFecha_actividad(editFecha_actividad.getText().toString());
         actividad.setDesde_actividad(editDesde_actividad.getText().toString());
         actividad.setHasta_actividad(editHasta_actividad.getText().toString());
-
         helper.abrir();
-        //String estado =helper.insertar(actividad);
+        String estado =helper.actualizar(actividad);
         helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
 
     }
 
