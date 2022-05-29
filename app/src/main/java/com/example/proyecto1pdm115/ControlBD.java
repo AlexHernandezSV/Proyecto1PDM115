@@ -766,6 +766,19 @@ public class ControlBD {
 
     }
 
+    //Actualizar Tipo Actividad
+    public String actualizar(TipoActividad tipo) {
+        if(verificarIntegridad(tipo, 80)){
+            String[] id = {tipo.getId_tipo_actividad()};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_tipo_actividad", tipo.getNombre_tipo_actividad());
+            db.update("TIPO_ACTIVIDAD", cv, "id_tipo_actividad = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro no Existe";
+        }
+    }
+
 
 
 
@@ -1495,6 +1508,19 @@ public class ControlBD {
                 String[] ids = {detalle.getId_detalle_responsable(), detalle.getId_coordinador()};
                 abrir();
                 Cursor c = db.query("DETALLE_RESPONSABLE", null, "id_detalle_responsable = ? AND id_coordinador = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
+            case 80: { //para actualizar tipo actividad
+                //verificar que al modificar tipo de actividad exista id de el tipo de actividad
+                TipoActividad tipo = (TipoActividad) dato;
+                String[] ids = {tipo.getId_tipo_actividad()};
+                abrir();
+                Cursor c = db.query("TIPO_ACTIVIDAD", null, "id_tipo_actividad = ? ", ids, null, null, null);
                 if(c.moveToFirst()){
                     //Se encontraron datos
                     return true;
