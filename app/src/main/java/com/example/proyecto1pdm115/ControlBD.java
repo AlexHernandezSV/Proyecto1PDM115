@@ -50,6 +50,9 @@ public class ControlBD {
     //Campos Actividad
     private static final String[] camposActividad = new String[]
             {"id_actividad","id_tipo_actividad","id_valoracion","id_reservante","grupo","descripcion","estado","fecha_actividad","desde_actividad","hasta_actividad"};
+    //Campos Detalle Responsable
+    private static final String[] camposDetalleResponsable = new String[]
+            {"id_detalle_responsable", "id_coordinador", "nomb_tipo_responsable"};
 
     //Campos de Tipo Grupo
     private static final String[] camposTipoGrupo = new String[]
@@ -1067,10 +1070,21 @@ public class ControlBD {
 
     }
 
-
-
-
-
+    //Consultar Detalle Responsable
+    public DetalleResponsable consultarDetalleResponsable(String id_detalle_responsable) {
+        String[] id = {id_detalle_responsable};
+        Cursor cursor = db.query("DETALLE_RESPONSABLE", camposDetalleResponsable, "id_detalle_responsable = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            DetalleResponsable detalle = new DetalleResponsable();
+            detalle.setId_detalle_responsable(cursor.getString(0));
+            detalle.setId_coordinador(cursor.getString(1));
+            detalle.setNomb_tipo_responsable(cursor.getString(2));
+            return detalle;
+        }else{
+            return null;
+        }
+    }
 
 
 //================================ FINAL - Bloque de todos los READ =============================================
