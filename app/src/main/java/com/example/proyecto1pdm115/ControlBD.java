@@ -721,6 +721,20 @@ public class ControlBD {
 
     }
 
+    //Actualizar Escuela
+    public String actualizar(Escuela escuela){
+        if(verificarIntegridad(escuela, 69)){
+            String[] id = {escuela.getId_escuela(), escuela.getId_carrera()};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_escuela", escuela.getNombre_escuela());
+            db.update("ESCUELA", cv, "id_escuela = ? AND id_carrera = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+        return "Registro no Existe";
+        }
+
+    }
+
 
 
 
@@ -1106,7 +1120,6 @@ public class ControlBD {
         }
     }
 
-
 //================================ FINAL - Bloque de todos los READ =============================================
 
 
@@ -1413,6 +1426,18 @@ public class ControlBD {
                 String[] ids = {tipoGrupo1.getId_tipo_grupo(), tipoGrupo1.getGrupo()};
                 abrir();
                 Cursor c = db.query("TIPO_GRUPO", null, "id_tipo_grupo = ? AND grupo = ?", ids, null, null, null);
+                if(c.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 69: { //para actualizar escuela
+                //verificar que al modificar Escuela exista id de la escuela, y el id de la carrera
+                Escuela escuela1 = (Escuela) dato;
+                String[] ids = {escuela1.getId_escuela(), escuela1.getId_carrera()};
+                abrir();
+                Cursor c = db.query("ESCUELA", null, "id_escuela = ? AND id_carrera = ?", ids, null, null, null);
                 if(c.moveToFirst()){
                     //Se encontraron datos
                     return true;
