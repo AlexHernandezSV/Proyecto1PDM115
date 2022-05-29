@@ -904,6 +904,16 @@ public class ControlBD {
         return regAfectados;
     }
 
+    public String eliminar(TipoActividad tipo){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'";
+        contador+=db.delete("TIPO_ACTIVIDAD", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+
 
 
 

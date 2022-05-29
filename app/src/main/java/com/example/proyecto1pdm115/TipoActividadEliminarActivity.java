@@ -3,7 +3,9 @@ package com.example.proyecto1pdm115;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class TipoActividadEliminarActivity extends AppCompatActivity {
 
@@ -18,13 +20,13 @@ public class TipoActividadEliminarActivity extends AppCompatActivity {
         editId_tipo_actividad=(EditText) findViewById(R.id.editId_tipo_actividad);
     }
 
-    public void eliminarTipoActividad(){
-        String regInsertados;
+    public void eliminarTipoActividad(View v){
+        String regEliminadas;
         TipoActividad tipo =new TipoActividad();
         tipo.setId_tipo_actividad(editId_tipo_actividad.getText().toString());
-        //controlhelper.abrir();
-        //regEliminadas=controlhelper.eliminar(detalle);
-        //controlhelper.cerrar();
-        //Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        helper.abrir();
+        regEliminadas=helper.eliminar(tipo);
+        helper.cerrar();
+        Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }
 }
