@@ -876,8 +876,7 @@ public class ControlBD {
     //Consultar Ciclo
     public Ciclo consultarCiclo(String id_ciclo){
         String[] id = {id_ciclo};
-        Cursor cursor = db.query("CICLO", camposCiclo, "id_ciclo = ?",
-                id, null, null, null);
+        Cursor cursor = db.query("CICLO", camposCiclo, "id_ciclo = ?", id, null, null, null);
         if(cursor.moveToFirst()){
             Ciclo ciclo= new Ciclo();
             ciclo.setId_ciclo(cursor.getString(0));
