@@ -13,7 +13,7 @@ public class MainActivity extends ListActivity {
 
 
     String[] menu={"Tabla Carrera","Tabla Miembro universitario","Tabla Horarios","Tabla de Detalles de ofertas", "Tabla Materia","Tabla Detalle Actividad","Tabla Encargado","Tabla Ciclo","Tabla Coordina","Tabla Detalle Actividad Horario","Tabla Escuela","Tabla Actividad","Tabla Detalle Responsable","Tabla Tipo Actividad","Tabla Tipo Grupo","LLenar Base de Datos"};
-    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity", "DetalleOfertaMenuActivity","MateriaMenuActivity","DetalleActividadMenuActivity","EncargadoMenuActivity","CicloMenuActivity", "CoordinaMenuActiviy","DetalleActividadHorarioMenuActivity","EscuelaMenuActivity","ActividadMenuActivity","DetalleResponsableMenuActivity","TipoActividadMenuActivity","TipoGrupoMenuActivity"};
+    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity", "DetalleOfertaMenuActivity","MateriaMenuActivity","DetalleActividadMenuActivity","EncargadoMenuActivity","CicloMenuActivity", "CoordinaMenuActivity","DetalleActividadHorarioMenuActivity","EscuelaMenuActivity","ActividadMenuActivity","DetalleResponsableMenuActivity","TipoActividadMenuActivity","TipoGrupoMenuActivity"};
     ControlBD BDhelper;
 
     @Override

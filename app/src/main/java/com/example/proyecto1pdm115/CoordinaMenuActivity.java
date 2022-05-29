@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class CoordinaMenuActiviy extends ListActivity {
+public class CoordinaMenuActivity extends ListActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};
     String[]

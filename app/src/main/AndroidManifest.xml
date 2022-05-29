@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".CoordinaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CicloEliminarActivity"
+            android:exported="false" />
+        <activity
             android:name=".TipoGrupoMenuActivity"
             android:exported="false" />
         <activity
@@ -103,16 +109,10 @@
             android:name=".CicloActualizarActivity"
             android:exported="false" />
         <activity
-            android:name=".CicloEliminarActiviy"
-            android:exported="false" />
-        <activity
             android:name=".CicloInsertarActivity"
             android:exported="false" />
         <activity
             android:name=".DetalleActividadHorarioMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CoordinaMenuActiviy"
             android:exported="false" />
         <activity
             android:name=".CicloMenuActivity"

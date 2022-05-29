@@ -663,20 +663,16 @@ public class ControlBD {
 
 
 //    //Actualizar Ciclo
-//    public String actualizar(Ciclo ciclo){
-//        if(verificarIntegridad(ciclo, pone bien el case de acá)){
-//            String[] id = {ciclo.getId_materia()};
-//            ContentValues cv = new ContentValues();
-//            cv.put("id_materia", materia.getId_materia());
-//            cv.put("id_escuela", materia.getId_escuela());
-//            cv.put("nombre_materia", materia.getNombre_materia());
-//            cv.put("ciclo_materia", materia.getCiclo_materia());
-//            db.update("MATERIA", cv, "id_materia = ?", id);
-//            return "Registro Actualizado Correctamente";
-//        }else{
-//            return "Registro con ID de materia " + materia.getId_materia() + " no existe";
-//        }
-//    }
+    public String actualizar(Ciclo ciclo){
+        String[] id = {ciclo.getId_ciclo()};
+        ContentValues cv = new ContentValues();
+        cv.put("id_ciclo", ciclo.getId_ciclo());
+        cv.put("ciclo", ciclo.getCiclo());
+        cv.put("fecha_inicio", ciclo.getFecha_inicio());
+        cv.put("fecha_fin", ciclo.getFecha_fin());
+        db.update("CICLO", cv, "id_ciclo = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
 
     //Actualizar Encargado
     public String actualizar(Encargado encargado){
@@ -863,18 +859,16 @@ public class ControlBD {
 
 
 
-//    //Eliminar Ciclo todavia no está terminado
+//    //Eliminar Ciclo
 
-//    public String eliminar(Ciclo ciclo) {
-//        String regAfectados="filas afectadas= ";
-//        int contador=0;
-//        if (verificarIntegridad(ciclo,)) {
-//            contador+=db.delete("CICLO", "id_ciclo='"+ciclo.getId_ciclo()+"'", null);
-//        }
-//        contador+=db.delete("CICLO", "id_ciclo='"+ciclo.getId_ciclo()+"'", null);
-//        regAfectados+=contador;
-//        return regAfectados;
-//    }
+    public String eliminar(Ciclo ciclo) {
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("CICLO", "id_ciclo='"+ciclo.getId_ciclo()+"'", null);
+        //contador+=db.delete("CICLO", "id_ciclo='"+ciclo.getId_ciclo()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
 
     //Eliminar Encargado
     public String eliminar(Encargado encargado){
