@@ -47,6 +47,9 @@ public class ControlBD {
     //Campos Detalle Actividad
     private static final String[] camposDetalleActividad = new String[]
             {"id_detalle", "id_aula", "id_actividad", "participantes"};
+    //Campos Actividad
+    private static final String[] camposActividad = new String[]
+            {"id_actividad","id_tipo_actividad","id_valoracion","id_reservante","grupo","descripcion","estado","fecha_actividad","desde_actividad","hasta_actividad"};
 
 
 //================================ FINAL - Bloque de definición de campos de tablas =============================================
@@ -966,6 +969,31 @@ public class ControlBD {
             return null;
         }
     }
+
+    //Consultar Actividad
+    public Actividad consultarActividad(String id_actividad) {
+        String[] id = {id_actividad};
+        Cursor cursor = db.query("ACTIVIDAD", camposActividad, "id_actividad = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            Actividad act = new Actividad();
+            act.setId_actividad(cursor.getString(0));
+            act.setId_tipo_actividad(cursor.getString(1));
+            act.setId_valoracion(cursor.getString(2));
+            act.setId_reservante(cursor.getString(3));
+            act.setGrupo(cursor.getString(4));
+            act.setDescripcion(cursor.getString(5));
+            act.setEstado(cursor.getString(6));
+            act.setFecha_actividad(cursor.getString(7));
+            act.setDesde_actividad(cursor.getString(8));
+            act.setHasta_actividad(cursor.getString(9));
+            return act;
+        }else{
+            return null;
+        }
+    }
+
+
 
 
 

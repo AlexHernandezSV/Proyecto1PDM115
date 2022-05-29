@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ActividadConsultarActivity extends AppCompatActivity {
 
@@ -39,22 +40,21 @@ public class ActividadConsultarActivity extends AppCompatActivity {
     }
     public void consultarActividad(View v) {
         helper.abrir();
-        //Actividad actividad = helper.consultarActividad(editId_actividad.getText().toString());
-        //helper.cerrar();
-        /*if(actividad == null)
+        Actividad actividad = helper.consultarActividad(editId_actividad.getText().toString());
+        helper.cerrar();
+        if(actividad == null)
             Toast.makeText(this, "Actividad con ID " + editId_actividad.getText().toString() + " no encontrado", Toast.LENGTH_LONG).show();
         else{
-
             editId_tipo_actividad.setText(actividad.getId_tipo_actividad());
-        editId_valoracion.setText(actividad.getId_valoracion());
-        editId_reservante.setText(actividad.getId_reservante());
-        editGrupo.setText(actividad.getGrupo());
-        editDescripcion.setText(actividad.getDescripcion());
-        editEstado.setText(actividad.getEstado());
-        editFecha_actividad.setText((CharSequence) actividad.getFecha_actividad());
-        editDesde_actividad.setText((CharSequence) actividad.getDesde_actividad());
-        editHasta_actividad.setText((CharSequence) actividad.getHasta_actividad());
-        }*/
+            editId_valoracion.setText(actividad.getId_valoracion());
+            editId_reservante.setText(actividad.getId_reservante());
+            editGrupo.setText(actividad.getGrupo());
+            editDescripcion.setText(actividad.getDescripcion());
+            editEstado.setText(actividad.getEstado());
+            editFecha_actividad.setText((CharSequence) actividad.getFecha_actividad());
+            editDesde_actividad.setText((CharSequence) actividad.getDesde_actividad());
+            editHasta_actividad.setText((CharSequence) actividad.getHasta_actividad());
+        }
 
     }
 
