@@ -751,9 +751,12 @@ public class ControlBD {
         if (verificarIntegridad(detalleOferta,12)){
             contador+=db.delete("TIPO_GRUPO", "grupo='"+detalleOferta.getGrupo()+"'", null);
         }*/
-        String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
+        /*String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
         where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
-        where=where+" AND grupo="+detalleOferta.getGrupo();
+        where=where+" AND grupo="+detalleOferta.getGrupo();*/
+        String where="grupo='"+detalleOferta.getGrupo()+"'";
+        where=where+" AND id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
+        where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
         contador+=db.delete("DETALLE_OFERTA", where, null);
         regAfectados+=contador;
         return regAfectados;
