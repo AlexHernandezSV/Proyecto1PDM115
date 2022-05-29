@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EscuelaConsultarActivity extends AppCompatActivity {
 
@@ -22,16 +23,16 @@ public class EscuelaConsultarActivity extends AppCompatActivity {
         editId_carrera = (EditText) findViewById(R.id.editId_carrera);
         editNombre_escuela = (EditText) findViewById(R.id.editNombre_escuela);
     }
-    public void consultarCarrera(View v) {
-        //helper.abrir();
-        //Escuela escuela = helper.consultarEscuela(editId_escuela.getText().toString());
-        //helper.cerrar();
-        /*if(escuela == null)
+    public void consultarEscuela(View v) {
+        helper.abrir();
+        Escuela escuela = helper.consultarEscuela(editId_escuela.getText().toString());
+        helper.cerrar();
+        if(escuela == null)
             Toast.makeText(this, "Escuela con ID " + editId_escuela.getText().toString() + " no encontrado", Toast.LENGTH_LONG).show();
         else{
             editId_carrera.setText(escuela.getId_carrera());
             editNombre_escuela.setText(escuela.getNombre_escuela());
-        }*/
+        }
     }
     public void limpiarTexto(View v) {
         editId_escuela.setText("");

@@ -270,6 +270,7 @@ public class ControlBD {
         return regInsertados;
     }
 
+    //Insertar Escuela
     public String insertar(Escuela escuela) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
@@ -945,6 +946,22 @@ public class ControlBD {
             detalleActividad.setId_actividad(cursor.getString(2));
             detalleActividad.setParticipantes(cursor.getInt(3));
             return detalleActividad;
+        }else{
+            return null;
+        }
+    }
+
+    //Consultar Escuela
+    public Escuela consultarEscuela(String id_escuela) {
+        String[] id = {id_escuela};
+        Cursor cursor = db.query("ESCUELA", camposEscuela, "id_escuela = ?",
+                id, null, null, null);
+        if(cursor.moveToFirst()){
+            Escuela esc = new Escuela();
+            esc.setId_escuela(cursor.getString(0));
+            esc.setId_carrera(cursor.getString(1));
+            esc.setNombre_escuela(cursor.getString(2));
+            return esc;
         }else{
             return null;
         }
