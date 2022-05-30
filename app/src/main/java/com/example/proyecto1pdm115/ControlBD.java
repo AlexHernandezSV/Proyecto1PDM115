@@ -812,6 +812,18 @@ public class ControlBD {
         return regAfectados;
     }
 
+    //Eliminar escuela
+    public String eliminar(Escuela carrera) {
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        /*if (verificarIntegridad(carrera,90)) {
+            contador+=db.delete("MATERIA", "id_carrera='"+carrera.getId_carrera()+"'", null);
+        }*/
+        contador+=db.delete("ESCUELA", "id_escuela='"+carrera.getId_escuela()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
     //Eliminar DetalleOferta
     public String eliminar(DetalleOferta detalleOferta) {
         String regAfectados="filas afectadas= ";
@@ -919,6 +931,16 @@ public class ControlBD {
         regAfectados+=contador;
         return regAfectados;
     }
+
+    public String eliminar(TipoActividad tipo){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'";
+        contador+=db.delete("TIPO_ACTIVIDAD", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
 
 
 
@@ -1231,6 +1253,18 @@ public class ControlBD {
                 Carrera carrera = (Carrera) dato;
                 Cursor c = db.query(true, "ESCUELA", new String[]{
                                 "id_carrera"}, "id_carrera='" + carrera.getId_carrera() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
+            case 90: {
+                //Verificaciòn de que si existe escuela dentro de materia al eliminar una escuela
+                Escuela escuela = (Escuela) dato;
+                Cursor c = db.query(true, "MATERIA", new String[]{
+                                "id_escuela"}, "id_escuela='" + escuela.getId_escuela() + "'", null,
                         null, null, null, null);
                 if (c.moveToFirst())
                     return true;
