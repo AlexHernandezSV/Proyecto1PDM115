@@ -32,7 +32,7 @@ public class EncargadoMenuActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id){
         super.onListItemClick(l, v, position, id);
         String nombreValue=activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(128, 128, 255));
+        l.getChildAt(position).setBackgroundColor(Color.rgb(255, 255, 255));
         try{
             Class<?> clase=Class.forName("com.example.proyecto1pdm115."+nombreValue);
             Intent inte = new Intent(this,clase);
