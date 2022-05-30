@@ -35,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/password1"
+        android:inputType="textPassword"
         android:hint="Contraseña"
         android:textSize="25dp"
         android:textColorHint="@color/black"
