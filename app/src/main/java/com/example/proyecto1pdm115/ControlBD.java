@@ -61,6 +61,15 @@ public class ControlBD {
     private static final String[] camposTipoActividad = new String[]
             {"id_tipo_actividad", "nombre_tipo_actividad"};
 
+    //Campos de Valoracion
+    private static final String[]camposValoracion = new String [] {"ID_VALORACION","VALORACION"};
+
+    //Campos de Oferta Academica
+    private static final String[]camposOfertaAcademica = new String [] {"ID_MATERIAS_ACTIVAS","ID_CICLO", "ID_MATERIA", "ID_COORDINADOR", "NOMBRE_MATERIAS_ACTIVAS", "CICLO_MATERIA_ACTIVA"};
+
+    //Campos de Local
+    private static final String[]camposLocal = new String [] {"ID_AULA","ID_RESERVANTE", "NOMBRE_AULA", "CUPO"};
+
 //================================ FINAL - Bloque de definición de campos de tablas =============================================
 
     private final Context context;
@@ -245,6 +254,42 @@ public class ControlBD {
                         "primary key (ID_TIPO_GRUPO),\n" +
                         "foreign key (GRUPO)\n" +
                         "      references DETALLE_OFERTA (GRUPO));");
+
+                //Tabla Valoracion
+                db.execSQL("CREATE TABLE VALORACION (\n" +
+                        "ID_VALORACION        CHAR(6)            not null,\n" +
+                        "VALORACION           VARCHAR2(50)         not null,\n" +
+                        "primary key (ID_VALORACION)\n" +
+                        ");");
+
+                //Tabla Oferta Academica
+                db.execSQL("CREATE TABLE OFERTA_ACADEMICA (\n" +
+                        "ID_MATERIAS_ACTIVAS  CHAR(6)              not null,\n" +
+                        "ID_CICLO             CHAR(6),\n" +
+                        "ID_MATERIA           CHAR(6),\n" +
+                        "ID_COORDINADOR       CHAR(6),\n" +
+                        "NOMBRE_MATERIAS_ACTIVAS VARCHAR2(20)         not null,\n" +
+                        "CICLO_MATERIA_ACTIVA INTEGER              not null,\n" +
+                        "primary key (ID_MATERIAS_ACTIVAS),\n" +
+                        "foreign key (ID_MATERIA)\n" +
+                        "      references MATERIA (ID_MATERIA),\n" +
+                        "foreign key (ID_CICLO)\n" +
+                        "      references CICLO (ID_CICLO),\n" +
+                        "foreign key (ID_COORDINADOR)\n" +
+                        "      references MIEMBRO_UNIVERSITARIO (ID_COORDINADOR)\n" +
+                        ");");
+
+                //Tabla Local
+                db.execSQL("CREATE TABLE LOCAL (\n" +
+                        "ID_AULA              CHAR(6)              not null,\n" +
+                        "ID_RESERVANTE        CHAR(6),\n" +
+                        "NOMBRE_AULA          VARCHAR2(50)         not null,\n" +
+                        "CUPO                 INTEGER             not null,\n" +
+                        "primary key (ID_AULA),\n" +
+                        "foreign key (ID_RESERVANTE)\n" +
+                        "      references ENCARGADO (ID_RESERVANTE)\n" +
+                        ")");
+
 
                 //Continuar tablas
 
@@ -587,6 +632,75 @@ public class ControlBD {
         return regInsertados;
     }
 
+    //Insertar Valoracion
+    public String insertarValoracion(Valoracion valoracion){
+
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues val = new ContentValues();
+        val.put("ID_VALORACION", valoracion.getId_valoracion());
+        val.put("VALORACION", valoracion.getValoracion());
+
+        contador=db.insert("VALORACION", null, val);
+
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    //Insertar Oferta Academica
+
+    public String insertarOfertaAcademica(OfertaAcademica oferta){
+
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues ofer = new ContentValues();
+        ofer.put("ID_MATERIAS_ACTIVAS", oferta.getIdMateriasActivas());
+        ofer.put("ID_CICLO", oferta.getIdCiclo());
+        ofer.put("ID_MATERIA", oferta.getIdMateria());
+        ofer.put("ID_COORDINADOR", oferta.getIdCoordinador());
+        ofer.put("NOMBRE_MATERIAS_ACTIVAS", oferta.getNombreMateriasActivas());
+        ofer.put("CICLO_MATERIA_ACTIVA", oferta.getCicloMateriaActiva());
+
+        contador=db.insert("OFERTA_ACADEMICA", null, ofer);
+
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
+    //Insertar Local
+    public String insertarLocal(Local local){
+
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues loc = new ContentValues();
+        loc.put("ID_AULA", local.getIdAula());
+        loc.put("ID_RESERVANTE", local.getIdReservante());
+        loc.put("NOMBRE_AULA", local.getNombreAula());
+        loc.put("CUPO", local.getCupo());
+
+
+        contador=db.insert("LOCAL", null, loc);
+
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el Local, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
 
 
 //================================ FINAL - Bloque de todos los INSERT =============================================
@@ -802,6 +916,58 @@ public class ControlBD {
         }
     }
 
+    //Actualizar Valoracion
+    public String actualizarValoracion(Valoracion valoracion){
+
+        if(verificarIntegridad(valoracion, 40)){
+            String[] id = {valoracion.getId_valoracion()};
+            ContentValues cv = new ContentValues();
+            cv.put("VALORACION", valoracion.getValoracion());
+            db.update("VALORACION", cv, "ID_VALORACION = ?", id);
+            return "Valoracion Actualizada Correctamente";
+        }else{
+            return "Registro con identificador " + valoracion.getId_valoracion() + " no existe";
+        }
+    }
+    //Actualizar Oferta Academica
+
+    public String actualizarOfertaAcademica(OfertaAcademica oferta){
+
+        if(verificarIntegridad(oferta, 41)){
+            String[] id = {oferta.getIdMateriasActivas()};
+            ContentValues ofer = new ContentValues();
+            ofer.put("ID_MATERIAS_ACTIVAS", oferta.getIdMateriasActivas());
+            ofer.put("ID_CICLO", oferta.getIdCiclo());
+            ofer.put("ID_MATERIA", oferta.getIdMateria());
+            ofer.put("ID_COORDINADOR", oferta.getIdCoordinador());
+            ofer.put("NOMBRE_MATERIAS_ACTIVAS", oferta.getNombreMateriasActivas());
+            ofer.put("CICLO_MATERIA_ACTIVA", oferta.getCicloMateriaActiva());
+
+            db.update("OFERTA_ACADEMICA", ofer, "ID_MATERIAS_ACTIVAS = ?", id);
+            return "Materia Activa Actualizada Correctamente";
+        }else{
+            return "Registro con identificador " + oferta.getIdMateriasActivas() + " no existe";
+        }
+    }
+
+    //Actualizar Local
+    public String actualizarLocal(Local local){
+
+        if(verificarIntegridad(local, 42)){
+            String[] id = {local.getIdAula()};
+            ContentValues loc = new ContentValues();
+            loc.put("ID_AULA", local.getIdAula());
+            loc.put("ID_RESERVANTE", local.getIdReservante());
+            loc.put("NOMBRE_AULA", local.getNombreAula());
+            loc.put("CUPO", local.getCupo());
+
+
+            db.update("LOCAL", loc, "ID_AULA = ?", id);
+            return "Local Actualizado Correctamente";
+        }else{
+            return "Registro con identificador " + local.getIdAula() + " no existe";
+        }
+    }
 
 
 
@@ -986,7 +1152,31 @@ public class ControlBD {
     }
 
 
+    //Eliminar Valoracion
+    public String eliminarValoracion(Valoracion valoracion){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("VALORACION", "ID_VALORACION='"+valoracion.getId_valoracion()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    //Eliminar Oferta Academica
+    public String eliminarOfertaAcademica(OfertaAcademica oferta ){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("OFERTA_ACADEMICA", "ID_MATERIAS_ACTIVAS='"+oferta.getIdMateriasActivas()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+    //Eliminar Local
 
+    public String eliminarLocal(Local local ){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        contador+=db.delete("LOCAL", "ID_AULA='"+local.getIdAula()+"'", null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
 
 
 
@@ -1250,6 +1440,62 @@ public class ControlBD {
             tipo.setId_tipo_actividad(cursor.getString(0));
             tipo.setNombre_tipo_actividad(cursor.getString(1));
             return tipo;
+        }else{
+            return null;
+        }
+    }
+
+    //Consultar Valoracion
+    public Valoracion consultarValoracion(String idValoracion){
+        String[] id = {idValoracion};
+        Cursor cursor = db.query("VALORACION", camposValoracion, "ID_VALORACION = ?",
+                id, null, null, null);
+
+        if(cursor.moveToFirst()){
+            Valoracion valoracion = new Valoracion();
+            valoracion.setId_valoracion(cursor.getString(0));
+            valoracion.setValoracion(cursor.getString(1));
+
+            return valoracion;
+        }else{
+            return null;
+        }
+    }
+    //Consultar Oferta Academica
+    public OfertaAcademica consultarOfertaAcademica(String idMateriaActiva){
+        String[] id = {idMateriaActiva };
+        Cursor cursor = db.query("OFERTA_ACADEMICA", camposOfertaAcademica, "ID_MATERIAS_ACTIVAS = ?",
+                id, null, null, null);
+
+        if(cursor.moveToFirst()){
+            OfertaAcademica oferta = new OfertaAcademica();
+            oferta.setIdMateriasActivas(cursor.getString(0));
+            oferta.setIdCiclo(cursor.getString(1));
+            oferta.setIdMateria(cursor.getString(2));
+            oferta.setIdCoordinador(cursor.getString(3));
+            oferta.setNombreMateriasActivas(cursor.getString(4));
+            oferta.setCicloMateriaActiva(cursor.getString(5));
+
+            return oferta;
+        }else{
+            return null;
+        }
+    }
+    //Consultar Local
+    public Local consultarLocal(String idAula){
+        String[] id = {idAula };
+        Cursor cursor = db.query("LOCAL", camposLocal, "ID_AULA = ?",
+                id, null, null, null);
+
+        if(cursor.moveToFirst()){
+            Local local = new Local();
+            local.setIdAula(cursor.getString(0));
+            local.setIdReservante(cursor.getString(1));
+            local.setNombreAula(cursor.getString(2));
+            local.setCupo(cursor.getInt(3));
+
+
+            return local;
         }else{
             return null;
         }
@@ -1629,6 +1875,52 @@ public class ControlBD {
                 }
                 return false;
             }
+            case 40:
+            {
+//verificar que exista valoracion
+                Valoracion valoracion2 = (Valoracion) dato;
+                String[] id = {valoracion2.getId_valoracion()};
+                abrir();
+                Cursor c2 = db.query("VALORACION", null, "ID_VALORACION = ?", id, null, null,
+                        null);
+                if(c2.moveToFirst()){
+//Se encontro Alumno
+                    return true;
+                }
+                return false;
+
+            }
+            case 41:
+            {
+//verificar que exista la materia activa
+                OfertaAcademica oferta = (OfertaAcademica) dato;
+                String[] id = {oferta.getIdMateriasActivas()};
+                abrir();
+                Cursor c2 = db.query("OFERTA_ACADEMICA", null, "ID_MATERIAS_ACTIVAS = ?", id, null, null,
+                        null);
+                if(c2.moveToFirst()){
+//Se encontro registro
+                    return true;
+                }
+                return false;
+
+            }
+            case 42:
+            {
+//verificar que exista el local
+                Local local = (Local) dato;
+                String[] id = {local.getIdAula()};
+                abrir();
+                Cursor c2 = db.query("LOCAL", null, "ID_AULA = ?", id, null, null,
+                        null);
+                if(c2.moveToFirst()){
+//Se encontro registro
+                    return true;
+                }
+                return false;
+
+            }
+
 
 
             default:
@@ -1696,6 +1988,25 @@ public class ControlBD {
         final  String[] Encargadonombre_reservante = {"Alex","Jose","Maria","Zusana"};
         final  String[] Encargadotipo_reservante = {"Administrador","Administrador","Reservante","Reservante"};
 
+        //Tabla Valoracion
+        final String[] VAid_valoracion = {"0001","O002","0003","0004","0005"};
+        final String[] VAValoracion = {"Pesimo","Malo","Regular","Bueno","Excelente"};
+
+        //Tabla Oferta Academica
+        final String[] VAID_MATERIAS_ACTIVAS = {"0001","O002","0003","0004","0005"};
+        final String[] VAID_CICLO = {"1","1","1","1","1"};
+        final String[] VAID_MATERIA = {"DSI115","SGG115","PDM115","MIP115","TAD115"};
+        final String[] VAID_COORDINADOR = {"1","2","3","4","5"};
+        final String[] VANOMBRES_MATERIAS_ACTIVAS = {"Diseño de sistemas","Sistemas de informacion geograficos","Programacion para moviles","Microprogramacion","Teoria Administrativa"};
+        final String[] VACICLO_MATERIA_ACTIVA = {"1","1","1","1","1"};
+
+        //Tabla Local
+        final String[] VAID_AULA = {"0001","O002","0003","0004","0005"};
+        final String[] VAID_RESERVANTE = {"1","1","1","1","1"};
+        final String[] VANOMBREAULA = {"El espino","B11","C11","D11","F1"};
+        final int[] VACUPO = {20,40,50,60,70};
+
+
         abrir();
         db.execSQL("DELETE FROM CARRERA");
         db.execSQL("DELETE FROM DETALLE_OFERTA");
@@ -1706,6 +2017,9 @@ public class ControlBD {
         db.execSQL("DELETE FROM CICLO");
         db.execSQL("DELETE FROM COORDINA");
         db.execSQL("DELETE FROM DETALLE_ACTIVIDAD_HORARIO");
+        db.execSQL("DELETE FROM VALORACION");
+        db.execSQL("DELETE FROM OFERTA_ACADEMICA");
+        db.execSQL("DELETE FROM LOCAL");
 
 
         Carrera carrera = new Carrera();
@@ -1779,6 +2093,34 @@ public class ControlBD {
             detalleActividadHorario.setId_horario(detalleActividadHorarioId_horario[i]);
             detalleActividadHorario.setId_actividad(detalleActividadHorarioId_actividad[i]);
             insertar(detalleActividadHorario);
+        }
+
+        Valoracion valoracion = new Valoracion();
+        for(int i=0;i<5;i++){
+            valoracion.setId_valoracion(VAid_valoracion[i]);
+            valoracion.setValoracion(VAValoracion[i]);
+            insertarValoracion(valoracion);
+        }
+        OfertaAcademica oferta = new OfertaAcademica();
+        for(int i=0;i<5;i++){
+            oferta.setIdMateriasActivas(VAID_MATERIAS_ACTIVAS[i]);
+            oferta.setIdCiclo(VAID_CICLO[i]);
+            oferta.setIdMateria(VAID_MATERIA[i]);
+            oferta.setIdCoordinador(VAID_COORDINADOR[i]);
+            oferta.setNombreMateriasActivas(VANOMBRES_MATERIAS_ACTIVAS[i]);
+            oferta.setCicloMateriaActiva(VACICLO_MATERIA_ACTIVA[i]);
+
+            insertarOfertaAcademica(oferta);
+        }
+        Local local = new Local();
+        for(int i=0;i<5;i++){
+            local.setIdAula(VAID_AULA[i]);
+            local.setIdReservante(VAID_RESERVANTE[i]);
+            local.setNombreAula(VANOMBREAULA[i]);
+            local.setCupo(VACUPO[i]);
+
+
+            insertarLocal(local);
         }
 
 

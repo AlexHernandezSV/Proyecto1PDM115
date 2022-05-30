@@ -10,6 +10,51 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto1PDM115">
         <activity
+            android:name=".LocalEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OfertaAcademicaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OfertaAcademicaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OfertaAcademicaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OfertaAcademicaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OfertaAcademicaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValoracionEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValoracionConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValoracionActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValoracionInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ValoracionMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".CoordinaMenuActivity"
             android:exported="false" />
         <activity

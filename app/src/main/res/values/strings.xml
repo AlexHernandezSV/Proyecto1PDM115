@@ -49,6 +49,31 @@
     <string name="id_tipo_grupo">ID Tipo grupo</string>
     <string name="fk_grupo">Grupo</string>
     <string name="nom_tipo_grupo">Nombre tipo de grupo</string>
-
+    <string name="insertarAlumno">Insertar</string>
+    <string name="idValoracion">Id</string>
+    <string name="valoracion">Valoracion</string>
+    <string name="limpiarValoracion">Limpiar</string>
+    <string name="Tituloconsultar">Consultar Valoracion</string>
+    <string name="ActualizarValoracion">Actualizar</string>
+    <string name="EliminarValoracion">Eliminar</string>
+    <string name="idMateriasActivas">Id materia activa</string>
+    <string name="idCiclo">Id ciclo</string>
+    <string name="idMateria">Id materia</string>
+    <string name="idCoordinador">Id coordinador</string>
+    <string name="nombreMateriaActiva">Nombre materia activa</string>
+    <string name="cicloMateriaActiva">Ciclo materia activa</string>
+    <string name="insertarOfertaA">Insertar</string>
+    <string name="limpiarOfertaA">Limpiar</string>
+    <string name="actualizarOfertaA">Actualizar</string>
+    <string name="eliminarOfertaA">Eliminar</string>
+    <string name="idAula">id Local</string>
+    <string name="idReservante">id Reservante</string>
+    <string name="nombreAula">Nombre Local</string>
+    <string name="cupo">Cupo</string>
+    <string name="insertarLoc">Insertar</string>
+    <string name="actualizarLoc">Actualizar</string>
+    <string name="eliminarLoc">Eliminar</string>
+    <string name="consultarLoc">Consultar</string>
+    <string name="LimpiarLoc">Limpiar</string>
 
 </resources>

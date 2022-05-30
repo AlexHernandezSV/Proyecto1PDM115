@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+
+    <TableRow>
+        <TextView android:text="@string/idValoracion" />
+        <EditText
+            android:id="@+id/editidVal"
+            android:inputType="text"
+            android:maxLength="7" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/valoracion" />
+        <EditText
+            android:id="@+id/editVal"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="actualizarValoracion"
+            android:text="@string/ActualizarValoracion" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiarValoracion" />
+    </TableRow>
+</TableLayout>

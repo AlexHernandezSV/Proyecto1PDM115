@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+
+    <TableRow>
+        <TextView android:text="@string/idMateriasActivas" />
+        <EditText
+            android:id="@+id/editIdMateriasA"
+            android:inputType="text"
+            android:maxLength="7" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/idCiclo" />
+        <EditText
+            android:id="@+id/editIdCiclo"
+            android:inputType="text"
+            android:maxLength="7" />
+    </TableRow>    <TableRow>
+    <TextView android:text="@string/idMateria" />
+    <EditText
+        android:id="@+id/editIdMateria"
+        android:inputType="text"
+        android:maxLength="7" />
+</TableRow>
+    <TableRow>
+        <TextView android:text="@string/idCoordinador" />
+        <EditText
+            android:id="@+id/editIdCoordinador"
+            android:inputType="text"
+            android:maxLength="7" />
+    </TableRow>    <TableRow>
+    <TextView android:text="@string/nombreMateriaActiva" />
+    <EditText
+        android:id="@+id/editNombreMateriaA"
+        android:inputType="text"
+        android:maxLength="30" />
+</TableRow>
+
+
+    <TableRow>
+        <TextView android:text="@string/cicloMateriaActiva" />
+        <EditText
+            android:id="@+id/editCicloMateriaA"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="actualizarOfertaAcademica"
+            android:text="@string/actualizarOfertaA" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiarValoracion" />
+    </TableRow>
+</TableLayout>
