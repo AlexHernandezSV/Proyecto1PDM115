@@ -1178,15 +1178,18 @@ public class ControlBD {
         return regAfectados;
     }
 
-    //Eliminar DetalleOferta
+    //Eliminar Actividad
     public String eliminar(Actividad actividad) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(detalleOferta,11)){
-            contador+=db.delete("ACTIVIDAD", "grupo='"+detalleOferta.getGrupo()+"'", null);
+        /*if (verificarIntegridad(actividad,91)){
+            contador+=db.delete("DETALLE_ACTIVIDAD", "id_actividad='"+actividad.getId_actividad()+"'", null);
         }
-        if (verificarIntegridad(detalleOferta,12)){
-            contador+=db.delete("TIPO_GRUPO", "grupo='"+detalleOferta.getGrupo()+"'", null);
+        if (verificarIntegridad(actividad,92)){
+            contador+=db.delete("COORDINADOR", "id_actividad='"+actividad.getId_actividad()+"'", null);
+        }
+        if (verificarIntegridad(actividad,93)){
+            contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_actividad='"+actividad.getId_actividad()+"'", null);
         }*/
         /*String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
         where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
@@ -1593,6 +1596,41 @@ public class ControlBD {
                 else
                     return false;
             }
+
+            case 91: {
+                //Verificaciòn de que si existe escuela dentro de materia al eliminar una escuela
+                Actividad escuela = (Actividad) dato;
+                Cursor c = db.query(true, "DETALLE_ACTIVIDAD", new String[]{
+                                "id_actividad"}, "id_actividad='" + escuela.getId_actividad() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 92: {
+                //Verificaciòn de que si existe escuela dentro de materia al eliminar una escuela
+                Actividad escuela = (Actividad) dato;
+                Cursor c = db.query(true, "COORDINA", new String[]{
+                                "id_actividad"}, "id_actividad='" + escuela.getId_actividad() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 93: {
+                //Verificaciòn de que si existe escuela dentro de materia al eliminar una escuela
+                Actividad escuela = (Actividad) dato;
+                Cursor c = db.query(true, "DETALLE_ACTIVIDAD_HORARIO", new String[]{
+                                "id_actividad"}, "id_actividad='" + escuela.getId_actividad() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
 
             case 5: {
                 //Verificaciòn de que si existe MiembroUniversitario dentro de Coordina al eliminar un miembro
