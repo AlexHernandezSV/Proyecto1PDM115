@@ -573,12 +573,14 @@ public class ControlBD {
     public String insertar(DetalleResponsable responsable) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues res = new ContentValues();
-        res.put("id_detalle_responsable", responsable.getId_detalle_responsable());
-        res.put("id_coordinador", responsable.getId_coordinador());
-        res.put("nomb_tipo_responsable", responsable.getNomb_tipo_responsable());
-        contador=db.insert("DETALLE_RESPONSABLE", null, res);
-        if(contador==-1 || contador==0)
+        if(verificarIntegridad(responsable,26)) {
+            ContentValues res = new ContentValues();
+            res.put("id_detalle_responsable", responsable.getId_detalle_responsable());
+            res.put("id_coordinador", responsable.getId_coordinador());
+            res.put("nomb_tipo_responsable", responsable.getNomb_tipo_responsable());
+            contador = db.insert("DETALLE_RESPONSABLE", null, res);
+        }
+        if (contador == -1 || contador == 0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }
@@ -1905,6 +1907,21 @@ public class ControlBD {
                 }
                 return false;
             }
+            case 26:
+            {
+                //verificar que al insertar DETALLE RESPONSABLE exista el ID del COORDINADOR
+                DetalleResponsable detalle = (DetalleResponsable) dato;
+                String[] id1 = {detalle.getId_coordinador()};
+                abrir();
+                Cursor cursor1 = db.query("MIEMBRO_UNIVERSITARIO", null, "id_coordinador = ?", id1, null,
+                        null, null);
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
 
             case 69: { //para actualizar escuela
                 //verificar que al modificar Escuela exista id de la escuela, y el id de la carrera
