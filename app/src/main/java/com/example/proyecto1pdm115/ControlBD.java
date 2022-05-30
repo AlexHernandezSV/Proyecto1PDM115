@@ -687,6 +687,17 @@ public class ControlBD {
         db.update("COORDINA", cv, "id_actividad = ?", id);
         return "Registro Actualizado Correctamente";
     }
+    //Actualizar DetalleActividadHorario
+    public String actualizar(DetalleActividadHorario detalleActividadHorario){
+        String[] id = {detalleActividadHorario.getId_horario()};
+        ContentValues cv = new ContentValues();
+        cv.put("id_horario", detalleActividadHorario.getId_horario());
+        cv.put("id_actividad", detalleActividadHorario.getId_actividad());
+        db.update("DETALLE_ACTIVIDAD_HORARIO", cv, "id_horario = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+
+    
 
 
 
@@ -898,6 +909,17 @@ public class ControlBD {
         return regAfectados;
     }
 
+    //Eliminar coordina
+    public String eliminar(Coordina coordina){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_actividad='"+coordina.getId_actividad()+"'";
+        where=where+" AND id_coordinador='"+coordina.getId_coordinador()+"'";
+        contador+=db.delete("COORDINA", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
     //Eliminar Encargado
     public String eliminar(Encargado encargado){
         String regAfectados="filas afectadas= ";
@@ -1058,6 +1080,20 @@ public class ControlBD {
             coordina.setId_actividad(cursor.getString(0));
             coordina.setId_coordinador(cursor.getString(1));
             return coordina;
+        }else{
+            return null;
+        }
+    }
+
+    //Consultar DetalleActividadHorario
+    public DetalleActividadHorario consultarDetalleActividadHorario(String id_horario,String id_actividad){
+        String[] id = {id_horario, id_actividad};
+        Cursor cursor = db.query("DETALLE_ACTIVIDAD_HORARIO", camposDetalleActividadHorario, "id_horario = ? AND id_actividad = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            DetalleActividadHorario detalleActividadHorario = new DetalleActividadHorario();
+            detalleActividadHorario.setId_horario(cursor.getString(0));
+            detalleActividadHorario.setId_actividad(cursor.getString(1));
+            return detalleActividadHorario;
         }else{
             return null;
         }
