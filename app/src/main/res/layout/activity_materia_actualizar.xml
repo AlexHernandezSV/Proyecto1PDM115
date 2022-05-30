@@ -30,7 +30,7 @@
         <EditText
             android:id="@+id/editCiclo_materia"
             android:inputType="number"
-            android:maxLength="1" />
+            android:maxLength="2" />
     </TableRow>
     <TableRow>
         <Button
