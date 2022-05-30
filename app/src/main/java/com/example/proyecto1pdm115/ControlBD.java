@@ -697,7 +697,7 @@ public class ControlBD {
         return "Registro Actualizado Correctamente";
     }
 
-    
+
 
 
 
@@ -919,6 +919,19 @@ public class ControlBD {
         regAfectados+=contador;
         return regAfectados;
     }
+
+    //Eliminar DetalleActividadHorario
+    public String eliminar(DetalleActividadHorario detalleActividadHorario){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_horario='"+detalleActividadHorario.getId_horario()+"'";
+        where=where+" AND id_actividad='"+detalleActividadHorario.getId_actividad()+"'";
+        contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
+
 
     //Eliminar Encargado
     public String eliminar(Encargado encargado){
