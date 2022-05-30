@@ -179,7 +179,7 @@ public class ControlBD {
                                 "ID_ACTIVIDAD          VARCHAR2(6)          not null, \n" +
                                 "ID_TIPO_ACTIVIDAD     VARCHAR2(6)          not null, \n" +
                                 "ID_VALORACION         VARCHAR2(6)          not null, \n" +
-                                "ID_RESERVANTE         VARCHAR2(6)          not null, \n" +
+                                "ID_RESERVANTE         VARCHAR2(7)          not null, \n" +
                                 "GRUPO                 CHAR(3)              not null, \n" +
                                 "DESCRIPCION           VARCHAR2(50)         not null, \n" +
                                 "ESTADO                VARCHAR2(10)         not null, \n" +
@@ -524,27 +524,28 @@ public class ControlBD {
     public String insertar(Actividad actividad) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues act = new ContentValues();
-        act.put("id_actividad", actividad.getId_actividad());
-        act.put("id_tipo_actividad", actividad.getId_tipo_actividad());
-        act.put("id_valoracion", actividad.getId_valoracion());
-        act.put("id_reservante", actividad.getId_reservante());
-        act.put("grupo", actividad.getGrupo());
-        act.put("descripcion", actividad.getDescripcion());
-        act.put("estado", actividad.getEstado());
-        act.put("fecha_actividad", actividad.getFecha_actividad());
-        act.put("desde_actividad", actividad.getDesde_actividad());
-        act.put("hasta_actividad", actividad.getHasta_actividad());
-        contador=db.insert("ACTIVIDAD", null, act);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        if(verificarIntegridad(actividad,27)) {
+            ContentValues act = new ContentValues();
+            act.put("id_actividad", actividad.getId_actividad());
+            act.put("id_tipo_actividad", actividad.getId_tipo_actividad());
+            act.put("id_valoracion", actividad.getId_valoracion());
+            act.put("id_reservante", actividad.getId_reservante());
+            act.put("grupo", actividad.getGrupo());
+            act.put("descripcion", actividad.getDescripcion());
+            act.put("estado", actividad.getEstado());
+            act.put("fecha_actividad", actividad.getFecha_actividad());
+            act.put("desde_actividad", actividad.getDesde_actividad());
+            act.put("hasta_actividad", actividad.getHasta_actividad());
+            contador = db.insert("ACTIVIDAD", null, act);
         }
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
         else {
-            regInsertados=regInsertados+contador;
+                regInsertados = regInsertados + contador;
+            }
+            return regInsertados;
         }
-        return regInsertados;
-    }
 
     //Insertar Detalle Actividad
     public String insertar(DetalleActividad detalleActividad){
@@ -1922,6 +1923,26 @@ public class ControlBD {
                 return false;
             }
 
+            case 27:
+            {
+                //verificar que al insertar Detalle Actividad exista el ID del Usuario
+                Actividad detalle = (Actividad) dato;
+                String[] id1 = {detalle.getId_tipo_actividad()};
+                String[] id2 = {detalle.getId_valoracion()};
+                String[] id3 = {detalle.getId_reservante()};
+                String[] id4 = {detalle.getGrupo()};
+                //abrir();
+                Cursor cursor1 = db.query("TIPO_ACTIVIDAD", null, "id_tipo_actividad = ?", id1, null, null, null);
+                Cursor cursor2 = db.query("VALORACION", null, "id_valoracion = ?", id2,null, null, null);
+                Cursor cursor3 = db.query("ENCARGADO", null, "id_reservante = ?", id3,null, null, null);
+                Cursor cursor4 = db.query("DETALLE_OFERTA", null, "grupo = ?", id4,null, null, null);
+                if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
 
             case 69: { //para actualizar escuela
                 //verificar que al modificar Escuela exista id de la escuela, y el id de la carrera
@@ -2037,10 +2058,7 @@ public class ControlBD {
                 return false;
         }
 
-
-
     }
-
 
 //================================ FINAL - Bloque de verificar integridad =============================================
 
