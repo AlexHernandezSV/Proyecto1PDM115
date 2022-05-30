@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CicloActualizarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CicloActualizarActivity extends AppCompatActivity {
 
 
     ControlBD helper;
