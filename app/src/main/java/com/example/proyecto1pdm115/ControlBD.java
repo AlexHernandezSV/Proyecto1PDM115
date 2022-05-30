@@ -993,9 +993,9 @@ public class ControlBD {
     public String eliminar(Escuela carrera) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(carrera,90)) {
+        if (verificarIntegridad(carrera,90)) {
             contador+=db.delete("MATERIA", "id_carrera='"+carrera.getId_carrera()+"'", null);
-        }*/
+        }
         contador+=db.delete("ESCUELA", "id_escuela='"+carrera.getId_escuela()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -1136,6 +1136,9 @@ public class ControlBD {
     public String eliminar(TipoActividad tipo){
         String regAfectados="filas afectadas= ";
         int contador=0;
+        if (verificarIntegridad(tipo,94)) {
+            contador+=db.delete("ACTIVIDAD", "id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'", null);
+        }
         String where="id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'";
         contador+=db.delete("TIPO_ACTIVIDAD", where, null);
         regAfectados+=contador;
@@ -1624,6 +1627,18 @@ public class ControlBD {
                 Actividad escuela = (Actividad) dato;
                 Cursor c = db.query(true, "DETALLE_ACTIVIDAD_HORARIO", new String[]{
                                 "id_actividad"}, "id_actividad='" + escuela.getId_actividad() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
+            case 94: {
+                //Verificaciòn de que si existe tipo de actividad dentro de actividad al eliminar un tipo de actividad
+                TipoActividad escuela = (TipoActividad) dato;
+                Cursor c = db.query(true, "ACTIVIDAD", new String[]{
+                                "id_tipo_actividad"}, "id_tipo_actividad='" + escuela.getId_tipo_actividad() + "'", null,
                         null, null, null, null);
                 if (c.moveToFirst())
                     return true;
