@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class MateriaEliminarActivity extends Activity {
+public class MateriaEliminarActivity extends AppCompatActivity {
 
     EditText editId_materia,editId_escuela;
     ControlBD controlhelper;

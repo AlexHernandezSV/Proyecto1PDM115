@@ -23,7 +23,7 @@ public class MateriaMenuActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(246, 166, 149));
+        listView.setBackgroundColor(Color.rgb(255, 255, 255));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
 

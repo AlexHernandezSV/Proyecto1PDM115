@@ -38,7 +38,7 @@ public class ControlBD {
             {"id_materia", "id_escuela", "nombre_materia", "ciclo_materia"};
     //Campos de Encargado
     private static final String[] camposEncargado = new String[]
-            {"id_reservante", "id_usuario", "nombre_reservante", "tipo_reservante"};
+            {"id_reservante","nombre_reservante", "tipo_reservante"};
     //Agregar los demás campos
     //Campos de Escuela
     private static final String[] camposEscuela = new String[]
@@ -227,12 +227,10 @@ public class ControlBD {
                 //Tabla ENCARGADO
                 db.execSQL("create table ENCARGADO (\n" +
                         "ID_RESERVANTE        VARCHAR2(7)              not null, \n" +
-                        "ID_USUARIO           VARCHAR2(7)           not null,\n" +
                         "NOMBRE_RESERVANTE       VARCHAR2(50)         not null,\n" +
                         "TIPO_RESERVANTE         VARCHAR2(10)              not null,\n" +
-                        "primary key (ID_RESERVANTE),\n" +
-                        "foreign key (ID_USUARIO)\n" +
-                        "      references USUARIO (ID_USUARIO));");
+                        "primary key (ID_RESERVANTE)\n" +
+                        ");");
 
                 //Tabla DETALLE ACTIVIDAD
                 db.execSQL("create table DETALLE_ACTIVIDAD (\n" +
@@ -501,25 +499,21 @@ public class ControlBD {
     }
 
     //Insertar Encargado
-    public String insertar(Encargado encargado){
+    public String insertar(Encargado encargado) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        /*if(verificarIntegridad(encargado,32))
-        {
-            ContentValues encargados = new ContentValues();
-            encargados.put("id_reservante", encargado.getId_reservante());
-            encargados.put("id_usuario", encargado.getId_usuario());
-            encargados.put("nombre_reservante", encargado.getNombre_reservante());
-            encargados.put("tipo_reservante", encargado.getTipo_reservante());
-            contador=db.insert("ENCARGADO", null, encargados);
-        }
+        ContentValues encar = new ContentValues();
+        encar.put("id_reservante", encargado.getId_reservante());
+        encar.put("nombre_reservante", encargado.getNombre_reservante());
+        encar.put("tipo_reservante", encargado.getTipo_reservante());
+        contador=db.insert("ENCARGADO", null, encar);
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }
         else {
             regInsertados=regInsertados+contador;
-        }*/
+        }
         return regInsertados;
     }
 
@@ -816,18 +810,18 @@ public class ControlBD {
 
 
     //Actualizar Encargado
-    public String actualizar(Encargado encargado){
-        /*if(verificarIntegridad(encargado, 33)){
-            String[] id = {encargado.getId_reservante(), encargado.getId_usuario()};
+    public String actualizar(Encargado encargado) {
+        if(verificarIntegridad(encargado, 33)){
+            String[] id = {encargado.getId_reservante()};
             ContentValues cv = new ContentValues();
             cv.put("nombre_reservante", encargado.getNombre_reservante());
             cv.put("tipo_reservante", encargado.getTipo_reservante());
-            db.update("ENCARGADO", cv, "id_reservante = ? AND id_usuario = ?", id);
+            db.update("ENCARGADO", cv, "id_reservante = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{*/
-        return "Registro no Existe";
-        //}
-
+        }
+        else{
+            return "Registro con ID " + encargado.getId_reservante() + " no existe";
+        }
     }
 
     //Actualizar Detalle Actividad
@@ -1100,12 +1094,16 @@ public class ControlBD {
 
 
     //Eliminar Encargado
-    public String eliminar(Encargado encargado){
+    public String eliminar(Encargado encargado) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        String where="id_reservante='"+encargado.getId_reservante()+"'";
-        where=where+" AND id_usuario='"+encargado.getId_usuario()+"'";
-        contador+=db.delete("ENCARGADO", where, null);
+        if (verificarIntegridad(encargado,32)) {
+            contador+=db.delete("ACTIVIDAD", "id_reservante='"+encargado.getId_reservante()+"'", null);
+        }
+        if (verificarIntegridad(encargado,52)){
+            contador+=db.delete("LOCAL", "id_reservante='"+encargado.getId_reservante()+"'", null);
+        }
+        contador+=db.delete("ENCARGADO", "id_reservante='"+encargado.getId_reservante()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -1349,21 +1347,20 @@ public class ControlBD {
     }
 
     //Consultar Encargado
-    public Encargado consultarEncargado(String id_reservante, String id_usuario){
-        String[] id = {id_reservante, id_usuario};
-        Cursor cursor = db.query("ENCARGADO", camposMateria, "id_reservante = ? AND id_usuario = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
-            Encargado encargado = new Encargado();
-            encargado.setId_reservante(cursor.getString(0));
-            encargado.setId_usuario(cursor.getString(1));
-            encargado.setNombre_reservante(cursor.getString(2));
-            encargado.setTipo_reservante(cursor.getString(3));
-            return encargado;
-        }else{
-            return null;
+    public Encargado consultarEncargado(String id_reservante){
+            String[] id = {id_reservante};
+            Cursor cursor = db.query("ENCARGADO", camposEncargado, "id_reservante = ?",
+                    id, null, null, null);
+            if(cursor.moveToFirst()){
+                Encargado encargado = new Encargado();
+                encargado.setId_reservante(cursor.getString(0));
+                encargado.setNombre_reservante(cursor.getString(1));
+                encargado.setTipo_reservante(cursor.getString(2));
+                return encargado;
+            }else{
+                return null;
+            }
         }
-
-    }
 
     //Consultar Detalle Actividad
     public DetalleActividad consultarDetalleActividad(String id_detalle, String id_aula, String id_actividad){
@@ -1799,26 +1796,25 @@ public class ControlBD {
 //            }
             case 32:
             {
-                //verificar que al insertar Encargado exista el ID del Usuario
+                //verificar que al Eliminar Encargado elimine regristros en actividad
                 Encargado encargado = (Encargado) dato;
-                String[] id1 = {encargado.getId_usuario()};
-                //abrir();
-                Cursor cursor1 = db.query("USUARIO", null, "id_usuario = ?", id1, null,
-                        null, null);
-                if(cursor1.moveToFirst()){
-                    //Se encontraron datos
+                Cursor c = db.query(true, "ACTIVIDAD", new String[]{
+                                "id_reservante"}, "id_reservante='" + encargado.getId_reservante() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
                     return true;
-                }
-                return false;
+                else
+                    return false;
             }
             case 33: { //para actualizar Encargado
                 //verificar que al modificar Encargado exista id del Reservante, y el id del Usuario
-                Encargado encargado1 = (Encargado) dato;
-                String[] ids = {encargado1.getId_reservante(), encargado1.getId_usuario()};
+                Encargado encargado2 = (Encargado) dato;
+                String[] id = {encargado2.getId_reservante()};
                 abrir();
-                Cursor c = db.query("ENCARGADO", null, "id_reservante = ? AND id_usuario = ?", ids, null, null, null);
-                if(c.moveToFirst()){
-                    //Se encontraron datos
+                Cursor c2 = db.query("ENCARGADO", null, "id_reservante = ?", id, null, null,
+                        null);
+                if (c2.moveToFirst()) {
+                //Se encontro Carrera
                     return true;
                 }
                 return false;
@@ -1976,6 +1972,18 @@ public class ControlBD {
                 return false;
 
             }
+            case 52:
+            {
+                //verificar que al Eliminar Encargado elimine regristros en local
+                Encargado encargado = (Encargado) dato;
+                Cursor c = db.query(true, "LOCAL", new String[]{
+                                "id_reservante"}, "id_reservante='" + encargado.getId_reservante() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
 
 
 
@@ -2040,7 +2048,6 @@ public class ControlBD {
 
         //Tabla Encargado
         final  String[] Encargadoid_reservante = {"HG16037","MT17005","VM15003","MR17130"};
-        final  String[] Encargadoid_usuario = {"HG16037","MT17005","VM15003","MR17130"};
         final  String[] Encargadonombre_reservante = {"Alex","Jose","Maria","Zusana"};
         final  String[] Encargadotipo_reservante = {"Administrador","Administrador","Reservante","Reservante"};
 
@@ -2057,8 +2064,8 @@ public class ControlBD {
         final String[] VACICLO_MATERIA_ACTIVA = {"1","1","1","1","1"};
 
         //Tabla Local
-        final String[] VAID_AULA = {"0001","O002","0003","0004","0005"};
-        final String[] VAID_RESERVANTE = {"1","1","1","1","1"};
+        final String[] VAID_AULA = {"0001","O002","0003","VM15003","MR17130"};
+        final String[] VAID_RESERVANTE = {"HG16037","MT17005","1","1","1"};
         final String[] VANOMBREAULA = {"El espino","B11","C11","D11","F1"};
         final int[] VACUPO = {20,40,50,60,70};
 
@@ -2123,7 +2130,6 @@ public class ControlBD {
         Encargado encargado = new Encargado();
         for (int i = 0; i < 4; i++) {
             encargado.setId_reservante(Encargadoid_reservante[i]);
-            encargado.setId_usuario(Encargadoid_usuario[i]);
             encargado.setNombre_reservante(Encargadonombre_reservante[i]);
             encargado.setTipo_reservante(Encargadotipo_reservante[i]);
             insertar(encargado);

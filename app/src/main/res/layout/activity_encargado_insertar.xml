@@ -12,13 +12,6 @@
             android:maxLength="6" />
     </TableRow>
     <TableRow>
-        <TextView android:text="@string/id_usuario" />
-        <EditText
-            android:id="@+id/editId_usuario"
-            android:inputType="text"
-            android:maxLength="2" />
-    </TableRow>
-    <TableRow>
         <TextView android:text="@string/nombre_reservante" />
         <EditText
             android:id="@+id/editNom_reservante"
