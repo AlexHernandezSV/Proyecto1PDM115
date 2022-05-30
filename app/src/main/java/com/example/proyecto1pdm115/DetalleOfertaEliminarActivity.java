@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class DetalleOfertaEliminarActivity extends AppCompatActivity {
-    EditText editGrupo,editId_materias_activas,editId_aula, editCant_inscritos;
+    EditText editGrupo,editId_materias_activas,editId_aula;
     ControlBD controlhelper;
 
     @Override
@@ -19,7 +19,7 @@ public class DetalleOfertaEliminarActivity extends AppCompatActivity {
         editGrupo = (EditText) findViewById(R.id.editGrupo);
         editId_materias_activas = (EditText) findViewById(R.id.editId_materias_activas);
         editId_aula = (EditText) findViewById(R.id.editId_aula);
-        editCant_inscritos = (EditText) findViewById(R.id.editCant_inscritos);
+        //editCant_inscritos = (EditText) findViewById(R.id.editCant_inscritos);
     }
 
     public void eliminarDetalleOferta(View v){
@@ -28,7 +28,7 @@ public class DetalleOfertaEliminarActivity extends AppCompatActivity {
         detalleOferta.setGrupo(editGrupo.getText().toString());
         detalleOferta.setId_materias_activas(editId_materias_activas.getText().toString());
         detalleOferta.setId_aula(editId_aula.getText().toString());
-        detalleOferta.setCant_inscritos(Integer.valueOf(editCant_inscritos.getText().toString()));
+        //detalleOferta.setCant_inscritos(Integer.valueOf(editCant_inscritos.getText().toString()));
         controlhelper.abrir();
         regEliminadas=controlhelper.eliminar(detalleOferta);
         controlhelper.cerrar();
@@ -39,6 +39,5 @@ public class DetalleOfertaEliminarActivity extends AppCompatActivity {
         editGrupo.setText("");
         editId_materias_activas.setText("");
         editId_aula.setText("");
-        editCant_inscritos.setText("");
     }
 }

@@ -13,7 +13,7 @@ public class CicloMenuActivity extends ListActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};
     String[]
-            activities={"CicloInsertarActivity","CicloEliminarActiviy","CicloConsultarActivity",
+            activities={"CicloInsertarActivity","CicloEliminarActivity","CicloConsultarActivity",
             "CicloActualizarActivity"};
 
     @Override

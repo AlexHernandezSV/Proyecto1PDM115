@@ -30,7 +30,7 @@
         <EditText
             android:id="@+id/editFecha_fin"
             android:inputType="text"
-            android:maxLength="1" />
+            android:maxLength="30" />
     </TableRow>
 
 

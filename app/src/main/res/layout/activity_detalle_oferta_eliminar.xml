@@ -38,9 +38,10 @@
             android:id="@+id/editId_aula"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:maxLength="3"/>
+            android:inputType="text"
+            android:maxLength="6"/>
     </TableRow>
+    <!--
     <TableRow>
         <TextView
             android:layout_width="wrap_content"
@@ -53,6 +54,7 @@
             android:inputType="number"
             android:maxLength="3"/>
     </TableRow>
+    -->
     <TableRow>
         <Button
             android:layout_width="wrap_content"

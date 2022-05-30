@@ -1,30 +1,29 @@
 package com.example.proyecto1pdm115;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class EscuelaEliminarActivity extends AppCompatActivity {
-
+public class CicloEliminarActivity extends Activity {
+    EditText editId_ciclo;
     ControlBD controlhelper;
-    EditText editId_escuela;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_escuela_eliminar);
+        setContentView(R.layout.activity_ciclo_eliminar);
         controlhelper=new ControlBD (this);
-        editId_escuela=(EditText)findViewById(R.id.editId_escuela);
+        editId_ciclo=(EditText)findViewById(R.id.editId_ciclo);
     }
 
-    public void eliminarEscuela(View v){
+    public void eliminarHorario(View v){
         String regEliminadas;
-        Escuela escuela=new Escuela();
-        escuela.setId_escuela(editId_escuela.getText().toString());
+        Ciclo ciclo=new Ciclo();
+        ciclo.setId_ciclo(editId_ciclo.getText().toString());
         controlhelper.abrir();
-        regEliminadas=controlhelper.eliminar(escuela);
+        regEliminadas=controlhelper.eliminar(ciclo);
         controlhelper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
     }

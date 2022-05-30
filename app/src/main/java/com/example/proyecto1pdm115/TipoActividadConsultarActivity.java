@@ -3,7 +3,9 @@ package com.example.proyecto1pdm115;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class TipoActividadConsultarActivity extends AppCompatActivity {
 
@@ -21,20 +23,19 @@ public class TipoActividadConsultarActivity extends AppCompatActivity {
 
     }
 
-    public void consultarTipoActividad(){
-        //helper.abrir();
-        //DetalleResponsable detalle = helper.consultarEscuela(editId_tipo_actividad.getText().toString());
-        //helper.cerrar();
-        /*if(escuela == null)
+    public void consultarTipoActividad(View v){
+        helper.abrir();
+        TipoActividad detalle = helper.consultarTipoActividad(editId_tipo_actividad.getText().toString());
+        helper.cerrar();
+        if(detalle == null)
             Toast.makeText(this, "Tipo de actividad con ID " + editId_tipo_actividad.getText().toString() + " no encontrado", Toast.LENGTH_LONG).show();
         else{
             editNombre_tipo_actividad.setText(detalle.getNombre_tipo_actividad());
 
-
-        }*/
+        }
     }
 
-    public void limpiarTexto(){
+    public void limpiarTexto(View v){
         editId_tipo_actividad.setText("");
         editNombre_tipo_actividad.setText("");
     }

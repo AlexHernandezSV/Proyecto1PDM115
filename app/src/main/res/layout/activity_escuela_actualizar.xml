@@ -36,12 +36,11 @@
     </TableRow>
 
     <TableRow>
-        <TextView android:text="@string/opciones" />
-    </TableRow>
-    <TableRow>
         <Button
             android:onClick="actualizarEscuela"
             android:text="@string/actualizar" />
+    </TableRow>
+    <TableRow>
         <Button
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
