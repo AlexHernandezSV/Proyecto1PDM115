@@ -420,7 +420,7 @@ public class ControlBD {
     public String insertar(Materia materia){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        /*if(verificarIntegridad(materia,31))
+        if(verificarIntegridad(materia,31))
         {
             ContentValues materias = new ContentValues();
             materias.put("id_materia", materia.getId_materia());
@@ -435,7 +435,7 @@ public class ControlBD {
         }
         else {
             regInsertados=regInsertados+contador;
-        }*/
+        }
         return regInsertados;
     }
 
@@ -765,16 +765,16 @@ public class ControlBD {
 
     //Actualizar Materia
     public String actualizar(Materia materia){
-        /*if(verificarIntegridad(materia, 8)){
+        if(verificarIntegridad(materia, 8)){
             String[] id = {materia.getId_materia(), materia.getId_escuela()};
             ContentValues cv = new ContentValues();
             cv.put("nombre_materia", materia.getNombre_materia());
             cv.put("ciclo_materia", materia.getCiclo_materia());
             db.update("MATERIA", cv, "id_materia = ? AND id_escuela = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{*/
+        }else{
             return "Registro no Existe";
-        //}
+        }
 
     }
 
