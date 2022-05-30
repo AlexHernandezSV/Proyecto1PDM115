@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class DetalleActividadActualizarActivity extends Activity {
+public class DetalleActividadActualizarActivity extends AppCompatActivity {
 
     ControlBD helper;
     EditText editDetActividad;
