@@ -976,6 +976,15 @@ public class ControlBD {
         return regAfectados;
     }
 
+    public String eliminar(DetalleResponsable tipo){
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        String where="id_detalle_responsable='"+tipo.getId_detalle_responsable()+"'";
+        contador+=db.delete("DETALLE_RESPONSABLE", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
+
 
 
 
