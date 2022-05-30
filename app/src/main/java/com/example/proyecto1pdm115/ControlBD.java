@@ -1694,7 +1694,7 @@ public class ControlBD {
                 return false;
             }
             case 9: {
-//verificar que al insertar Detalle_Oferta exista Actividad y Tipo_Grupo
+//verificar que al insertar Detalle_Oferta exista OFERTA_ACADEMIVA y LOCAL
                 DetalleOferta detalleOferta = (DetalleOferta) dato;
                 String[] id1 = {detalleOferta.getId_materias_activas()};
                 String[] id2 = {detalleOferta.getId_aula()};
@@ -2001,7 +2001,7 @@ public class ControlBD {
 
         //Tabla Detalle_Oferta
         final String[] DetalleOfertagrupo = {"G01","G02","G03"};
-        final String[] DetalleOfertaid_materias_activas = {"PRN115","FIR115","MEP115"}; //fk
+        final String[] DetalleOfertaid_materias_activas = {"0001","O002","0003","0004"}; //fk
         final String[] DetalleOfertaid_aula = {"B11","B21","B22"}; //fk
         final int[] DetalleOfertacant_inscritos = {100,80,70};
 

@@ -23,7 +23,7 @@
         <EditText
             android:id="@+id/editId_aula"
             android:inputType="text"
-            android:maxLength="3" />
+            android:maxLength="5" />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/cant_inscritos" />
