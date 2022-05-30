@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-public class LocalEliminarActivity extends Activity {
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class LocalEliminarActivity extends AppCompatActivity {
     ControlBD controlhelper;
     EditText editidAula;
 

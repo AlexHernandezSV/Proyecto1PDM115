@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-public class LocalConsultarActivity extends Activity {
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class LocalConsultarActivity extends AppCompatActivity {
     ControlBD helper;
     EditText editidAula;
     EditText editidRes;

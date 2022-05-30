@@ -10,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class DetalleActividadHorarioMenuActivity extends ListActivity {
-    String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
-            "Actualizar Registro"};
+    String[] menu={"Insertar Detalle Horario","Eliminar Detalle Horario","Consultar Detalle Horario",
+            "Actualizar Detalle Horario"};
     String[]
             activities={"DetalleActividadHorarioInsertarActivity","DetalleActividadHorarioEliminarActivity",
             "DetalleActividadHorarioConsultarActivity", "DetalleActividadHorarioActualizarActivity"};

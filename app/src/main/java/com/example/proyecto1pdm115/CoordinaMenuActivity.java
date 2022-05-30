@@ -10,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class CoordinaMenuActivity extends ListActivity {
-    String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
-            "Actualizar Registro"};
+    String[] menu={"Insertar Cordinador","Eliminar Cordinador","Consultar Cordinador",
+            "Actualizar Cordinador"};
     String[]
             activities={"CoordinaInsertarActivity","CoordinaEliminarActivity","CoordinaConsultarActivity",
             "CoordinaActualizarActivity"};

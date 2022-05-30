@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LocalActualizarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class LocalActualizarActivity extends AppCompatActivity {
    ControlBD helper;
     EditText editidAula;
     EditText editidRes;

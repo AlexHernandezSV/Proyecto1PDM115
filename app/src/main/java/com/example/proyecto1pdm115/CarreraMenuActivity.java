@@ -10,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class CarreraMenuActivity extends ListActivity {
-    String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
-            "Actualizar Registro"};
+    String[] menu={"Insertar Carrera","Eliminar Carrera","Consultar Carrera",
+            "Actualizar Carrera"};
     String[]
             activities={"CarreraInsertarActivity","CarreraEliminarActivity","CarreraConsultarActivity",
             "CarreraActualizarActivity"};

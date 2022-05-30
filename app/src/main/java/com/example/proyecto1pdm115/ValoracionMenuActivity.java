@@ -11,7 +11,7 @@ import android.widget.ListView;
 public class ValoracionMenuActivity extends ListActivity {
 
     //titulos en pantalla
-    String[] menu={"Insertar Valoracion Nueva","Eliminar Valoracion","Consultar Valoracion",
+    String[] menu={"Insertar Valoracion","Eliminar Valoracion","Consultar Valoracion",
             "Actualizar Valoracion"};
     //modificar los activities
     String[] activities={"ValoracionInsertarActivity","ValoracionEliminarActivity","ValoracionConsultarActivity",

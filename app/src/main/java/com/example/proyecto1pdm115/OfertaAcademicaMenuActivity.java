@@ -11,8 +11,8 @@ import android.widget.ListView;
 public class OfertaAcademicaMenuActivity extends ListActivity {
 
     //titulos en pantalla
-    String[] menu={"Insertar oferta academica nueva","Eliminar oferta academica","Consultar oferta academica",
-            "Actualizar oferta academica"};
+    String[] menu={"Insertar Oferta Academica","Eliminar Oferta Academica","Consultar Oferta Academica",
+            "Actualizar Oferta Academica"};
     //modificar los activities
     String[] activities={"OfertaAcademicaInsertarActivity","OfertaAcademicaEliminarActivity","OfertaAcademicaConsultarActivity",
             "OfertaAcademicaActualizarActivity"};

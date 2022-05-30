@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LocalInsertarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class LocalInsertarActivity extends AppCompatActivity {
     ControlBD helper;
     EditText editidAula;
     EditText editidRes;

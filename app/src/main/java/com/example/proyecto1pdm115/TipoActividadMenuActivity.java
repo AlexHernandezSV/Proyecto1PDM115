@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 public class TipoActividadMenuActivity extends ListActivity {
 
-    String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro", "Actualizar Registro"};
+    String[] menu={"Insertar Tipo Actividad","Eliminar Tipo Actividad","Consultar Tipo Actividad", "Actualizar Tipo Actividad"};
 
     String[] activities={"TipoActividadInsertarActivity","TipoActividadEliminarActivity","TipoActividadConsultarActivity", "TipoActividadActualizarActivity"};
 

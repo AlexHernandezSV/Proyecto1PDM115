@@ -11,8 +11,8 @@ import android.widget.ListView;
 public class LocalMenuActivity extends ListActivity {
 
     //titulos en pantalla
-    String[] menu={"Insertar nuevo Local","Eliminar local","Consultar local",
-            "Actualizar local"};
+    String[] menu={"Insertar Local","Eliminar Local","Consultar Local",
+            "Actualizar Local"};
     //modificar los activities
     String[] activities={"LocalInsertarActivity","LocalEliminarActivity","LocalConsultarActivity",
             "LocalActualizarActivity"};
