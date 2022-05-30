@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MateriaInsertarActivity extends Activity {
+public class MateriaInsertarActivity extends AppCompatActivity {
 
     ControlBD helper;
     EditText editId_materia;

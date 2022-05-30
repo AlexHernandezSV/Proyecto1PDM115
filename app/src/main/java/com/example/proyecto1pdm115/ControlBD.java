@@ -38,7 +38,7 @@ public class ControlBD {
             {"id_materia", "id_escuela", "nombre_materia", "ciclo_materia"};
     //Campos de Encargado
     private static final String[] camposEncargado = new String[]
-            {"id_reservante", "id_usuario", "nombre_reservante", "tipo_reservante"};
+            {"id_reservante","nombre_reservante", "tipo_reservante"};
     //Agregar los demás campos
     //Campos de Escuela
     private static final String[] camposEscuela = new String[]
@@ -179,7 +179,7 @@ public class ControlBD {
                                 "ID_ACTIVIDAD          VARCHAR2(6)          not null, \n" +
                                 "ID_TIPO_ACTIVIDAD     VARCHAR2(6)          not null, \n" +
                                 "ID_VALORACION         VARCHAR2(6)          not null, \n" +
-                                "ID_RESERVANTE         VARCHAR2(6)          not null, \n" +
+                                "ID_RESERVANTE         VARCHAR2(7)          not null, \n" +
                                 "GRUPO                 CHAR(3)              not null, \n" +
                                 "DESCRIPCION           VARCHAR2(50)         not null, \n" +
                                 "ESTADO                VARCHAR2(10)         not null, \n" +
@@ -227,12 +227,10 @@ public class ControlBD {
                 //Tabla ENCARGADO
                 db.execSQL("create table ENCARGADO (\n" +
                         "ID_RESERVANTE        VARCHAR2(7)              not null, \n" +
-                        "ID_USUARIO           VARCHAR2(7)           not null,\n" +
                         "NOMBRE_RESERVANTE       VARCHAR2(50)         not null,\n" +
                         "TIPO_RESERVANTE         VARCHAR2(10)              not null,\n" +
-                        "primary key (ID_RESERVANTE),\n" +
-                        "foreign key (ID_USUARIO)\n" +
-                        "      references USUARIO (ID_USUARIO));");
+                        "primary key (ID_RESERVANTE)\n" +
+                        ");");
 
                 //Tabla DETALLE ACTIVIDAD
                 db.execSQL("create table DETALLE_ACTIVIDAD (\n" +
@@ -340,11 +338,13 @@ public class ControlBD {
     public String insertar(Escuela escuela) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues esc = new ContentValues();
-        esc.put("id_escuela", escuela.getId_escuela());
-        esc.put("id_carrera", escuela.getId_carrera());
-        esc.put("nombre_escuela", escuela.getNombre_escuela());
-        contador=db.insert("ESCUELA", null, esc);
+        if(verificarIntegridad(escuela,25)) {
+            ContentValues esc = new ContentValues();
+            esc.put("id_escuela", escuela.getId_escuela());
+            esc.put("id_carrera", escuela.getId_carrera());
+            esc.put("nombre_escuela", escuela.getNombre_escuela());
+            contador = db.insert("ESCUELA", null, esc);
+        }
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -420,7 +420,7 @@ public class ControlBD {
     public String insertar(Materia materia){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        /*if(verificarIntegridad(materia,31))
+        if(verificarIntegridad(materia,31))
         {
             ContentValues materias = new ContentValues();
             materias.put("id_materia", materia.getId_materia());
@@ -435,7 +435,7 @@ public class ControlBD {
         }
         else {
             regInsertados=regInsertados+contador;
-        }*/
+        }
         return regInsertados;
     }
 
@@ -501,25 +501,21 @@ public class ControlBD {
     }
 
     //Insertar Encargado
-    public String insertar(Encargado encargado){
+    public String insertar(Encargado encargado) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        /*if(verificarIntegridad(encargado,32))
-        {
-            ContentValues encargados = new ContentValues();
-            encargados.put("id_reservante", encargado.getId_reservante());
-            encargados.put("id_usuario", encargado.getId_usuario());
-            encargados.put("nombre_reservante", encargado.getNombre_reservante());
-            encargados.put("tipo_reservante", encargado.getTipo_reservante());
-            contador=db.insert("ENCARGADO", null, encargados);
-        }
+        ContentValues encar = new ContentValues();
+        encar.put("id_reservante", encargado.getId_reservante());
+        encar.put("nombre_reservante", encargado.getNombre_reservante());
+        encar.put("tipo_reservante", encargado.getTipo_reservante());
+        contador=db.insert("ENCARGADO", null, encar);
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }
         else {
             regInsertados=regInsertados+contador;
-        }*/
+        }
         return regInsertados;
     }
 
@@ -528,27 +524,28 @@ public class ControlBD {
     public String insertar(Actividad actividad) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues act = new ContentValues();
-        act.put("id_actividad", actividad.getId_actividad());
-        act.put("id_tipo_actividad", actividad.getId_tipo_actividad());
-        act.put("id_valoracion", actividad.getId_valoracion());
-        act.put("id_reservante", actividad.getId_reservante());
-        act.put("grupo", actividad.getGrupo());
-        act.put("descripcion", actividad.getDescripcion());
-        act.put("estado", actividad.getEstado());
-        act.put("fecha_actividad", actividad.getFecha_actividad());
-        act.put("desde_actividad", actividad.getDesde_actividad());
-        act.put("hasta_actividad", actividad.getHasta_actividad());
-        contador=db.insert("ACTIVIDAD", null, act);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        if(verificarIntegridad(actividad,27)) {
+            ContentValues act = new ContentValues();
+            act.put("id_actividad", actividad.getId_actividad());
+            act.put("id_tipo_actividad", actividad.getId_tipo_actividad());
+            act.put("id_valoracion", actividad.getId_valoracion());
+            act.put("id_reservante", actividad.getId_reservante());
+            act.put("grupo", actividad.getGrupo());
+            act.put("descripcion", actividad.getDescripcion());
+            act.put("estado", actividad.getEstado());
+            act.put("fecha_actividad", actividad.getFecha_actividad());
+            act.put("desde_actividad", actividad.getDesde_actividad());
+            act.put("hasta_actividad", actividad.getHasta_actividad());
+            contador = db.insert("ACTIVIDAD", null, act);
         }
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            }
         else {
-            regInsertados=regInsertados+contador;
+                regInsertados = regInsertados + contador;
+            }
+            return regInsertados;
         }
-        return regInsertados;
-    }
 
     //Insertar Detalle Actividad
     public String insertar(DetalleActividad detalleActividad){
@@ -577,12 +574,14 @@ public class ControlBD {
     public String insertar(DetalleResponsable responsable) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues res = new ContentValues();
-        res.put("id_detalle_responsable", responsable.getId_detalle_responsable());
-        res.put("id_coordinador", responsable.getId_coordinador());
-        res.put("nomb_tipo_responsable", responsable.getNomb_tipo_responsable());
-        contador=db.insert("DETALLE_RESPONSABLE", null, res);
-        if(contador==-1 || contador==0)
+        if(verificarIntegridad(responsable,26)) {
+            ContentValues res = new ContentValues();
+            res.put("id_detalle_responsable", responsable.getId_detalle_responsable());
+            res.put("id_coordinador", responsable.getId_coordinador());
+            res.put("nomb_tipo_responsable", responsable.getNomb_tipo_responsable());
+            contador = db.insert("DETALLE_RESPONSABLE", null, res);
+        }
+        if (contador == -1 || contador == 0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
         }
@@ -766,16 +765,16 @@ public class ControlBD {
 
     //Actualizar Materia
     public String actualizar(Materia materia){
-        /*if(verificarIntegridad(materia, 8)){
+        if(verificarIntegridad(materia, 8)){
             String[] id = {materia.getId_materia(), materia.getId_escuela()};
             ContentValues cv = new ContentValues();
             cv.put("nombre_materia", materia.getNombre_materia());
             cv.put("ciclo_materia", materia.getCiclo_materia());
             db.update("MATERIA", cv, "id_materia = ? AND id_escuela = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{*/
+        }else{
             return "Registro no Existe";
-        //}
+        }
 
     }
 
@@ -816,18 +815,18 @@ public class ControlBD {
 
 
     //Actualizar Encargado
-    public String actualizar(Encargado encargado){
-        /*if(verificarIntegridad(encargado, 33)){
-            String[] id = {encargado.getId_reservante(), encargado.getId_usuario()};
+    public String actualizar(Encargado encargado) {
+        if(verificarIntegridad(encargado, 33)){
+            String[] id = {encargado.getId_reservante()};
             ContentValues cv = new ContentValues();
             cv.put("nombre_reservante", encargado.getNombre_reservante());
             cv.put("tipo_reservante", encargado.getTipo_reservante());
-            db.update("ENCARGADO", cv, "id_reservante = ? AND id_usuario = ?", id);
+            db.update("ENCARGADO", cv, "id_reservante = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{*/
-        return "Registro no Existe";
-        //}
-
+        }
+        else{
+            return "Registro con ID " + encargado.getId_reservante() + " no existe";
+        }
     }
 
     //Actualizar Detalle Actividad
@@ -993,9 +992,9 @@ public class ControlBD {
     public String eliminar(Escuela carrera) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(carrera,90)) {
+        if (verificarIntegridad(carrera,90)) {
             contador+=db.delete("MATERIA", "id_carrera='"+carrera.getId_carrera()+"'", null);
-        }*/
+        }
         contador+=db.delete("ESCUELA", "id_escuela='"+carrera.getId_escuela()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -1100,12 +1099,16 @@ public class ControlBD {
 
 
     //Eliminar Encargado
-    public String eliminar(Encargado encargado){
+    public String eliminar(Encargado encargado) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        String where="id_reservante='"+encargado.getId_reservante()+"'";
-        where=where+" AND id_usuario='"+encargado.getId_usuario()+"'";
-        contador+=db.delete("ENCARGADO", where, null);
+        if (verificarIntegridad(encargado,32)) {
+            contador+=db.delete("ACTIVIDAD", "id_reservante='"+encargado.getId_reservante()+"'", null);
+        }
+        if (verificarIntegridad(encargado,52)){
+            contador+=db.delete("LOCAL", "id_reservante='"+encargado.getId_reservante()+"'", null);
+        }
+        contador+=db.delete("ENCARGADO", "id_reservante='"+encargado.getId_reservante()+"'", null);
         regAfectados+=contador;
         return regAfectados;
     }
@@ -1136,6 +1139,9 @@ public class ControlBD {
     public String eliminar(TipoActividad tipo){
         String regAfectados="filas afectadas= ";
         int contador=0;
+        if (verificarIntegridad(tipo,94)) {
+            contador+=db.delete("ACTIVIDAD", "id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'", null);
+        }
         String where="id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'";
         contador+=db.delete("TIPO_ACTIVIDAD", where, null);
         regAfectados+=contador;
@@ -1191,9 +1197,6 @@ public class ControlBD {
         if (verificarIntegridad(actividad,93)){
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_actividad='"+actividad.getId_actividad()+"'", null);
         }*/
-        /*String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
-        where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
-        where=where+" AND grupo="+detalleOferta.getGrupo();*/
         String where="id_actividad='"+actividad.getId_actividad()+"'";
         contador+=db.delete("ACTIVIDAD", where, null);
         regAfectados+=contador;
@@ -1349,21 +1352,20 @@ public class ControlBD {
     }
 
     //Consultar Encargado
-    public Encargado consultarEncargado(String id_reservante, String id_usuario){
-        String[] id = {id_reservante, id_usuario};
-        Cursor cursor = db.query("ENCARGADO", camposMateria, "id_reservante = ? AND id_usuario = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
-            Encargado encargado = new Encargado();
-            encargado.setId_reservante(cursor.getString(0));
-            encargado.setId_usuario(cursor.getString(1));
-            encargado.setNombre_reservante(cursor.getString(2));
-            encargado.setTipo_reservante(cursor.getString(3));
-            return encargado;
-        }else{
-            return null;
+    public Encargado consultarEncargado(String id_reservante){
+            String[] id = {id_reservante};
+            Cursor cursor = db.query("ENCARGADO", camposEncargado, "id_reservante = ?",
+                    id, null, null, null);
+            if(cursor.moveToFirst()){
+                Encargado encargado = new Encargado();
+                encargado.setId_reservante(cursor.getString(0));
+                encargado.setNombre_reservante(cursor.getString(1));
+                encargado.setTipo_reservante(cursor.getString(2));
+                return encargado;
+            }else{
+                return null;
+            }
         }
-
-    }
 
     //Consultar Detalle Actividad
     public DetalleActividad consultarDetalleActividad(String id_detalle, String id_aula, String id_actividad){
@@ -1631,6 +1633,18 @@ public class ControlBD {
                     return false;
             }
 
+            case 94: {
+                //Verificaciòn de que si existe tipo de actividad dentro de actividad al eliminar un tipo de actividad
+                TipoActividad escuela = (TipoActividad) dato;
+                Cursor c = db.query(true, "ACTIVIDAD", new String[]{
+                                "id_tipo_actividad"}, "id_tipo_actividad='" + escuela.getId_tipo_actividad() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
 
             case 5: {
                 //Verificaciòn de que si existe MiembroUniversitario dentro de Coordina al eliminar un miembro
@@ -1694,7 +1708,7 @@ public class ControlBD {
                 return false;
             }
             case 9: {
-//verificar que al insertar Detalle_Oferta exista Actividad y Tipo_Grupo
+//verificar que al insertar Detalle_Oferta exista OFERTA_ACADEMIVA y LOCAL
                 DetalleOferta detalleOferta = (DetalleOferta) dato;
                 String[] id1 = {detalleOferta.getId_materias_activas()};
                 String[] id2 = {detalleOferta.getId_aula()};
@@ -1799,26 +1813,25 @@ public class ControlBD {
 //            }
             case 32:
             {
-                //verificar que al insertar Encargado exista el ID del Usuario
+                //verificar que al Eliminar Encargado elimine regristros en actividad
                 Encargado encargado = (Encargado) dato;
-                String[] id1 = {encargado.getId_usuario()};
-                //abrir();
-                Cursor cursor1 = db.query("USUARIO", null, "id_usuario = ?", id1, null,
-                        null, null);
-                if(cursor1.moveToFirst()){
-                    //Se encontraron datos
+                Cursor c = db.query(true, "ACTIVIDAD", new String[]{
+                                "id_reservante"}, "id_reservante='" + encargado.getId_reservante() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
                     return true;
-                }
-                return false;
+                else
+                    return false;
             }
             case 33: { //para actualizar Encargado
                 //verificar que al modificar Encargado exista id del Reservante, y el id del Usuario
-                Encargado encargado1 = (Encargado) dato;
-                String[] ids = {encargado1.getId_reservante(), encargado1.getId_usuario()};
+                Encargado encargado2 = (Encargado) dato;
+                String[] id = {encargado2.getId_reservante()};
                 abrir();
-                Cursor c = db.query("ENCARGADO", null, "id_reservante = ? AND id_usuario = ?", ids, null, null, null);
-                if(c.moveToFirst()){
-                    //Se encontraron datos
+                Cursor c2 = db.query("ENCARGADO", null, "id_reservante = ?", id, null, null,
+                        null);
+                if (c2.moveToFirst()) {
+                //Se encontro Carrera
                     return true;
                 }
                 return false;
@@ -1881,6 +1894,56 @@ public class ControlBD {
                 }
                 return false;
             }
+            case 25:
+            {
+                //verificar que al insertar ESCUELA exista el ID de la CARRERA
+                Escuela detalleActividad = (Escuela) dato;
+                String[] id1 = {detalleActividad.getId_carrera()};
+                abrir();
+                Cursor cursor1 = db.query("CARRERA", null, "id_carrera = ?", id1, null,
+                        null, null);
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 26:
+            {
+                //verificar que al insertar DETALLE RESPONSABLE exista el ID del COORDINADOR
+                DetalleResponsable detalle = (DetalleResponsable) dato;
+                String[] id1 = {detalle.getId_coordinador()};
+                abrir();
+                Cursor cursor1 = db.query("MIEMBRO_UNIVERSITARIO", null, "id_coordinador = ?", id1, null,
+                        null, null);
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
+            case 27:
+            {
+                //verificar que al insertar Detalle Actividad exista el ID del Usuario
+                Actividad detalle = (Actividad) dato;
+                String[] id1 = {detalle.getId_tipo_actividad()};
+                String[] id2 = {detalle.getId_valoracion()};
+                String[] id3 = {detalle.getId_reservante()};
+                String[] id4 = {detalle.getGrupo()};
+                //abrir();
+                Cursor cursor1 = db.query("TIPO_ACTIVIDAD", null, "id_tipo_actividad = ?", id1, null, null, null);
+                Cursor cursor2 = db.query("VALORACION", null, "id_valoracion = ?", id2,null, null, null);
+                Cursor cursor3 = db.query("ENCARGADO", null, "id_reservante = ?", id3,null, null, null);
+                Cursor cursor4 = db.query("DETALLE_OFERTA", null, "grupo = ?", id4,null, null, null);
+                if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst() && cursor4.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
+
             case 69: { //para actualizar escuela
                 //verificar que al modificar Escuela exista id de la escuela, y el id de la carrera
                 Escuela escuela1 = (Escuela) dato;
@@ -1976,6 +2039,18 @@ public class ControlBD {
                 return false;
 
             }
+            case 52:
+            {
+                //verificar que al Eliminar Encargado elimine regristros en local
+                Encargado encargado = (Encargado) dato;
+                Cursor c = db.query(true, "LOCAL", new String[]{
+                                "id_reservante"}, "id_reservante='" + encargado.getId_reservante() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
 
 
 
@@ -1983,10 +2058,7 @@ public class ControlBD {
                 return false;
         }
 
-
-
     }
-
 
 //================================ FINAL - Bloque de verificar integridad =============================================
 
@@ -2001,7 +2073,7 @@ public class ControlBD {
 
         //Tabla Detalle_Oferta
         final String[] DetalleOfertagrupo = {"G01","G02","G03"};
-        final String[] DetalleOfertaid_materias_activas = {"PRN115","FIR115","MEP115"}; //fk
+        final String[] DetalleOfertaid_materias_activas = {"0001","O002","0003","0004"}; //fk
         final String[] DetalleOfertaid_aula = {"B11","B21","B22"}; //fk
         final int[] DetalleOfertacant_inscritos = {100,80,70};
 
@@ -2040,7 +2112,6 @@ public class ControlBD {
 
         //Tabla Encargado
         final  String[] Encargadoid_reservante = {"HG16037","MT17005","VM15003","MR17130"};
-        final  String[] Encargadoid_usuario = {"HG16037","MT17005","VM15003","MR17130"};
         final  String[] Encargadonombre_reservante = {"Alex","Jose","Maria","Zusana"};
         final  String[] Encargadotipo_reservante = {"Administrador","Administrador","Reservante","Reservante"};
 
@@ -2057,8 +2128,8 @@ public class ControlBD {
         final String[] VACICLO_MATERIA_ACTIVA = {"1","1","1","1","1"};
 
         //Tabla Local
-        final String[] VAID_AULA = {"0001","O002","0003","0004","0005"};
-        final String[] VAID_RESERVANTE = {"1","1","1","1","1"};
+        final String[] VAID_AULA = {"0001","O002","0003","VM15003","MR17130"};
+        final String[] VAID_RESERVANTE = {"HG16037","MT17005","1","1","1"};
         final String[] VANOMBREAULA = {"El espino","B11","C11","D11","F1"};
         final int[] VACUPO = {20,40,50,60,70};
 
@@ -2123,7 +2194,6 @@ public class ControlBD {
         Encargado encargado = new Encargado();
         for (int i = 0; i < 4; i++) {
             encargado.setId_reservante(Encargadoid_reservante[i]);
-            encargado.setId_usuario(Encargadoid_usuario[i]);
             encargado.setNombre_reservante(Encargadonombre_reservante[i]);
             encargado.setTipo_reservante(Encargadotipo_reservante[i]);
             insertar(encargado);
@@ -2179,12 +2249,9 @@ public class ControlBD {
             insertarLocal(local);
         }
 
-
-
         cerrar();
         return "Guardo Correctamente";
     }
-
 //================================ FINAL - Bloque de llenado de datos =============================================
 
 }

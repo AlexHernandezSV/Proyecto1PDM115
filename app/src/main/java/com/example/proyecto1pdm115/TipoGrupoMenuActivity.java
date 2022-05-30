@@ -24,7 +24,7 @@ public class TipoGrupoMenuActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(246, 166, 149));
+        listView.setBackgroundColor(Color.rgb(255, 255, 255));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
 
@@ -34,7 +34,7 @@ public class TipoGrupoMenuActivity extends ListActivity {
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
         String nombreValue=activities[position];
-        l.getChildAt(position).setBackgroundColor(Color.rgb(128, 128, 255));
+        l.getChildAt(position).setBackgroundColor(Color.rgb(255, 255, 255));
 
         try{
             Class<?> clase=Class.forName("com.example.proyecto1pdm115."+nombreValue);
