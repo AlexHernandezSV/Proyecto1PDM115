@@ -6,8 +6,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-public class DetalleActividadHorarioEliminarActivity extends Activity {
+
+public class DetalleActividadHorarioEliminarActivity extends AppCompatActivity {
 
     EditText editId_horario,editId_actividad;
     ControlBD controlhelper;

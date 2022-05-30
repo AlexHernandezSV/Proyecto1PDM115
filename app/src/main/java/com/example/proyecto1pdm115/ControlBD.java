@@ -987,9 +987,9 @@ public class ControlBD {
     public String eliminar(Escuela carrera) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(carrera,90)) {
+        if (verificarIntegridad(carrera,90)) {
             contador+=db.delete("MATERIA", "id_carrera='"+carrera.getId_carrera()+"'", null);
-        }*/
+        }
         contador+=db.delete("ESCUELA", "id_escuela='"+carrera.getId_escuela()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -1134,6 +1134,9 @@ public class ControlBD {
     public String eliminar(TipoActividad tipo){
         String regAfectados="filas afectadas= ";
         int contador=0;
+        if (verificarIntegridad(tipo,94)) {
+            contador+=db.delete("ACTIVIDAD", "id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'", null);
+        }
         String where="id_tipo_actividad='"+tipo.getId_tipo_actividad()+"'";
         contador+=db.delete("TIPO_ACTIVIDAD", where, null);
         regAfectados+=contador;
@@ -1628,6 +1631,18 @@ public class ControlBD {
                     return false;
             }
 
+            case 94: {
+                //Verificaciòn de que si existe tipo de actividad dentro de actividad al eliminar un tipo de actividad
+                TipoActividad escuela = (TipoActividad) dato;
+                Cursor c = db.query(true, "ACTIVIDAD", new String[]{
+                                "id_tipo_actividad"}, "id_tipo_actividad='" + escuela.getId_tipo_actividad() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+
 
             case 5: {
                 //Verificaciòn de que si existe MiembroUniversitario dentro de Coordina al eliminar un miembro
@@ -1691,7 +1706,7 @@ public class ControlBD {
                 return false;
             }
             case 9: {
-//verificar que al insertar Detalle_Oferta exista Actividad y Tipo_Grupo
+//verificar que al insertar Detalle_Oferta exista OFERTA_ACADEMIVA y LOCAL
                 DetalleOferta detalleOferta = (DetalleOferta) dato;
                 String[] id1 = {detalleOferta.getId_materias_activas()};
                 String[] id2 = {detalleOferta.getId_aula()};
@@ -2009,7 +2024,7 @@ public class ControlBD {
 
         //Tabla Detalle_Oferta
         final String[] DetalleOfertagrupo = {"G01","G02","G03"};
-        final String[] DetalleOfertaid_materias_activas = {"PRN115","FIR115","MEP115"}; //fk
+        final String[] DetalleOfertaid_materias_activas = {"0001","O002","0003","0004"}; //fk
         final String[] DetalleOfertaid_aula = {"B11","B21","B22"}; //fk
         final int[] DetalleOfertacant_inscritos = {100,80,70};
 

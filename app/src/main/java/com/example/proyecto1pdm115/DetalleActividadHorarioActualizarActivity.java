@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class DetalleActividadHorarioActualizarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class DetalleActividadHorarioActualizarActivity extends AppCompatActivity {
 
     ControlBD helper;
     EditText editId_horario;

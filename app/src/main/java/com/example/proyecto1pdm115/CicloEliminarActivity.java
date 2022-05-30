@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CicloEliminarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CicloEliminarActivity extends AppCompatActivity {
     EditText editId_ciclo;
     ControlBD controlhelper;
 
@@ -18,7 +20,7 @@ public class CicloEliminarActivity extends Activity {
         editId_ciclo=(EditText)findViewById(R.id.editId_ciclo);
     }
 
-    public void eliminarHorario(View v){
+    public void eliminarCiclo(View v){
         String regEliminadas;
         Ciclo ciclo=new Ciclo();
         ciclo.setId_ciclo(editId_ciclo.getText().toString());

@@ -67,14 +67,12 @@
         android:text="@string/fecha_fin" />
     <EditText
         android:id="@+id/editFecha_fin"
-        android:layout_width="100dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:enabled ="false"
+        android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
-        android:longClickable="false" />
-
-
+        android:longClickable="false"/>
 </LinearLayout>

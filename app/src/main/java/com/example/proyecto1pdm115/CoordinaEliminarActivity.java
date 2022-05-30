@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CoordinaEliminarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CoordinaEliminarActivity extends AppCompatActivity {
 
     EditText editId_actividad,editId_coordinador;
     ControlBD controlhelper;
