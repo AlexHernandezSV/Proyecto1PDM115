@@ -279,7 +279,7 @@ public class ControlBD {
 
                 //Tabla Local
                 db.execSQL("CREATE TABLE LOCAL (\n" +
-                        "ID_AULA              CHAR(6)              not null,\n" +
+                        "ID_AULA              CHAR(7)              not null,\n" +
                         "ID_RESERVANTE        CHAR(6),\n" +
                         "NOMBRE_AULA          VARCHAR2(50)         not null,\n" +
                         "CUPO                 INTEGER             not null,\n" +
@@ -1188,7 +1188,7 @@ public class ControlBD {
     public String eliminar(Actividad actividad) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(actividad,91)){
+        if (verificarIntegridad(actividad,91)){
             contador+=db.delete("DETALLE_ACTIVIDAD", "id_actividad='"+actividad.getId_actividad()+"'", null);
         }
         if (verificarIntegridad(actividad,92)){
@@ -1196,7 +1196,7 @@ public class ControlBD {
         }
         if (verificarIntegridad(actividad,93)){
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_actividad='"+actividad.getId_actividad()+"'", null);
-        }*/
+        }
         String where="id_actividad='"+actividad.getId_actividad()+"'";
         contador+=db.delete("ACTIVIDAD", where, null);
         regAfectados+=contador;
@@ -1600,7 +1600,7 @@ public class ControlBD {
             }
 
             case 91: {
-                //Verificaciòn de que si existe escuela dentro de materia al eliminar una escuela
+                //Verificaciòn de que si existe una ACTIVIDAD dentro de DETALLE ACTIVIDAD al eliminar una ACTIVIDAD
                 Actividad escuela = (Actividad) dato;
                 Cursor c = db.query(true, "DETALLE_ACTIVIDAD", new String[]{
                                 "id_actividad"}, "id_actividad='" + escuela.getId_actividad() + "'", null,
@@ -1925,7 +1925,7 @@ public class ControlBD {
 
             case 27:
             {
-                //verificar que al insertar Detalle Actividad exista el ID del Usuario
+                //verificar que al insertar Actividad exista el TIPO de ACTIVIDAD, la VALORACION, el ENCARGADO y el GRUPO
                 Actividad detalle = (Actividad) dato;
                 String[] id1 = {detalle.getId_tipo_actividad()};
                 String[] id2 = {detalle.getId_valoracion()};
@@ -2072,16 +2072,16 @@ public class ControlBD {
         final String[] Carreranombre_carrera = {"Ingenieria de Sistemas Informaticos", "Ingenieria Civil", "Ingenieria Industrial"};
 
         //Tabla Detalle_Oferta
-        final String[] DetalleOfertagrupo = {"G01","G02","G03"};
-        final String[] DetalleOfertaid_materias_activas = {"0001","O002","0003","0004"}; //fk
-        final String[] DetalleOfertaid_aula = {"B11","B21","B22"}; //fk
+        final String[] DetalleOfertagrupo = {"G01","G02","G03","G04","G05"};
+        final String[] DetalleOfertaid_materias_activas = {"0001","O002","0003","0004","0005"}; //fk
+        final String[] DetalleOfertaid_aula = {"B11","B21","B22","C11"}; //fk
         final int[] DetalleOfertacant_inscritos = {100,80,70};
 
 
         //Tabla Miembro_Universitario
-        final String[] Miembroid_coordinador = {"M01", "M02", "M03"};
-        final String[] Miembronombre_coordinador = {"Juan","Raquel","Pablo"};
-        final String[] Miembrotipo_miembro = {"Docente","Administrativo","Estudiante"};
+        final String[] Miembroid_coordinador = {"M01", "M02", "M03","M04","M05"};
+        final String[] Miembronombre_coordinador = {"Juan","Raquel","Pablo","Carlos","Monica"};
+        final String[] Miembrotipo_miembro = {"Docente","Administrativo","Estudiante","Docente","Docente"};
 
         //Tabla Ciclo
         final String[] cicloId_ciclo = {"1235","8546","4563","7893"};
@@ -2105,23 +2105,23 @@ public class ControlBD {
         final String[] Horariohasta_horario = {"9:45","11:30","15:00"};
 
         //Tabla Materia
-        final  String[] Materiaid_materia = {"MAT115","FIR315","TAD115","SYP115"};
-        final  String[] Materiaid_escuela = {"I10501","I10501","I10515","I10515"};
-        final  String[] Materianombre_materia = {"Matematicas 1","Fisica 3","Teoria Administrativa","Sistemas y Procedimientos"};
+        final  String[] Materiaid_materia = {"MAT115","FIR315","TAD115","SYP115","PRM315"};
+        final  String[] Materiaid_escuela = {"UCB","UCB","ESIS","ESIS","ESIS"};
+        final  String[] Materianombre_materia = {"Matematicas 1","Fisica 3","Teoria Administrativa","Sistemas y Procedimientos","Programacion 3"};
         final  int[] Materiaciclo_materia = {1,2,1,1};
 
         //Tabla Encargado
-        final  String[] Encargadoid_reservante = {"HG16037","MT17005","VM15003","MR17130"};
+        final  String[] Encargadoid_reservante = {"R001","R002","R003","R004"};
         final  String[] Encargadonombre_reservante = {"Alex","Jose","Maria","Zusana"};
         final  String[] Encargadotipo_reservante = {"Administrador","Administrador","Reservante","Reservante"};
 
         //Tabla Valoracion
-        final String[] VAid_valoracion = {"0001","O002","0003","0004","0005"};
+        final String[] VAid_valoracion = {"01","O2","03","04","05"};
         final String[] VAValoracion = {"Pesimo","Malo","Regular","Bueno","Excelente"};
 
         //Tabla Oferta Academica
         final String[] VAID_MATERIAS_ACTIVAS = {"0001","O002","0003","0004","0005"};
-        final String[] VAID_CICLO = {"1","1","1","1","1"};
+        final String[] VAID_CICLO = {"1235","1235","8546","4563","7893"};
         final String[] VAID_MATERIA = {"DSI115","SGG115","PDM115","MIP115","TAD115"};
         final String[] VAID_COORDINADOR = {"1","2","3","4","5"};
         final String[] VANOMBRES_MATERIAS_ACTIVAS = {"Diseño de sistemas","Sistemas de informacion geograficos","Programacion para moviles","Microprogramacion","Teoria Administrativa"};
