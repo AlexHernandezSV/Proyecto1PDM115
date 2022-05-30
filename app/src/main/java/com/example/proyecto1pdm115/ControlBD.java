@@ -338,11 +338,13 @@ public class ControlBD {
     public String insertar(Escuela escuela) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues esc = new ContentValues();
-        esc.put("id_escuela", escuela.getId_escuela());
-        esc.put("id_carrera", escuela.getId_carrera());
-        esc.put("nombre_escuela", escuela.getNombre_escuela());
-        contador=db.insert("ESCUELA", null, esc);
+        if(verificarIntegridad(escuela,25)) {
+            ContentValues esc = new ContentValues();
+            esc.put("id_escuela", escuela.getId_escuela());
+            esc.put("id_carrera", escuela.getId_carrera());
+            esc.put("nombre_escuela", escuela.getNombre_escuela());
+            contador = db.insert("ESCUELA", null, esc);
+        }
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -1192,9 +1194,6 @@ public class ControlBD {
         if (verificarIntegridad(actividad,93)){
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_actividad='"+actividad.getId_actividad()+"'", null);
         }*/
-        /*String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
-        where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
-        where=where+" AND grupo="+detalleOferta.getGrupo();*/
         String where="id_actividad='"+actividad.getId_actividad()+"'";
         contador+=db.delete("ACTIVIDAD", where, null);
         regAfectados+=contador;
@@ -1892,6 +1891,21 @@ public class ControlBD {
                 }
                 return false;
             }
+            case 25:
+            {
+                //verificar que al insertar ESCUELA exista el ID de la CARRERA
+                Escuela detalleActividad = (Escuela) dato;
+                String[] id1 = {detalleActividad.getId_carrera()};
+                abrir();
+                Cursor cursor1 = db.query("CARRERA", null, "id_carrera = ?", id1, null,
+                        null, null);
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+
             case 69: { //para actualizar escuela
                 //verificar que al modificar Escuela exista id de la escuela, y el id de la carrera
                 Escuela escuela1 = (Escuela) dato;
@@ -2200,12 +2214,9 @@ public class ControlBD {
             insertarLocal(local);
         }
 
-
-
         cerrar();
         return "Guardo Correctamente";
     }
-
 //================================ FINAL - Bloque de llenado de datos =============================================
 
 }
