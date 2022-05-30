@@ -418,10 +418,14 @@ public class ControlBD {
     public String insertar(Coordina coordina) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues coor = new ContentValues();
-        coor.put("id_actividad", coordina.getId_actividad());
-        coor.put("id_coordinador", coordina.getId_coordinador());
-        contador=db.insert("COORDINA", null, coor);
+
+        if(verificarIntegridad(coordina,13)){
+            ContentValues coor = new ContentValues();
+            coor.put("id_actividad", coordina.getId_actividad());
+            coor.put("id_coordinador", coordina.getId_coordinador());
+            contador=db.insert("COORDINA", null, coor);
+        }
+
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -673,6 +677,18 @@ public class ControlBD {
         db.update("CICLO", cv, "id_ciclo = ?", id);
         return "Registro Actualizado Correctamente";
     }
+
+    //Actualizar Coordinar
+    public String actualizar(Coordina coordina){
+        String[] id = {coordina.getId_actividad()};
+        ContentValues cv = new ContentValues();
+        cv.put("id_actividad", coordina.getId_actividad());
+        cv.put("id_coordinador", coordina.getId_coordinador());
+        db.update("COORDINA", cv, "id_actividad = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+
+
 
     //Actualizar Encargado
     public String actualizar(Encargado encargado){
