@@ -20,7 +20,7 @@ public class ValoracionMenuActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(20, 195, 142));
+        listView.setBackgroundColor(Color.rgb(255, 255, 255));
         ArrayAdapter<String> adapter = new
                 ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
         setListAdapter(adapter);
@@ -33,7 +33,7 @@ public class ValoracionMenuActivity extends ListActivity {
 
         String nombreValue=activities[position];
 
-        l.getChildAt(position).setBackgroundColor(Color.rgb(128, 128, 255));
+        l.getChildAt(position).setBackgroundColor(Color.rgb(255, 255, 255));
         //cambiar la ruta
         try{
             Class<?> clase=Class.forName("com.example.proyecto1pdm115."+nombreValue);

@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class OfertaAcademicaInsertarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class OfertaAcademicaInsertarActivity extends AppCompatActivity {
     ControlBD helper;
     EditText editidMatAct;
     EditText editidCiclo;

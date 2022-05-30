@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-public class ValoracionEliminarActivity extends Activity {
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ValoracionEliminarActivity extends AppCompatActivity {
 
     EditText editidVal;
     ControlBD controlhelper;

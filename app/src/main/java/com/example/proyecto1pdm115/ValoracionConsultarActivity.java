@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-public class ValoracionConsultarActivity extends Activity {
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ValoracionConsultarActivity extends AppCompatActivity {
     ControlBD helper;
     EditText editIdVal;
     EditText editVal;

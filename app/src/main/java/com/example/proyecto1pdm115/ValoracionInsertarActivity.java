@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class ValoracionInsertarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ValoracionInsertarActivity extends AppCompatActivity {
     ControlBD helper;
     EditText editidVal;
     EditText editVal;
