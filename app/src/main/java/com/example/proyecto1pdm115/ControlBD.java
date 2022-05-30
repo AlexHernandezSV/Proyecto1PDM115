@@ -234,9 +234,9 @@ public class ControlBD {
 
                 //Tabla DETALLE ACTIVIDAD
                 db.execSQL("create table DETALLE_ACTIVIDAD (\n" +
-                        "ID_DETALLE           VARCHAR2(4)              not null, \n" +
+                        "ID_DETALLE           VARCHAR2(6)              not null, \n" +
                         "ID_AULA           VARCHAR2(6)           not null,\n" +
-                        "ID_ACTIVIDAD       VARCHAR2(4)         not null,\n" +
+                        "ID_ACTIVIDAD       VARCHAR2(6)         not null,\n" +
                         "PARTICIPANTES        INTEGER              not null,\n" +
                         "primary key (ID_DETALLE),\n" +
                         "foreign key (ID_AULA)\n" +

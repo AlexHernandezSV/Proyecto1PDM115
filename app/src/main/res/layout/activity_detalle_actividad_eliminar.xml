@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLength="4"/>
+            android:maxLength="6"/>
     </TableRow>
 
     <TableRow>
@@ -42,7 +42,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:maxLength="4"/>
+            android:maxLength="6"/>
     </TableRow>
 
     <TableRow>
