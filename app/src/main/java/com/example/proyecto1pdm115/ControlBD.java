@@ -1178,6 +1178,24 @@ public class ControlBD {
         return regAfectados;
     }
 
+    //Eliminar DetalleOferta
+    public String eliminar(Actividad actividad) {
+        String regAfectados="filas afectadas= ";
+        int contador=0;
+        /*if (verificarIntegridad(detalleOferta,11)){
+            contador+=db.delete("ACTIVIDAD", "grupo='"+detalleOferta.getGrupo()+"'", null);
+        }
+        if (verificarIntegridad(detalleOferta,12)){
+            contador+=db.delete("TIPO_GRUPO", "grupo='"+detalleOferta.getGrupo()+"'", null);
+        }*/
+        /*String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
+        where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
+        where=where+" AND grupo="+detalleOferta.getGrupo();*/
+        String where="id_actividad='"+actividad.getId_actividad()+"'";
+        contador+=db.delete("ACTIVIDAD", where, null);
+        regAfectados+=contador;
+        return regAfectados;
+    }
 
 
 
