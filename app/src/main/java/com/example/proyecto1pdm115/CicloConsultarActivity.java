@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CicloConsultarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CicloConsultarActivity extends AppCompatActivity {
 
     ControlBD helper;
     EditText editId_ciclo;

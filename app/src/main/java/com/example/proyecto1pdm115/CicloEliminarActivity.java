@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CicloEliminarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CicloEliminarActivity extends AppCompatActivity {
     EditText editId_ciclo;
     ControlBD controlhelper;
 

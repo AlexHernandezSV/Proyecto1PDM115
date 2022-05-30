@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class DetalleActividadHorarioInsertarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class DetalleActividadHorarioInsertarActivity extends AppCompatActivity {
 
 
     ControlBD helper;

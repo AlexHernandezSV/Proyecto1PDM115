@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CoordinaConsultarActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CoordinaConsultarActivity extends AppCompatActivity {
 
 
     ControlBD helper;

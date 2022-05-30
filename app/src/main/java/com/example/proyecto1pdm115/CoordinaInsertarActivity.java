@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CoordinaInsertarActivity extends Activity {
+public class CoordinaInsertarActivity extends AppCompatActivity {
     ControlBD helper;
     EditText editId_actividad;
     EditText editId_coordinador;
