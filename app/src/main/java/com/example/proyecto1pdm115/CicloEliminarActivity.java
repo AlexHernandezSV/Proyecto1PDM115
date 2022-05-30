@@ -20,7 +20,7 @@ public class CicloEliminarActivity extends AppCompatActivity {
         editId_ciclo=(EditText)findViewById(R.id.editId_ciclo);
     }
 
-    public void eliminarHorario(View v){
+    public void eliminarCiclo(View v){
         String regEliminadas;
         Ciclo ciclo=new Ciclo();
         ciclo.setId_ciclo(editId_ciclo.getText().toString());
