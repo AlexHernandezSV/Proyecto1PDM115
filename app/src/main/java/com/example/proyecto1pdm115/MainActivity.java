@@ -12,8 +12,8 @@ import android.widget.Toast;
 public class MainActivity extends ListActivity {
 
 
-    String[] menu={"Tabla Carrera","Tabla Miembro universitario","Tabla Horarios","Tabla de Detalles de ofertas", "Tabla Materia","Tabla Detalle Actividad","Tabla Encargado","Tabla Ciclo","Tabla Coordina","Tabla Detalle Actividad Horario","Tabla Escuela","Tabla Actividad","Tabla Detalle Responsable","Tabla Tipo Actividad","Tabla Tipo Grupo","LLenar Base de Datos"};
-    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity", "DetalleOfertaMenuActivity","MateriaMenuActivity","DetalleActividadMenuActivity","EncargadoMenuActivity","CicloMenuActivity", "CoordinaMenuActivity","DetalleActividadHorarioMenuActivity","EscuelaMenuActivity","ActividadMenuActivity","DetalleResponsableMenuActivity","TipoActividadMenuActivity","TipoGrupoMenuActivity"};
+    String[] menu={"Tabla Carrera","Tabla Miembro universitario","Tabla Horarios","Tabla de Detalles de ofertas", "Tabla Materia","Tabla Detalle Actividad","Tabla Encargado","Tabla Ciclo","Tabla Coordina","Tabla Detalle Actividad Horario","Tabla Escuela","Tabla Actividad","Tabla Detalle Responsable","Tabla Tipo Actividad","Tabla Tipo Grupo","Tabla Valoracion","Tabla Oferta_Academica","Tabla Local","LLenar Base de Datos"};
+    String[] activities={"CarreraMenuActivity","MiembroUniversitarioMenuActivity","HorarioMenuActivity", "DetalleOfertaMenuActivity","MateriaMenuActivity","DetalleActividadMenuActivity","EncargadoMenuActivity","CicloMenuActivity", "CoordinaMenuActivity","DetalleActividadHorarioMenuActivity","EscuelaMenuActivity","ActividadMenuActivity","DetalleResponsableMenuActivity","TipoActividadMenuActivity","TipoGrupoMenuActivity","ValoracionMenuActivity","OfertaAcademicaMenuActivity","LocalMenuActivity"};
     ControlBD BDhelper;
 
     @Override
@@ -27,7 +27,7 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
-        if(position!=15){
+        if(position!=18){
             String nombreValue=activities[position];
             try{
                 Class<?>
