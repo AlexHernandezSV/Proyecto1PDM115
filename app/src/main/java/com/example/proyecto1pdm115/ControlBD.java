@@ -551,7 +551,7 @@ public class ControlBD {
     public String insertar(DetalleActividad detalleActividad){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        /*if(verificarIntegridad(detalleActividad,34))
+        if(verificarIntegridad(detalleActividad,34))
         {
             ContentValues detactividades = new ContentValues();
             detactividades.put("id_detalle", detalleActividad.getId_detalle_actividad());
@@ -566,7 +566,7 @@ public class ControlBD {
         }
         else {
             regInsertados=regInsertados+contador;
-        }*/
+        }
         return regInsertados;
     }
 
@@ -613,7 +613,7 @@ public class ControlBD {
     public String insertar(TipoGrupo tipoGrupo){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        /*if(verificarIntegridad(tipoGrupo,36))
+        if(verificarIntegridad(tipoGrupo,36))
         {
             ContentValues tipogrupos = new ContentValues();
             tipogrupos.put("id_tipo_grupo", tipoGrupo.getId_tipo_grupo());
@@ -627,7 +627,7 @@ public class ControlBD {
         }
         else {
             regInsertados=regInsertados+contador;
-        }*/
+        }
         return regInsertados;
     }
 
@@ -831,29 +831,29 @@ public class ControlBD {
 
     //Actualizar Detalle Actividad
     public String actualizar(DetalleActividad detalleActividad){
-        /*if(verificarIntegridad(detalleActividad, 35)){
+        if(verificarIntegridad(detalleActividad, 35)){
             String[] id = {detalleActividad.getId_detalle_actividad(), detalleActividad.getId_aula(),
                     detalleActividad.getId_actividad()};
             ContentValues cv = new ContentValues();
             cv.put("participantes", detalleActividad.getParticipantes());
             db.update("DETALLE_ACTIVIDAD", cv, "id_detalle = ? AND id_aula = ? AND id_actividad = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{*/
+        }else{
             return "Registro no Existe";
-        //}
+        }
     }
 
     //Actualizar Tipo Grupo
     public String actualizar(TipoGrupo tipoGrupo){
-        /*if(verificarIntegridad(tipoGrupo, 37)){
+        if(verificarIntegridad(tipoGrupo, 37)){
             String[] id = {tipoGrupo.getId_tipo_grupo(), tipoGrupo.getGrupo()};
             ContentValues cv = new ContentValues();
             cv.put("nombre_tipo_grupo", tipoGrupo.getNombre_tipo_grupo());
             db.update("TIPO_GRUPO", cv, "id_tipo_grupo = ? AND grupo = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{*/
+        }else{
         return "Registro no Existe";
-        //}
+        }
 
     }
 
