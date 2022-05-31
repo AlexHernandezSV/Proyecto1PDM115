@@ -1800,17 +1800,7 @@ public class ControlBD {
                 else
                     return false;
             }
-//            case 16:{
-//                Ciclo ciclo = (Ciclo)dato;
-//                Cursor cmat=db.query(true, "OFERTA_ACADEMICA", new String[] {
-//                                "codmateria" },
-//                        "codmateria='"+materia.getCodmateria()+"'",null, null, null, null, null);
-//                if(cmat.moveToFirst())
 //
-//                return true;
-//                else
-//                return false;
-//            }
             case 32:
             {
                 //verificar que al Eliminar Encargado elimine regristros en actividad
