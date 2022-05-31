@@ -2133,6 +2133,11 @@ public class ControlBD {
         final String[] VANOMBREAULA = {"El espino","B11","C11","D11","F1"};
         final int[] VACUPO = {20,40,50,60,70};
 
+        //Tabla Escuela
+        final String[] ID_ESCUELA = {"ESIS","UCB","EMC"};
+        final String[] ID_CARRERA = {"I10515","I10501","I10504"};
+        final String[] NOMBRE_ESCUELA = {"Escuela de sistemas","Unidad de ciencias basicas","Escuela de Ing. Mecanica"};
+
 
         abrir();
         db.execSQL("DELETE FROM CARRERA");
@@ -2147,6 +2152,15 @@ public class ControlBD {
         db.execSQL("DELETE FROM VALORACION");
         db.execSQL("DELETE FROM OFERTA_ACADEMICA");
         db.execSQL("DELETE FROM LOCAL");
+
+
+        Escuela escuela=new Escuela();
+        for (int i = 0; i < 3; i++) {
+            escuela.setId_escuela(ID_ESCUELA[i]);
+            escuela.setId_carrera(ID_CARRERA[i]);
+            escuela.setId_carrera(NOMBRE_ESCUELA[i]);
+            insertar(escuela);
+        }
 
 
         Carrera carrera = new Carrera();
