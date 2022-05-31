@@ -22,7 +22,7 @@ public class CoordinaInsertarActivity extends AppCompatActivity {
 
     }
 
-    public void insertarHorario(View v) {
+    public void insertarCoordina(View v) {
         String id_actividad=editId_actividad.getText().toString();
         String id_coordinador= editId_coordinador.getText().toString();
         String regInsertados;

@@ -1192,7 +1192,7 @@ public class ControlBD {
             contador+=db.delete("DETALLE_ACTIVIDAD", "id_actividad='"+actividad.getId_actividad()+"'", null);
         }
         if (verificarIntegridad(actividad,92)){
-            contador+=db.delete("COORDINADOR", "id_actividad='"+actividad.getId_actividad()+"'", null);
+            contador+=db.delete("COORDINA", "id_actividad='"+actividad.getId_actividad()+"'", null);
         }
         if (verificarIntegridad(actividad,93)){
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_actividad='"+actividad.getId_actividad()+"'", null);

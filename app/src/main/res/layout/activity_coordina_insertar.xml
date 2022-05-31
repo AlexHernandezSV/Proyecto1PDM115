@@ -9,7 +9,7 @@
         <EditText
             android:id="@+id/editId_actividad"
             android:inputType="text"
-            android:maxLength="3" />
+            android:maxLength="6" />
     </TableRow>
     <TableRow>
         <TextView android:text="@string/id_coordinador" />
