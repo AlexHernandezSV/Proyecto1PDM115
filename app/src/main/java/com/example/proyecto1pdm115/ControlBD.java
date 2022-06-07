@@ -359,15 +359,15 @@ public class ControlBD {
     public String insertar(DetalleOferta detalleOferta) {
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        //if(verificarIntegridad(detalleOferta,9))
-        //{
+        if(verificarIntegridad(detalleOferta,9))
+        {
             ContentValues detalleOfertas = new ContentValues();
             detalleOfertas.put("grupo", detalleOferta.getGrupo());
             detalleOfertas.put("id_materias_activas", detalleOferta.getId_materias_activas());
             detalleOfertas.put("id_aula", detalleOferta.getId_aula());
             detalleOfertas.put("cant_inscritos", detalleOferta.getCant_inscritos());
             contador=db.insert("DETALLE_OFERTA", null, detalleOfertas);
-        //}
+        }
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -2063,9 +2063,9 @@ public class ControlBD {
 
         //Tabla Detalle_Oferta
         final String[] DetalleOfertagrupo = {"G01","G02","G03","G04","G05"};
-        final String[] DetalleOfertaid_materias_activas = {"0001","O002","0003","0004","0005"}; //fk
-        final String[] DetalleOfertaid_aula = {"B11","B21","B22","C11"}; //fk
-        final int[] DetalleOfertacant_inscritos = {100,80,70};
+        final String[] DetalleOfertaid_materias_activas = {"0001","0002","0003","0004","0005"}; //fk
+        final String[] DetalleOfertaid_aula = {"0001","0002","0003","0004","0005"}; //fk
+        final int[] DetalleOfertacant_inscritos = {100,80,70,90,80};
 
 
         //Tabla Miembro_Universitario
@@ -2091,8 +2091,8 @@ public class ControlBD {
 
         //Tabla Horario
         final String[] Horarioid_horario = {"H01","H02","H03"};
-        final String[] Horariodesde_horario = {"8:00","9:50","13:20"};
-        final String[] Horariohasta_horario = {"9:45","11:30","15:00"};
+        final String[] Horariodesde_horario = {"04/06/2019","07/03/2019","17/09/2019"};
+        final String[] Horariohasta_horario = {"04/06/2019","07/03/2019","17/09/2019"};
 
         //Tabla Materia
         final  String[] Materiaid_materia = {"MAT115","FIR315","TAD115","SYP115","PRM315"};
@@ -2110,7 +2110,7 @@ public class ControlBD {
         final String[] VAValoracion = {"Pesimo","Malo","Regular","Bueno","Excelente"};
 
         //Tabla Oferta Academica
-        final String[] VAID_MATERIAS_ACTIVAS = {"0001","O002","0003","0004","0005"};
+        final String[] VAID_MATERIAS_ACTIVAS = {"0001","0002","0003","0004","0005"};
         final String[] VAID_CICLO = {"1235","1235","8546","4563","7893"};
         final String[] VAID_MATERIA = {"DSI115","SGG115","PDM115","MIP115","TAD115"};
         final String[] VAID_COORDINADOR = {"1","2","3","4","5"};
@@ -2118,7 +2118,7 @@ public class ControlBD {
         final String[] VACICLO_MATERIA_ACTIVA = {"1","1","1","1","1"};
 
         //Tabla Local
-        final String[] VAID_AULA = {"0001","O002","0003","VM15003","MR17130"};
+        final String[] VAID_AULA = {"0001","O002","0003","0004","0005"};
         final String[] VAID_RESERVANTE = {"HG16037","MT17005","1","1","1"};
         final String[] VANOMBREAULA = {"El espino","B11","C11","D11","F1"};
         final int[] VACUPO = {20,40,50,60,70};
@@ -2160,14 +2160,7 @@ public class ControlBD {
             insertar(carrera);
         }
 
-        DetalleOferta detalleOferta = new DetalleOferta();
-        for (int i = 0; i < 3; i++) {
-            detalleOferta.setGrupo(DetalleOfertagrupo[i]);
-            detalleOferta.setId_materias_activas(DetalleOfertaid_materias_activas[i]);
-            detalleOferta.setId_aula(DetalleOfertaid_aula[i]);
-            detalleOferta.setCant_inscritos(DetalleOfertacant_inscritos[i]);
-            insertar(detalleOferta);
-        }
+     
 
         MiembroUniversitario miembroUniversitario = new MiembroUniversitario();
         for (int i = 0; i < 3; i++) {
@@ -2251,6 +2244,15 @@ public class ControlBD {
 
 
             insertarLocal(local);
+        }
+
+        DetalleOferta detalleOferta = new DetalleOferta();
+        for (int i = 0; i < 5; i++) {
+            detalleOferta.setGrupo(DetalleOfertagrupo[i]);
+            detalleOferta.setId_materias_activas(DetalleOfertaid_materias_activas[i]);
+            detalleOferta.setId_aula(DetalleOfertaid_aula[i]);
+            detalleOferta.setCant_inscritos(DetalleOfertacant_inscritos[i]);
+            insertar(detalleOferta);
         }
 
         cerrar();
