@@ -781,14 +781,19 @@ public class ControlBD {
 
 //    //Actualizar Ciclo
     public String actualizar(Ciclo ciclo){
-        String[] id = {ciclo.getId_ciclo()};
-        ContentValues cv = new ContentValues();
-        cv.put("id_ciclo", ciclo.getId_ciclo());
-        cv.put("ciclo", ciclo.getCiclo());
-        cv.put("fecha_inicio", ciclo.getFecha_inicio());
-        cv.put("fecha_fin", ciclo.getFecha_fin());
-        db.update("CICLO", cv, "id_ciclo = ?", id);
-        return "Registro Actualizado Correctamente";
+        if(verificarIntegridad(ciclo,70)){
+            String[] id = {ciclo.getId_ciclo()};
+            ContentValues cv = new ContentValues();
+            cv.put("id_ciclo", ciclo.getId_ciclo());
+            cv.put("ciclo", ciclo.getCiclo());
+            cv.put("fecha_inicio", ciclo.getFecha_inicio());
+            cv.put("fecha_fin", ciclo.getFecha_fin());
+            db.update("CICLO", cv, "id_ciclo = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else {
+            return "Registro no Existe";
+        }
+
     }
 
     //Actualizar Coordinar
@@ -1758,6 +1763,19 @@ public class ControlBD {
                     return true;
                 else
                     return false;
+            }
+
+            case 70: {
+                //verificar que al modificar Ciclo existan el id
+                Ciclo ciclo1 = (Ciclo) dato;
+                String[] ids = {ciclo1.getId_ciclo()};
+                abrir();
+                Cursor c = db.query("CICLO", null, "id_ciclo = ? ", ids, null, null, null);
+                if (c.moveToFirst()) {
+                //Se encontraron datos
+                    return true;
+                }
+                return false;
             }
 
             case 13:{
