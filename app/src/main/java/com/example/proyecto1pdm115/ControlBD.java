@@ -2125,12 +2125,13 @@ public class ControlBD {
 
         //Tabla Escuela
         final String[] ID_ESCUELA = {"ESIS","UCB","EMC"};
-        final String[] ID_CARRERA = {"I10515","I10501","I10504"};
+        final String[] ID_CARRERA = {"I10515","I10501","I10502"};
         final String[] NOMBRE_ESCUELA = {"Escuela de sistemas","Unidad de ciencias basicas","Escuela de Ing. Mecanica"};
 
 
         abrir();
         db.execSQL("DELETE FROM CARRERA");
+        db.execSQL("DELETE FROM ESCUELA");
         db.execSQL("DELETE FROM DETALLE_OFERTA");
         db.execSQL("DELETE FROM MIEMBRO_UNIVERSITARIO");
         db.execSQL("DELETE FROM HORARIO");
@@ -2144,13 +2145,7 @@ public class ControlBD {
         db.execSQL("DELETE FROM LOCAL");
 
 
-        Escuela escuela=new Escuela();
-        for (int i = 0; i < 3; i++) {
-            escuela.setId_escuela(ID_ESCUELA[i]);
-            escuela.setId_carrera(ID_CARRERA[i]);
-            escuela.setId_carrera(NOMBRE_ESCUELA[i]);
-            insertar(escuela);
-        }
+
 
 
         Carrera carrera = new Carrera();
@@ -2160,7 +2155,13 @@ public class ControlBD {
             insertar(carrera);
         }
 
-     
+        Escuela escuela=new Escuela();
+        for (int i = 0; i < 3; i++) {
+            escuela.setId_escuela(ID_ESCUELA[i]);
+            escuela.setId_carrera(ID_CARRERA[i]);
+            escuela.setNombre_escuela(NOMBRE_ESCUELA[i]);
+            insertar(escuela);
+        }
 
         MiembroUniversitario miembroUniversitario = new MiembroUniversitario();
         for (int i = 0; i < 3; i++) {
