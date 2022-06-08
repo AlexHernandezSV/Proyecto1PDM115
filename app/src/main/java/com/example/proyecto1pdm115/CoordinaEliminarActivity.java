@@ -36,7 +36,7 @@ public class CoordinaEliminarActivity extends AppCompatActivity {
     }
     public void limpiar(View v){
         editId_actividad.setText("");
-        editId_actividad.setText("");
+        editId_coordinador.setText("");
 
     }
 }

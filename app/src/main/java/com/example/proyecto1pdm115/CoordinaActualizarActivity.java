@@ -27,7 +27,7 @@ public class CoordinaActualizarActivity extends AppCompatActivity {
         public void actualizarCoordina(View v) {
         Coordina coordina = new Coordina();
         coordina.setId_actividad(editId_actividad.getText().toString());
-        coordina.setId_coordinador(editId_actividad.getText().toString());
+        coordina.setId_coordinador(editId_coordinador.getText().toString());
         helper.abrir();
         String estado = helper.actualizar(coordina);
         helper.cerrar();

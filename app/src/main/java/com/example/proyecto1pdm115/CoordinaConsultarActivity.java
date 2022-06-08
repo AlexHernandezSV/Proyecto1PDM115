@@ -36,7 +36,7 @@ public class CoordinaConsultarActivity extends AppCompatActivity {
     }
     public void limpiarTexto(View v) {
         editId_actividad.setText("");
-        editId_actividad.setText("");
+        editId_coordinador.setText("");
 
     }
 }
