@@ -2128,6 +2128,9 @@ public class ControlBD {
         final String[] ID_CARRERA = {"I10515","I10501","I10502"};
         final String[] NOMBRE_ESCUELA = {"Escuela de sistemas","Unidad de ciencias basicas","Escuela de Ing. Mecanica"};
 
+        //Tabla Tipo Actividad
+        final String[] ID_TIPO_ACTIVIDAD={"EXP","EXC","LAB"};
+        final String[] NOM_TIPO_ACTIVIDAD={"Examen parcial","Examen corto","Laboratorio"};
 
         abrir();
         db.execSQL("DELETE FROM CARRERA");
@@ -2143,6 +2146,7 @@ public class ControlBD {
         db.execSQL("DELETE FROM VALORACION");
         db.execSQL("DELETE FROM OFERTA_ACADEMICA");
         db.execSQL("DELETE FROM LOCAL");
+        db.execSQL("DELETE FROM TIPO_ACTIVIDAD");
 
 
 
@@ -2161,6 +2165,13 @@ public class ControlBD {
             escuela.setId_carrera(ID_CARRERA[i]);
             escuela.setNombre_escuela(NOMBRE_ESCUELA[i]);
             insertar(escuela);
+        }
+
+        TipoActividad tipoActividad = new TipoActividad();
+        for (int i = 0; i < 3; i++) {
+            tipoActividad.setId_tipo_actividad(ID_TIPO_ACTIVIDAD[i]);
+            tipoActividad.setNombre_tipo_actividad(NOM_TIPO_ACTIVIDAD[i]);
+            insertar(tipoActividad);
         }
 
         MiembroUniversitario miembroUniversitario = new MiembroUniversitario();
