@@ -2073,6 +2073,11 @@ public class ControlBD {
         final String[] Miembronombre_coordinador = {"Juan","Raquel","Pablo","Carlos","Monica"};
         final String[] Miembrotipo_miembro = {"Docente","Administrativo","Estudiante","Docente","Docente"};
 
+        //Tabla Detalle Responsable
+        final String[] ID_DETALLE_RESPONSABLE = {"R1","R2","R3"};
+        final String[] ID_COORDINADOR = {"M01","M03","M04"};
+        final String[] NOMB_TIPO_RESPONSABLE = {"Coordinador","Ayudante","Coordinador"};
+
         //Tabla Ciclo
         final String[] cicloId_ciclo = {"1235","8546","4563","7893"};
         final String[] ciclo_ciclo = {"01","02","01","02"};
@@ -2132,6 +2137,8 @@ public class ControlBD {
         final String[] ID_TIPO_ACTIVIDAD={"EXP","EXC","LAB"};
         final String[] NOM_TIPO_ACTIVIDAD={"Examen parcial","Examen corto","Laboratorio"};
 
+
+
         abrir();
         db.execSQL("DELETE FROM CARRERA");
         db.execSQL("DELETE FROM ESCUELA");
@@ -2147,6 +2154,7 @@ public class ControlBD {
         db.execSQL("DELETE FROM OFERTA_ACADEMICA");
         db.execSQL("DELETE FROM LOCAL");
         db.execSQL("DELETE FROM TIPO_ACTIVIDAD");
+        db.execSQL("DELETE FROM DETALLE_RESPONSABLE");
 
 
 
@@ -2175,11 +2183,19 @@ public class ControlBD {
         }
 
         MiembroUniversitario miembroUniversitario = new MiembroUniversitario();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             miembroUniversitario.setId_coordinador(Miembroid_coordinador[i]);
             miembroUniversitario.setNombre_coordinador(Miembronombre_coordinador[i]);
             miembroUniversitario.setTipo_miembro(Miembrotipo_miembro[i]);
             insertar(miembroUniversitario);
+        }
+
+        DetalleResponsable detalleResponsable = new DetalleResponsable();
+        for (int i =0; i<3; i++) {
+            detalleResponsable.setId_detalle_responsable(ID_DETALLE_RESPONSABLE[i]);
+            detalleResponsable.setId_coordinador(ID_COORDINADOR[i]);
+            detalleResponsable.setNomb_tipo_responsable(NOMB_TIPO_RESPONSABLE[i]);
+            insertar(detalleResponsable);
         }
 
         Horario horario = new Horario();
