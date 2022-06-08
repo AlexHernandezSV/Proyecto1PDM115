@@ -26,11 +26,10 @@ public class DetalleActividadHorarioConsultarActivity extends AppCompatActivity 
     }
     public void consultarDetalleActividadHorario(View v) {
         helper.abrir();
-        DetalleActividadHorario detalleActividadHorario = helper.consultarDetalleActividadHorario(editId_horario.getText().toString(),
-                editId_actividad.getText().toString());
+        DetalleActividadHorario detalleActividadHorario = helper.consultarDetalleActividadHorario(editId_horario.getText().toString());
         helper.cerrar();
         if(detalleActividadHorario == null)
-            Toast.makeText(this, "DetalleActividadHorario no registrado",
+            Toast.makeText(this, "detalle Actividad Horario con ID" + editId_horario.getText().toString() + " no encontrado",
                     Toast.LENGTH_LONG).show();
         else{
             editId_actividad.setText(String.valueOf(detalleActividadHorario.getId_actividad()));

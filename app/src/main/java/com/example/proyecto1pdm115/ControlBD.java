@@ -1327,9 +1327,10 @@ public class ControlBD {
     }
 
     //Consultar DetalleActividadHorario
-    public DetalleActividadHorario consultarDetalleActividadHorario(String id_horario,String id_actividad){
-        String[] id = {id_horario, id_actividad};
-        Cursor cursor = db.query("DETALLE_ACTIVIDAD_HORARIO", camposDetalleActividadHorario, "id_horario = ? AND id_actividad = ?", id, null, null, null);
+    public DetalleActividadHorario consultarDetalleActividadHorario(String id_horario){
+        String[] id = {id_horario};
+        Cursor cursor = db.query("DETALLE_ACTIVIDAD_HORARIO", camposDetalleActividadHorario, "id_horario = ?",
+                id, null, null, null);
         if(cursor.moveToFirst()){
             DetalleActividadHorario detalleActividadHorario = new DetalleActividadHorario();
             detalleActividadHorario.setId_horario(cursor.getString(0));
@@ -1340,21 +1341,6 @@ public class ControlBD {
         }
     }
 
-
-    //Consultar Detalle_Actividad_Horario
-    public DetalleActividadHorario consultarDetalleActividadHorario(String id_horario){
-        String[] id = {id_horario};
-        Cursor cursor = db.query("DETALLE_ACTIVIDAD_HORARIO", camposDetalleActividadHorario, "id_horario = ?",
-                id, null, null, null);
-        if(cursor.moveToFirst()){
-            DetalleActividadHorario detalleActividadHorario= new DetalleActividadHorario();
-            detalleActividadHorario.setId_horario(cursor.getString(0));
-            detalleActividadHorario.setId_actividad(cursor.getString(1));
-            return detalleActividadHorario;
-        }else{
-            return null;
-        }
-    }
 
     //Consultar Encargado
     public Encargado consultarEncargado(String id_reservante){
