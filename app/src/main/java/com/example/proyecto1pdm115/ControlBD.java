@@ -2155,6 +2155,19 @@ public class ControlBD {
         final String[] ID_TIPO_ACTIVIDAD={"EXP","EXC","LAB"};
         final String[] NOM_TIPO_ACTIVIDAD={"Examen parcial","Examen corto","Laboratorio"};
 
+        //Tabla Actividad
+        final String[] ID_ACTIVIDAD = {"MAT1EX","FIR3LB"};
+        final String[] TIPO_ACTIVIDAD = {"EXP","LAB"};
+        final String[] VALORACION = {"03","04"};
+        final String[] RESERVANTE = {"R001","R002"};
+        final String[] GRUPO = {"G01","G03"};
+        final String[] DESCRIPCION = {"Examen parcial de matematica 1","Laboratorio 2 de fisica 3"};
+        final String[] ESTADO = {"En linea","Presencial"};
+        final String[] FECHA_ACTIVIDAD = {"08/06/22","20/06/22"};
+        final String[] DESDE_ACTIVIDAD = {"8:00","13:00"};
+        final String[] HASTA_ACTIVIDAD = {"10:00","15:00"};
+
+
 
 
         abrir();
@@ -2173,7 +2186,7 @@ public class ControlBD {
         db.execSQL("DELETE FROM LOCAL");
         db.execSQL("DELETE FROM TIPO_ACTIVIDAD");
         db.execSQL("DELETE FROM DETALLE_RESPONSABLE");
-
+        db.execSQL("DELETE FROM ACTIVIDAD");
 
 
 
@@ -2270,6 +2283,8 @@ public class ControlBD {
             valoracion.setValoracion(VAValoracion[i]);
             insertarValoracion(valoracion);
         }
+
+
         OfertaAcademica oferta = new OfertaAcademica();
         for(int i=0;i<5;i++){
             oferta.setIdMateriasActivas(VAID_MATERIAS_ACTIVAS[i]);
@@ -2299,6 +2314,22 @@ public class ControlBD {
             detalleOferta.setId_aula(DetalleOfertaid_aula[i]);
             detalleOferta.setCant_inscritos(DetalleOfertacant_inscritos[i]);
             insertar(detalleOferta);
+        }
+
+        Actividad actividad = new Actividad();
+        for(int i=0;i<2;i++){
+            actividad.setId_actividad(ID_ACTIVIDAD[i]);
+            actividad.setId_tipo_actividad(TIPO_ACTIVIDAD[i]);
+            actividad.setId_valoracion(VALORACION[i]);
+            actividad.setId_reservante(RESERVANTE[i]);
+            actividad.setGrupo(GRUPO[i]);
+            actividad.setDescripcion(DESCRIPCION[i]);
+            actividad.setEstado(ESTADO[i]);
+            actividad.setFecha_actividad(FECHA_ACTIVIDAD[i]);
+            actividad.setDesde_actividad(DESDE_ACTIVIDAD[i]);
+            actividad.setHasta_actividad(HASTA_ACTIVIDAD[i]);
+            insertar(actividad);
+
         }
 
         cerrar();
