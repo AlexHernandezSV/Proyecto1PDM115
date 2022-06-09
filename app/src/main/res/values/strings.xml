@@ -75,5 +75,16 @@
     <string name="eliminarLoc">Eliminar</string>
     <string name="consultarLoc">Consultar</string>
     <string name="LimpiarLoc">Limpiar</string>
+    <string name="inSesion">Inicio de Sesión</string>
+    <string name="nomUsuario">Nombre de usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="confcontraseña">Confirmar contraseña</string>
+    <string name="iniciarSesion">INICIAR SESIÓN</string>
+    <string name="resgistrar">REGISTRAR</string>
+    <string name="regisUsuario">Registro de usuario</string>
+    <string name="yaCuenta">YA POSEO UNA CUENTA</string>
+
+
+
 
 </resources>

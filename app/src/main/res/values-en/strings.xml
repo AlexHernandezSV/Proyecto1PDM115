@@ -76,4 +76,16 @@
     <string name="eliminarLoc">Delete</string>
     <string name="consultarLoc">Consult</string>
     <string name="LimpiarLoc">Clean up</string>
+    <string name="inSesion">Login</string>
+    <string name="nomUsuario">Username</string>
+    <string name="contraseña">Password</string>
+    <string name="confcontraseña">Confirm Password</string>
+    <string name="iniciarSesion">LOG IN</string>
+    <string name="resgistrar">CHECK IN</string>
+    <string name="regisUsuario">User register</string>
+    <string name="yaCuenta">I ALREADY HAVE AN ACCOUNT</string>
+
+
+
+
 </resources>
