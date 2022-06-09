@@ -34,9 +34,9 @@ public class DetalleActividadActualizarActivity extends AppCompatActivity {
         detalleActividad.setId_actividad(editId_actividad.getText().toString());
         detalleActividad.setParticipantes(Integer.valueOf(editParticipantes.getText().toString()));
         helper.abrir();
-        //String estado = helper.actualizar(detalleActividad);
+        String estado = helper.actualizar(detalleActividad);
         helper.cerrar();
-        //Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
     }
 
     public void limpiarTexto(View v) {

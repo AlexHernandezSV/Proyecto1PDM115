@@ -2127,8 +2127,8 @@ public class ControlBD {
         final String[] VACICLO_MATERIA_ACTIVA = {"1","1","1","1","1"};
 
         //Tabla Local
-        final String[] VAID_AULA = {"0001","O002","0003","0004","0005"};
-        final String[] VAID_RESERVANTE = {"HG16037","MT17005","1","1","1"};
+        final String[] VAID_AULA = {"0001","0002","0003","0004","0005"};
+        final String[] VAID_RESERVANTE = {"HG16037","MT17005","CR11053","RM17032","TG14055"};
         final String[] VANOMBREAULA = {"El espino","B11","C11","D11","F1"};
         final int[] VACUPO = {20,40,50,60,70};
 
@@ -2153,6 +2153,17 @@ public class ControlBD {
         final String[] DESDE_ACTIVIDAD = {"8:00","13:00"};
         final String[] HASTA_ACTIVIDAD = {"10:00","15:00"};
 
+        //Tabla Detalle Actividad
+        final  String[] DTActividadid_detalle = {"000001","000002","000003","000004","000005"};
+        final  String[] DTActividadid_aula = {"0001","0002","0003","0004","0005"};
+        final  String[] DTActividadid_actividad = {"MAT1EX","FIR3LB","MAT1EX","FIR3LB","MAT1EX"};
+        final  int[] DTActividad_participantes = {50,80,60,40,50};
+
+        //Tabla Tipo Grupo
+        final  String[] TPGrupoid_tipo_grupo = {"D1","D2","D3","T1","L1"};
+        final  String[] TPGrupo_grupo = {"G01","G02","G03","G04","G05"};
+        final  String[] TPGruponombre_grupo = {"Discusion 1","Discusion 2","Discusion 3","Teorico 1","Laboratorio 1"};
+
 
 
 
@@ -2173,7 +2184,8 @@ public class ControlBD {
         db.execSQL("DELETE FROM TIPO_ACTIVIDAD");
         db.execSQL("DELETE FROM DETALLE_RESPONSABLE");
         db.execSQL("DELETE FROM ACTIVIDAD");
-
+        db.execSQL("DELETE FROM DETALLE_ACTIVIDAD");
+        db.execSQL("DELETE FROM TIPO_GRUPO");
 
 
 
@@ -2316,6 +2328,23 @@ public class ControlBD {
             actividad.setHasta_actividad(HASTA_ACTIVIDAD[i]);
             insertar(actividad);
 
+        }
+
+        DetalleActividad detalleActividad = new DetalleActividad();
+        for (int i = 0; i < 5; i++) {
+            detalleActividad.setId_detalle_actividad(DTActividadid_detalle[i]);
+            detalleActividad.setId_aula(DTActividadid_aula[i]);
+            detalleActividad.setId_actividad(DTActividadid_actividad[i]);
+            detalleActividad.setParticipantes(DTActividad_participantes[i]);
+            insertar(detalleActividad);
+        }
+
+        TipoGrupo tipoGrupo = new TipoGrupo();
+        for (int i = 0; i < 5; i++) {
+            tipoGrupo.setId_tipo_grupo(TPGrupoid_tipo_grupo[i]);
+            tipoGrupo.setGrupo(TPGrupo_grupo[i]);
+            tipoGrupo.setNombre_tipo_grupo(TPGruponombre_grupo[i]);
+            insertar(tipoGrupo);
         }
 
         cerrar();
