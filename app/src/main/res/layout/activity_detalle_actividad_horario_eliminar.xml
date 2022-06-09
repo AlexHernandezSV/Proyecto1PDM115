@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:text="@string/id_horario"/>
         <EditText
-            android:id="@+id/editHorario"
+            android:id="@+id/editId_horario"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="text"

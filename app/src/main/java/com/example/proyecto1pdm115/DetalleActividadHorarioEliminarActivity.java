@@ -11,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DetalleActividadHorarioEliminarActivity extends AppCompatActivity {
 
-    EditText editId_horario,editId_actividad;
+    EditText editId_horario;
+    EditText editId_actividad;
     ControlBD controlhelper;
 
     @Override
