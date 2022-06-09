@@ -989,9 +989,9 @@ public class ControlBD {
     public String eliminar(Carrera carrera) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(carrera,4)) {
+        if (verificarIntegridad(carrera,4)) {
             contador+=db.delete("ESCUELA", "id_carrera='"+carrera.getId_carrera()+"'", null);
-        }*/
+        }
         contador+=db.delete("CARRERA", "id_carrera='"+carrera.getId_carrera()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -1013,12 +1013,12 @@ public class ControlBD {
     public String eliminar(DetalleOferta detalleOferta) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(detalleOferta,11)){
+        if (verificarIntegridad(detalleOferta,11)){
             contador+=db.delete("ACTIVIDAD", "grupo='"+detalleOferta.getGrupo()+"'", null);
         }
         if (verificarIntegridad(detalleOferta,12)){
             contador+=db.delete("TIPO_GRUPO", "grupo='"+detalleOferta.getGrupo()+"'", null);
-        }*/
+        }
         /*String where="id_materias_activas='"+detalleOferta.getId_materias_activas()+"'";
         where=where+" AND id_aula='"+detalleOferta.getId_aula()+"'";
         where=where+" AND grupo="+detalleOferta.getGrupo();*/
@@ -1035,12 +1035,12 @@ public class ControlBD {
     public String eliminar(MiembroUniversitario miembroUniversitario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(miembroUniversitario,5)) {
+        if (verificarIntegridad(miembroUniversitario,5)) {
             contador+=db.delete("COORDINA", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         }
         if (verificarIntegridad(miembroUniversitario,6)) {
                 contador+=db.delete("DETALLE_RESPONSABLE", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
-        }*/
+        }
         contador+=db.delete("MIEMBRO_UNIVERSITARIO", "id_coordinador='"+miembroUniversitario.getId_coordinador()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -1050,9 +1050,9 @@ public class ControlBD {
     public String eliminar(Horario horario) {
         String regAfectados="filas afectadas= ";
         int contador=0;
-        /*if (verificarIntegridad(horario,7)) {
+        if (verificarIntegridad(horario,7)) {
             contador+=db.delete("DETALLE_ACTIVIDAD_HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
-        }*/
+        }
         contador+=db.delete("HORARIO", "id_horario='"+horario.getId_horario()+"'", null);
         regAfectados+=contador;
         return regAfectados;
