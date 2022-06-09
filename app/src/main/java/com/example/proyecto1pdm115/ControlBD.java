@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 public class ControlBD {
 
 //================================ INICIO - Bloque de definición de campos de tablas =============================================
@@ -653,11 +654,13 @@ public class ControlBD {
     }
     //Insertar Oferta Academica
 
-    public String insertarOfertaAcademica(OfertaAcademica oferta){
+    public String insertarOfertaAcademica(OfertaAcademica oferta) {
 
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
-        ContentValues ofer = new ContentValues();
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+       if (verificarIntegridad(oferta, 44))
+        {
+            ContentValues ofer = new ContentValues();
         ofer.put("ID_MATERIAS_ACTIVAS", oferta.getIdMateriasActivas());
         ofer.put("ID_CICLO", oferta.getIdCiclo());
         ofer.put("ID_MATERIA", oferta.getIdMateria());
@@ -665,8 +668,8 @@ public class ControlBD {
         ofer.put("NOMBRE_MATERIAS_ACTIVAS", oferta.getNombreMateriasActivas());
         ofer.put("CICLO_MATERIA_ACTIVA", oferta.getCicloMateriaActiva());
 
-        contador=db.insert("OFERTA_ACADEMICA", null, ofer);
-
+        contador = db.insert("OFERTA_ACADEMICA", null, ofer);
+    }
         if(contador==-1 || contador==0)
         {
             regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
@@ -682,18 +685,19 @@ public class ControlBD {
 
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
-        ContentValues loc = new ContentValues();
-        loc.put("ID_AULA", local.getIdAula());
-        loc.put("ID_RESERVANTE", local.getIdReservante());
-        loc.put("NOMBRE_AULA", local.getNombreAula());
-        loc.put("CUPO", local.getCupo());
 
-
-        contador=db.insert("LOCAL", null, loc);
+        if(verificarIntegridad(local,43)) {
+            ContentValues loc = new ContentValues();
+            loc.put("ID_AULA", local.getIdAula());
+            loc.put("ID_RESERVANTE", local.getIdReservante());
+            loc.put("NOMBRE_AULA", local.getNombreAula());
+            loc.put("CUPO", local.getCupo());
+            contador=db.insert("LOCAL", null, loc);
+        }
 
         if(contador==-1 || contador==0)
         {
-            regInsertados= "Error al Insertar el Local, Registro Duplicado. Verificar inserción";
+            regInsertados= "Error al Insertar el Local. Verificar inserción";
         }
         else {
             regInsertados=regInsertados+contador;
@@ -1167,6 +1171,9 @@ public class ControlBD {
     public String eliminarValoracion(Valoracion valoracion){
         String regAfectados="filas afectadas= ";
         int contador=0;
+        if (verificarIntegridad(valoracion,48)) {
+            contador+=db.delete("ACTIVIDAD", "ID_VALORACION='"+valoracion.getId_valoracion()+"'", null);
+        }
         contador+=db.delete("VALORACION", "ID_VALORACION='"+valoracion.getId_valoracion()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -1175,6 +1182,9 @@ public class ControlBD {
     public String eliminarOfertaAcademica(OfertaAcademica oferta ){
         String regAfectados="filas afectadas= ";
         int contador=0;
+        if (verificarIntegridad(oferta,47)) {
+            contador+=db.delete("DETALLE_OFERTA", "ID_MATERIAS_ACTIVAS='"+oferta.getIdMateriasActivas()+"'", null);
+        }
         contador+=db.delete("OFERTA_ACADEMICA", "ID_MATERIAS_ACTIVAS='"+oferta.getIdMateriasActivas()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -1184,6 +1194,12 @@ public class ControlBD {
     public String eliminarLocal(Local local ){
         String regAfectados="filas afectadas= ";
         int contador=0;
+       if (verificarIntegridad(local,45)) {
+            contador+=db.delete("DETALLE_ACTIVIDAD", "ID_AULA='"+local.getIdAula()+"'", null);
+        }
+        if (verificarIntegridad(local,46)) {
+            contador+=db.delete("DETALLE_OFERTA", "ID_AULA='"+local.getIdAula()+"'", null);
+        }
         contador+=db.delete("LOCAL", "ID_AULA='"+local.getIdAula()+"'", null);
         regAfectados+=contador;
         return regAfectados;
@@ -2033,6 +2049,85 @@ public class ControlBD {
                 return false;
 
             }
+            case 43:
+            {
+                //verificar que al insertar un Local exista el ID del reservante en tabla Encargado
+                Local local = (Local) dato;
+                String[] id1 = {local.getIdReservante()};
+                //abrir();
+                Cursor cursor1 = db.query("ENCARGADO", null, "id_reservante = ?", id1, null,
+                        null, null);
+
+                if(cursor1.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 44:
+            {
+                //verificar que al insertar una ofertaAcademica existan las llaves Foraneas
+                OfertaAcademica oferta = (OfertaAcademica) dato;
+                String[] id1 = {oferta.getIdMateria()};
+                String[] id2 = {oferta.getIdCiclo()};
+                String[] id3 = {oferta.getIdCoordinador()};
+                //abrir();
+                Cursor cursor1 = db.query("MATERIA", null, "id_materia = ?", id1, null,
+                        null, null);
+                Cursor cursor2 = db.query("CICLO", null, "id_ciclo = ?", id2,
+                        null, null, null);
+                Cursor cursor3 = db.query("MIEMBRO_UNIVERSITARIO", null, "id_coordinador = ?", id3,
+                        null, null, null);
+                if(cursor1.moveToFirst() && cursor2.moveToFirst() && cursor3.moveToFirst()){
+                    //Se encontraron datos
+                    return true;
+                }
+                return false;
+            }
+            case 45: {
+                //Verificaciòn de que si existe Local dentro de detalle_actividad al eliminar una local
+                Local local = (Local) dato;
+                Cursor c = db.query(true, "DETALLE_ACTIVIDAD", new String[]{
+                                "id_aula"}, "id_aula='" + local.getIdAula() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 46: {
+                //Verificaciòn de que si existe  Local dentro de detalle_oferta al eliminar una local
+                Local local = (Local) dato;
+                Cursor c = db.query(true, "DETALLE_OFERTA", new String[]{
+                                "id_aula"}, "id_aula='" + local.getIdAula() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 47: {
+                //Verificaciòn de que si existe Oferta_Academica dentro de detalle_oferta al eliminar una oferta_academica
+                OfertaAcademica oferta = (OfertaAcademica) dato;
+                Cursor c = db.query(true, "DETALLE_OFERTA", new String[]{
+                                "id_materias_activas"}, "id_materias_activas='" + oferta.getIdMateriasActivas() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
+            case 48: {
+                //Verificaciòn de que si existe Valoracion dentro de actividad al eliminar una valoracion
+                Valoracion valoracion = (Valoracion) dato;
+                Cursor c = db.query(true, " ACTIVIDAD", new String[]{
+                                "id_valoracion"}, "id_valoracion='" + valoracion.getId_valoracion() + "'", null,
+                        null, null, null, null);
+                if (c.moveToFirst())
+                    return true;
+                else
+                    return false;
+            }
             case 52:
             {
                 //verificar que al Eliminar Encargado elimine regristros en local
@@ -2115,20 +2210,22 @@ public class ControlBD {
         final  String[] Encargadotipo_reservante = {"Administrador","Administrador","Reservante","Reservante"};
 
         //Tabla Valoracion
-        final String[] VAid_valoracion = {"01","O2","03","04","05"};
+        final String[] VAid_valoracion = {"01","02","03","04","05"};
         final String[] VAValoracion = {"Pesimo","Malo","Regular","Bueno","Excelente"};
 
         //Tabla Oferta Academica
         final String[] VAID_MATERIAS_ACTIVAS = {"0001","0002","0003","0004","0005"};
         final String[] VAID_CICLO = {"1235","1235","8546","4563","7893"};
-        final String[] VAID_MATERIA = {"DSI115","SGG115","PDM115","MIP115","TAD115"};
-        final String[] VAID_COORDINADOR = {"1","2","3","4","5"};
+        final String[] VAID_MATERIA = {"MAT115","FIR315","TAD115","SYP115","PRM315"};
+        final String[] VAID_COORDINADOR = {"M01", "M02", "M03","M04","M05"};
         final String[] VANOMBRES_MATERIAS_ACTIVAS = {"Diseño de sistemas","Sistemas de informacion geograficos","Programacion para moviles","Microprogramacion","Teoria Administrativa"};
         final String[] VACICLO_MATERIA_ACTIVA = {"1","1","1","1","1"};
 
         //Tabla Local
+
         final String[] VAID_AULA = {"0001","0002","0003","0004","0005"};
-        final String[] VAID_RESERVANTE = {"HG16037","MT17005","CR11053","RM17032","TG14055"};
+        final String[] VAID_RESERVANTE = {"R001","R002","R003","R004","R002"};
+
         final String[] VANOMBREAULA = {"El espino","B11","C11","D11","F1"};
         final int[] VACUPO = {20,40,50,60,70};
 
@@ -2186,6 +2283,7 @@ public class ControlBD {
         db.execSQL("DELETE FROM ACTIVIDAD");
         db.execSQL("DELETE FROM DETALLE_ACTIVIDAD");
         db.execSQL("DELETE FROM TIPO_GRUPO");
+
 
 
 
