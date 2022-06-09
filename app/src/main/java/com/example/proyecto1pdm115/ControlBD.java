@@ -32,7 +32,7 @@ public class ControlBD {
             {"id_actividad", "id_coordinador"};
     //Campos Detalle Actividad Horario
     private static final String[] camposDetalleActividadHorario = new String[]
-            {"id_horario", "nombre_actividad"};
+            {"id_horario", "id_actividad"};
     //Campos de Materia
     private static final String[] camposMateria = new String[]
             {"id_materia", "id_escuela", "nombre_materia", "ciclo_materia"};
@@ -2089,12 +2089,12 @@ public class ControlBD {
         final String[] ciclo_fecha_fin = {"12/12/2019","21/06/2018","25/12/2022","28/11/2019"};
 
         //Tabla Coordina
-        final String[] coodrinaId_actividad = {"1235","8546","4563","7893"};
-        final String[] coordinaId_coordinador = {"M01", "M02", "M03"};
+        final String[] coordinaId_actividad = {"MAT1EX","FIR3LB"};
+        final String[] coordinaId_coordinador = {"M01", "M02"};
 
         //Tabla DetalleActividadHorario
-        final String[] detalleActividadHorarioId_horario = {"H01","H02","H03"};
-        final String[] detalleActividadHorarioId_actividad = {"01","02","01","02"};
+        final String[] detalleActividadHorarioId_horario = {"H01","H02"};
+        final String[] detalleActividadHorarioId_actividad = {"MAT1EX","FIR3LB"};
 
 
 
@@ -2251,7 +2251,7 @@ public class ControlBD {
         }
         Coordina coordina = new Coordina();
         for (int i = 0; i < 2; i++) {
-            coordina.setId_actividad(coodrinaId_actividad[i]);
+            coordina.setId_actividad(coordinaId_actividad[i]);
             coordina.setId_coordinador(coordinaId_coordinador[i]);
             insertar(coordina);
         }
